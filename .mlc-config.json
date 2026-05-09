@@ -1,8 +1,6 @@
 {
   "ignorePatterns": [
-    { "pattern": "^/" },
-    { "pattern": "^https://inductiveautomation.com" },
-    { "pattern": "^https://docs.inductiveautomation.com" }
+    { "pattern": "^/" }
   ],
   "retryOn429": true,
   "retryCount": 3,
