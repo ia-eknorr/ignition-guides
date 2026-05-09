@@ -129,4 +129,4 @@ If it's hard to summarize your work in one line, that's often a sign the commit 
 
 ---
 
-**Next**: [Hands-On Lab](./lab)
+**Next**: [Hands-On Lab](./lab.md)

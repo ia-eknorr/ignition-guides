@@ -43,4 +43,4 @@ The local repository is now linked with the remote and ready to accept changes.
 
 ---
 
-**Next**: [Branching Strategy](./branching-strategy)
+**Next**: [Branching Strategy](./branching-strategy.md)

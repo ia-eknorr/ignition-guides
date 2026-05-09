@@ -37,4 +37,4 @@ When the pull request is ready — conflicts resolved, approvals obtained — se
 
 ---
 
-**Next**: [Style Guide](./style-guide)
+**Next**: [Style Guide](./style-guide.md)

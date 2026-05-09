@@ -8,7 +8,7 @@ sidebar_position: 6
 
 Git allows multiple features to be developed simultaneously across multiple branches. This guide covers creating branches, staging, committing, and pushing changes to the remote repository.
 
-This loosely follows [GitHub Flow](https://docs.github.com/en/get-started/using-github/github-flow). See [Branching Strategy](./branching-strategy) for more context.
+This loosely follows [GitHub Flow](https://docs.github.com/en/get-started/using-github/github-flow). See [Branching Strategy](./branching-strategy.md) for more context.
 
 ## Procedure
 
@@ -26,7 +26,7 @@ This loosely follows [GitHub Flow](https://docs.github.com/en/get-started/using-
     ```
 
     :::tip
-    Per the [Style Guide](./style-guide), avoid developing directly on `main`. Create a feature branch with a descriptive name.
+    Per the [Style Guide](./style-guide.md), avoid developing directly on `main`. Create a feature branch with a descriptive name.
     :::
 
 3. Make edits in VS Code or the Ignition Designer.
@@ -73,7 +73,7 @@ This loosely follows [GitHub Flow](https://docs.github.com/en/get-started/using-
     git push origin HEAD
     ```
 
-    - `origin` — the name of the remote (set during [repo initialization](./initialize-repository))
+    - `origin` — the name of the remote (set during [repo initialization](./initialize-repository.md))
     - `HEAD` — the current branch's latest commit
 
     :::tip Forgot the remote name?
@@ -82,4 +82,4 @@ This loosely follows [GitHub Flow](https://docs.github.com/en/get-started/using-
 
 ---
 
-**Next**: [Create a Pull Request](./create-a-pull-request)
+**Next**: [Create a Pull Request](./create-a-pull-request.md)

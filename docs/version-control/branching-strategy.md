@@ -110,4 +110,4 @@ gitGraph
 
 ---
 
-**Next**: [Create a Branch](./create-a-branch)
+**Next**: [Create a Branch](./create-a-branch.md)

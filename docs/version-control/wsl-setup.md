@@ -132,4 +132,4 @@ docker-compose --version
 
 ---
 
-**Next**: [Initialize a Repository](./initialize-repository)
+**Next**: [Initialize a Repository](./initialize-repository.md)

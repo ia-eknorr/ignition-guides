@@ -10,5 +10,5 @@ These are reference pages — each links out to the official project with a summ
 
 | Tool | Description |
 | --- | --- |
-| [Stoker Operator](./stoker-operator) | Git-driven configuration sync for Ignition gateways on Kubernetes |
-| [ignition-lint](./ignition-lint) | Linter for Ignition project resources |
+| [Stoker Operator](./stoker-operator.md) | Git-driven configuration sync for Ignition gateways on Kubernetes |
+| [ignition-lint](./ignition-lint.md) | Linter for Ignition project resources |

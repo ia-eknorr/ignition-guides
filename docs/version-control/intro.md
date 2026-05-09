@@ -12,7 +12,7 @@ Learn how to use version control with Git and Ignition.
 
 This guide can be read from top to bottom to learn the basics of Git and gain intermediate strategies, or used as a reference for specific functions or strategies.
 
-If you're new to Git with Ignition, start with the [Hands-On Lab](./lab) to get practical experience with the version control workflow.
+If you're new to Git with Ignition, start with the [Hands-On Lab](./lab.md) to get practical experience with the version control workflow.
 
 ## Overview
 
@@ -86,4 +86,4 @@ git pull origin main
 
 ---
 
-**Next**: [Workstation Setup](./workstation-setup)
+**Next**: [Workstation Setup](./workstation-setup.md)

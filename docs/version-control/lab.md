@@ -12,7 +12,7 @@ A _Getting Started_ tutorial for those new to Git version control with Ignition.
 
 Ensure the following are set up:
 
-- [Workstation Setup](./workstation-setup) complete (Git, GitHub CLI, VS Code)
+- [Workstation Setup](./workstation-setup.md) complete (Git, GitHub CLI, VS Code)
 - [Ignition](https://inductiveautomation.com/downloads/) installed (Docker container or host install)
 
 ---
@@ -76,7 +76,7 @@ This ignores Ignition's resource files that change frequently and don't need to 
 
 ### Create a Remote Repository
 
-1. On GitHub, create a new repository. See the [Style Guide](./style-guide) for naming conventions.
+1. On GitHub, create a new repository. See the [Style Guide](./style-guide.md) for naming conventions.
 2. Copy the repository link.
 
 ### Initialize and Push
@@ -200,4 +200,4 @@ With repetition it becomes second nature and takes only seconds. A "feature" in 
 ## Additional Resources
 
 - [Inductive Automation Deployment Best Practices](https://www.inductiveautomation.com/resources/article/ignition-8-deployment-best-practices#gitlab-example)
-- [Version Control Guide](./intro)
+- [Version Control Guide](./intro.md)

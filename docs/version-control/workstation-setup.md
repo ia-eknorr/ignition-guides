@@ -109,4 +109,4 @@ More information: [GitHub Quickstart](https://docs.github.com/en/get-started/qui
 
 ---
 
-**Next**: [WSL Setup](./wsl-setup) (Windows only) or [Initialize a Repository](./initialize-repository)
+**Next**: [WSL Setup](./wsl-setup.md) (Windows only) or [Initialize a Repository](./initialize-repository.md)

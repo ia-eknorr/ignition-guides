@@ -30,4 +30,4 @@ Once created, the code needs to be reviewed before merging. On solo projects, yo
 
 ---
 
-**Next**: [Merge a Pull Request](./merge-a-pull-request)
+**Next**: [Merge a Pull Request](./merge-a-pull-request.md)
