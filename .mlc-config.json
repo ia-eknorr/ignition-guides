@@ -1,6 +1,7 @@
 {
   "ignorePatterns": [
     { "pattern": "^\\." },
+    { "pattern": "^/" },
     { "pattern": "^https://inductiveautomation.com" },
     { "pattern": "^https://docs.inductiveautomation.com" }
   ],
