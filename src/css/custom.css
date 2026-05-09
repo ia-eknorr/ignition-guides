@@ -1,0 +1,104 @@
+:root {
+  --ifm-color-primary: #475569;
+  --ifm-color-primary-dark: #3e4a5c;
+  --ifm-color-primary-darker: #3a4656;
+  --ifm-color-primary-darkest: #303a47;
+  --ifm-color-primary-light: #506076;
+  --ifm-color-primary-lighter: #54657c;
+  --ifm-color-primary-lightest: #647590;
+  --ifm-link-color: #475569;
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(71, 85, 105, 0.1);
+}
+
+[data-theme="dark"] {
+  --ifm-color-primary: #94a3b8;
+  --ifm-color-primary-dark: #8294ad;
+  --ifm-color-primary-darker: #798da8;
+  --ifm-color-primary-darkest: #607a99;
+  --ifm-color-primary-light: #a6b2c3;
+  --ifm-color-primary-lighter: #afbac8;
+  --ifm-color-primary-lightest: #c8d0da;
+  --ifm-link-color: #94a3b8;
+  --docusaurus-highlighted-code-line-bg: rgba(148, 163, 184, 0.15);
+}
+
+.hero {
+  padding: 4rem 0;
+  text-align: center;
+}
+
+.hero__title {
+  font-size: 3rem;
+}
+
+.hero__subtitle {
+  font-size: 1.25rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.features {
+  padding: 3rem 0;
+  width: 100%;
+}
+
+.features .row {
+  display: flex;
+  align-items: stretch;
+}
+
+.features .col {
+  display: flex;
+  margin-bottom: 1rem;
+}
+
+.feature {
+  flex: 1;
+  padding: 1.5rem;
+  text-align: center;
+  background: #f8fafc;
+  border: 1px solid var(--ifm-color-emphasis-300, #cbd5e1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
+}
+
+.feature h3 {
+  font-size: 1.1rem;
+}
+
+.feature p {
+  font-size: 0.95rem;
+  color: var(--ifm-color-emphasis-700);
+}
+
+[data-theme="dark"] .feature {
+  background: var(--ifm-card-background-color);
+}
+
+/* Search bar: wider on desktop + keyboard shortcut hint */
+.aa-DetachedSearchButton {
+  min-width: 200px;
+  padding-right: 8px;
+}
+
+.search-shortcut-badge {
+  font-size: 0.7rem;
+  font-family: system-ui, sans-serif;
+  padding: 2px 6px;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 4px;
+  color: var(--ifm-color-emphasis-600);
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+@media (max-width: 996px) {
+  .aa-DetachedSearchButton {
+    min-width: unset;
+  }
+
+  .search-shortcut-badge {
+    display: none;
+  }
+}

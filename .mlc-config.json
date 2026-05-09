@@ -1,0 +1,14 @@
+{
+  "ignorePatterns": [
+    {
+      "pattern": "^https://inductiveautomation.com"
+    },
+    {
+      "pattern": "^https://docs.inductiveautomation.com"
+    }
+  ],
+  "retryOn429": true,
+  "retryCount": 3,
+  "fallbackRetryDelay": "3s",
+  "aliveStatusCodes": [200, 206]
+}
