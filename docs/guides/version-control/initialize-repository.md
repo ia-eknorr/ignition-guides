@@ -50,6 +50,14 @@ The local repository is now linked with the remote and ready to accept changes.
 
 ## Ignition 8.3 Directory Structure
 
+:::note Coming from Ignition 8.1 or 8.2?
+In 8.1/8.2, gateway configuration lived in a SQLite database and could only be backed up
+as a `.gwbk` file - not tracked in Git. In 8.3, all gateway configuration moved to the
+filesystem under `data/config/`, making it directly version-controllable alongside your
+projects. See the [Ignition 8.3 Version Control Guide](https://docs.inductiveautomation.com/docs/8.3/tutorials/version-control-guide)
+for the full picture.
+:::
+
 In Ignition 8.3, project and configuration files are stored on the filesystem (not in a SQLite database), making them directly trackable with Git.
 
 When using Docker with the `ia-eknorr/project-template`:
