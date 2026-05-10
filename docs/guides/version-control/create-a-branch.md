@@ -56,6 +56,16 @@ This loosely follows [GitHub Flow](https://docs.github.com/en/get-started/using-
     Commit one feature or sub-feature at a time. If `git status` shows changes you didn't intentionally make (common with Ignition `resource.json` files), stash or skip them.
     :::
 
+    :::warning Commit resource.json with its content file
+    Ignition stores each resource as a pair: `resource.json` (metadata) and a content file
+    (`view.json`, `.py`, etc.). Always commit them together - staging one without the other
+    puts the resource in an inconsistent state that can break the Designer or prevent the
+    project from loading.
+
+    Also avoid committing `session-props/props.json` - it stores per-session UI state and
+    changes constantly without representing meaningful work.
+    :::
+
 6. Commit with a message:
 
     ```shell

@@ -80,6 +80,15 @@ credentials, ports) should never be committed. Share configuration through `.env
 instead.
 :::
 
+:::note Deployment Mode
+The template starts the gateway in `dev` deployment mode. Deployment modes allow a single
+config repository to serve multiple environments (dev, QA, prod) by layering
+environment-specific overrides at runtime - but this only applies to gateway configuration,
+not Perspective projects. For this lab the `dev` mode is pre-set and requires no changes.
+See the [Ignition 8.3 Version Control Guide](https://docs.inductiveautomation.com/docs/8.3/tutorials/version-control-guide)
+for more on deployment modes.
+:::
+
 ---
 
 ## Step 3: Start the Gateway
@@ -103,13 +112,14 @@ If this is the first startup, complete the commissioning wizard:
 2. Set an admin username and password
 3. Select **Standard Edition** (or your licensed edition)
 
-![Gateway Homepage](/img/lab/ignition-quickstart.png)
+![Gateway Homepage](/img/lab/gateway-homepage.png)
 
 :::tip Common startup issues
 
 - Port 8088 in use: stop any other running Ignition instances, or change `GATEWAY_HTTP_PORT` in `.env`
 - Gateway not healthy after 2-3 minutes: run `docker compose logs gateway` to see what's wrong
 - On Windows: make sure Docker Desktop is running before running `docker compose up`
+- On Linux with native Docker (not Docker Desktop): if the gateway can't write to mounted volumes, run `sudo chown -R 2003:2003 services/ignition/` to match the container's `ignition` user
 
 :::
 
@@ -161,6 +171,15 @@ Ignition stores each resource as a pair of files:
 
 These are human-readable JSON/text files, which is what makes them useful to track in Git.
 You can diff them, review them in a PR, and see exactly what changed and why.
+:::
+
+:::warning Always commit resource.json with its content file
+`resource.json` and its content file (`view.json`, `.py`, etc.) are a pair - always stage
+and commit them together. Committing one without the other leaves the resource in an
+inconsistent state that can break the Designer or prevent the project from loading.
+
+Also avoid committing `session-props/props.json` - it stores per-session UI state and
+changes constantly without representing real work.
 :::
 
 ---
