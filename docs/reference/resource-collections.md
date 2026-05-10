@@ -149,6 +149,7 @@ The `project-template` mounts `core/` and `dev/` into the container. Both direct
 Every collection directory requires a `config-mode.json` file:
 
 **Core:**
+
 ```json
 {
   "title": "Core",
@@ -160,6 +161,7 @@ Every collection directory requires a `config-mode.json` file:
 ```
 
 **Deployment mode:**
+
 ```json
 {
   "title": "Dev",
