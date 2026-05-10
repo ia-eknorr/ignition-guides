@@ -7,7 +7,7 @@ slug: /
 
 Unofficial guides for modern Ignition SCADA infrastructure and workflows.
 
-## What is in here
+## What Is in Here
 
 ### Guides
 

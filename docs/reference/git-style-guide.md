@@ -107,13 +107,13 @@ Some teams prepend a category: `Feature:`, `Chore:`, `Bugfix:`. This helps visua
 If it's hard to summarize your work in one line, that's often a sign the commit is too large. Break it into smaller, focused commits.
 :::
 
-### Good commit messages
+### Good Commit Messages
 
 - `Feature: Developed motor faceplate`
 - `Chore: Cleaned up myScripts/general`
 - `Fixed broken binding on Main Views/plant`
 
-### Bad commit messages
+### Bad Commit Messages
 
 - `Added style class and applied it to my view and added docstrings to myScripts/general` - too many things
 - `Built screens` - not descriptive enough

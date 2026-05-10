@@ -56,7 +56,7 @@ git config --global user.email "your@email.addr"
 
 Create a `.gitignore` file at the top level of your project:
 
-```
+```text
 # Ignition Vision Content
 com.inductiveautomation.vision
 ```
@@ -67,11 +67,13 @@ This ignores Ignition's resource files that change frequently and don't need to 
 
 :::note
 `.gitignore` files are very useful. You may also want to exclude:
+
 - `com.inductiveautomation.vision/` - if your project doesn't use Vision
 - `.DS_Store` - macOS viewing preferences
 - `*.code-workspace` - VS Code workspace files
 - `.vscode/` - VS Code config files
 - `__pycache__/`, `.jython_cache`, `*.pyc` - Python caches
+
 :::
 
 ### Create a Remote Repository
@@ -90,6 +92,7 @@ git push -u origin main
 ```
 
 What each command does:
+
 - `git init` - initializes the repository
 - `git remote add origin <link>` - links local repo to GitHub
 - `git add .` - stages all files
@@ -110,11 +113,11 @@ What each command does:
 
 2. Open the Ignition Designer and create a new view called `example_view`.
 
-![Creating a New View](/img/lab/new-view-ignition.png)
+   ![Creating a New View](/img/lab/new-view-ignition.png)
 
 3. Edit the background color (e.g., change it to red).
 
-![Edited View](/img/lab/edited-view.png)
+   ![Edited View](/img/lab/edited-view.png)
 
 4. Save in the Ignition Designer, then return to the terminal.
 
@@ -124,15 +127,16 @@ What each command does:
     git status
     ```
 
-![Results from git status](/img/lab/git-status.png)
+   ![Results from git status](/img/lab/git-status.png)
 
-:::tip Unexpected files in git status?
-Ignition's `resource.json` files can update when a view is opened even without changes. To stash a file you don't want to commit:
+   :::tip Unexpected files in git status?
+   Ignition's `resource.json` files can update when a view is opened even without changes. To stash a file you don't want to commit:
 
-```shell
-git stash push path/to/file
-```
-:::
+   ```shell
+   git stash push path/to/file
+   ```
+
+   :::
 
 6. Stage and commit:
 
@@ -147,7 +151,7 @@ git stash push path/to/file
     git push -u origin HEAD
     ```
 
-![Results from git push](/img/lab/new-branch-push.png)
+   ![Results from git push](/img/lab/new-branch-push.png)
 
 ---
 
@@ -155,13 +159,13 @@ git stash push path/to/file
 
 1. Find the PR link in the terminal output after pushing:
 
-![Pull request link](/img/lab/new-branch-push-link.png)
+   ![Pull request link](/img/lab/new-branch-push-link.png)
 
    Or navigate to the **Pull Requests** tab on GitHub and use the orange banner for your recent push.
 
-![New Feature to Main](/img/lab/feature-to-main.png)
+   ![New Feature to Main](/img/lab/feature-to-main.png)
 
-![Pull Request Page](/img/lab/pull-request-page.png)
+   ![Pull Request Page](/img/lab/pull-request-page.png)
 
 2. Add a short description of the changes.
 3. Select **Create Draft Pull Request** to review first.

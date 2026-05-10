@@ -45,11 +45,13 @@ gitGraph
 5. Repeat for each feature
 
 ### Pros
+
 - Fast and streamlined
 - Quick feedback loop
 - Well suited for small teams
 
 ### Cons
+
 - More susceptible to bugs (no development buffer)
 - Not well suited for multiple release versions
 
@@ -100,11 +102,13 @@ gitGraph
 5. Tag the release
 
 ### Pros
+
 - Parallel development with production isolation
 - Easier to manage multiple versions
 - Well-organized branch types
 
 ### Cons
+
 - Higher complexity
 - More branches to manage
 

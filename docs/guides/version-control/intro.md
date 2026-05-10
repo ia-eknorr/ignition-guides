@@ -8,23 +8,23 @@ sidebar_position: 1
 
 Learn how to use version control with Git and Ignition.
 
-## How to use this guide
+## How to Use This Guide
 
-This guide can be read from top to bottom to learn the basics of Git and gain intermediate strategies, or used as a reference for specific functions or strategies.
+This guide can be read from top to bottom to learn the basics of Git and gain intermediate strategies, or used as a reference for specific commands and workflows.
 
 If you're new to Git with Ignition, start with the [Hands-On Lab](../../labs/git-ignition-lab.md) to get practical experience with the version control workflow.
 
 ## Overview
 
-### What is Git?
+### What Is Git?
 
 Git is a version control system that helps developers keep track of changes to their code over time.
 
-### Why do we use version control?
+### Why Use Version Control?
 
 It allows multiple developers to work on the same project simultaneously, tracks changes to source code and other files, and provides tools for managing different versions of files, merging changes, and rolling back changes when necessary.
 
-### Why is version control important?
+### Why Is Version Control Important?
 
 Version control allows a team to:
 
