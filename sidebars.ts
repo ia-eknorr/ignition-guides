@@ -25,7 +25,6 @@ const sidebars: SidebarsConfig = {
             "guides/version-control/initialize-repository",
             "guides/version-control/branching-strategy",
             "guides/version-control/create-a-branch",
-            "guides/version-control/create-a-pull-request",
             "guides/version-control/merge-a-pull-request",
           ],
         },

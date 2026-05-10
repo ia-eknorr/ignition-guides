@@ -4,35 +4,12 @@ sidebar_position: 1
 
 # Basics of Git
 
-## Purpose
+A quick-reference page for Git concepts and commands used throughout this guide. If you're new to Git, start with the [Hands-On Lab](../../labs/git-ignition-lab.md) for a guided walkthrough before using these pages as reference.
 
-Learn how to use version control with Git and Ignition.
-
-## How to Use This Guide
-
-This guide can be read from top to bottom to learn the basics of Git and gain intermediate strategies, or used as a reference for specific commands and workflows.
-
-If you're new to Git with Ignition, start with the [Hands-On Lab](../../labs/git-ignition-lab.md) to get practical experience with the version control workflow.
-
-## Overview
-
-### What Is Git?
-
-Git is a version control system that helps developers keep track of changes to their code over time.
-
-### Why Use Version Control?
-
-It allows multiple developers to work on the same project simultaneously, tracks changes to source code and other files, and provides tools for managing different versions of files, merging changes, and rolling back changes when necessary.
-
-### Why Is Version Control Important?
-
-Version control allows a team to:
-
-- Track all of the changes made to the project
-- View who made changes
-- Merge changes without overwriting other features
-- Revert accidentally deleted work
-- Provide context into why a certain decision was made and who made it
+:::tip Before continuing
+Make sure [Workstation Setup](../../getting-started/workstation-setup.md) is complete before
+following the procedures in this guide.
+:::
 
 ## Terms
 
@@ -48,7 +25,7 @@ Version control allows a team to:
 | `Local Repository` | Where you keep your copy of a Git repository on your workstation |
 | `Main` | Default name of the first branch |
 | `Merge` | Joining two or more commit histories |
-| `Pull Request` | GitHub-specific term to let others know about changes you've pushed to a branch - see [Create a Pull Request](./create-a-pull-request.md) |
+| `Pull Request` | GitHub-specific term to let others know about changes you've pushed to a branch - see [Create a Branch and Pull Request](./create-a-branch.md) |
 | `Remote Repository` | A repository where you push changes for collaboration or backup |
 | `Stash` | Another cache, acting as a stack, where changes can be stored without committing |
 | `Working tree` | Current branch in your workspace |
@@ -83,10 +60,3 @@ Version control allows a team to:
 | `ls` | List files in current directory |
 | `mkdir` | Make new directory |
 | `pwd` | Print working directory |
-
----
-
-:::tip Before continuing
-Make sure [Workstation Setup](../../getting-started/workstation-setup.md) is complete before
-following the procedures in this guide.
-:::
