@@ -104,7 +104,8 @@ docker compose logs -f gateway
 ```
 
 You'll see `Gateway started successfully` when it's ready. Then open
-[http://localhost:8088](http://localhost:8088) in your browser.
+`http://<GATEWAY_NAME>.localtest.me` in your browser (requires Traefik - see
+[Traefik Reverse Proxy](../getting-started/traefik.md)).
 
 If this is the first startup, complete the commissioning wizard:
 
@@ -112,11 +113,13 @@ If this is the first startup, complete the commissioning wizard:
 2. Set an admin username and password
 3. Select **Standard Edition** (or your licensed edition)
 
+After commissioning you'll land on the gateway home page:
+
 ![Gateway Homepage](/img/lab/gateway-homepage.png)
 
 :::tip Common startup issues
 
-- Port 8088 in use: stop any other running Ignition instances, or change `GATEWAY_HTTP_PORT` in `.env`
+- Port 80 in use: make sure Traefik is running (`docker compose up -d` in your Traefik directory)
 - Gateway not healthy after 2-3 minutes: run `docker compose logs gateway` to see what's wrong
 - On Windows: make sure Docker Desktop is running before running `docker compose up`
 - On Linux with native Docker (not Docker Desktop): if the gateway can't write to mounted volumes, run `sudo chown -R 2003:2003 services/ignition/` to match the container's `ignition` user
@@ -255,7 +258,7 @@ scan history at a glance. See the [Style Guide](../reference/git-style-guide.md)
 After pushing, Git prints a URL to create a pull request. Open it, or navigate to the
 **Pull Requests** tab on GitHub.
 
-![New PR banner on GitHub](/img/lab/feature-to-main.png)
+![Comparing changes on GitHub](/img/lab/feature-to-main.png)
 
 1. Review the file diff - you should see the view JSON you just created
 2. Add a title and a short description
