@@ -14,16 +14,17 @@ This loosely follows [GitHub Flow](https://docs.github.com/en/get-started/using-
 
 1. Check available branches and your current branch:
 
-    ```shell
-    git branch
-    ```
+    <Terminal title="bash — ~" lines={[
+      "$ git branch",
+      "* main",
+    ]} />
 
 2. Create and switch to a new branch:
 
-    ```shell
-    # Create and checkout in one command
-    git checkout -b branch-name
-    ```
+    <Terminal title="bash — ~" lines={[
+      "$ git checkout -b feature/my-feature",
+      "Switched to a new branch 'feature/my-feature'",
+    ]} />
 
     :::tip
     Per the [Style Guide](../../reference/git-style-guide.md), avoid developing directly on `main`. Create a feature branch with a descriptive name.
@@ -63,11 +64,11 @@ This loosely follows [GitHub Flow](https://docs.github.com/en/get-started/using-
 
 7. Verify a clean working tree:
 
-    ```shell
-    git status
-    ```
-
-    ![Clean working tree output](/img/version-control/clean-working-tree.png)
+    <Terminal title="bash — ~" lines={[
+      "$ git status",
+      "On branch feature/my-feature",
+      "nothing to commit, working tree clean",
+    ]} />
 
 8. Push to the remote repository:
 
@@ -81,5 +82,9 @@ This loosely follows [GitHub Flow](https://docs.github.com/en/get-started/using-
     :::tip Forgot the remote name?
     Run `git remote -v` to list all configured remotes.
 
-    ![git remote -v output showing configured remotes](/img/version-control/remote-sources.png)
+    <Terminal title="bash — ~" lines={[
+      "$ git remote -v",
+      "origin    https://github.com/your-org/your-repo.git (fetch)",
+      "origin    https://github.com/your-org/your-repo.git (push)",
+    ]} />
     :::

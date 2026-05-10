@@ -77,10 +77,12 @@ Winget is the official package manager for Windows. Homebrew is a package manage
 
 3. Verify:
 
-    ```shell
-    git config --global user.name
-    git config --global user.email
-    ```
+    <Terminal title="bash — ~" lines={[
+      "$ git config --global user.name",
+      "your-username",
+      "$ git config --global user.email",
+      "your@email.com",
+    ]} />
 
 ## GitHub CLI
 
@@ -104,21 +106,26 @@ Winget is the official package manager for Windows. Homebrew is a package manage
 
 1. Verify installation:
 
-    ```shell
-    gh status
-    ```
-
-    ![GitHub CLI configuration](/img/version-control/gh-configuration.png)
+    <Terminal title="bash — ~" lines={[
+      "$ gh status",
+      "You are not logged into any GitHub hosts. Run `gh auth login` to authenticate.",
+    ]} />
 
 2. Authenticate:
 
-    ```shell
-    gh auth login
-    ```
-
-    Follow the prompts to log in to GitHub.
-
-    ![GitHub auth login](/img/version-control/gh-auth-login.png)
+    <Terminal title="bash — ~" lines={[
+      "$ gh auth login",
+      "? What account do you want to log into? GitHub.com",
+      "? What is your preferred protocol for Git operations? HTTPS",
+      "? Authenticate Git with your GitHub credentials? Yes",
+      "? How would you like to authenticate GitHub CLI? Login with a web browser",
+      "",
+      "! First copy your one-time code: C464-3A9D",
+      "Press Enter to open github.com in your browser...",
+      "✓ Authentication complete.",
+      "✓ Configured git protocol",
+      "✓ Logged in as your-username",
+    ]} />
 
 More information: [GitHub Quickstart](https://docs.github.com/en/get-started/quickstart/set-up-git)
 
