@@ -132,14 +132,20 @@ If this is the first startup, complete the commissioning wizard:
 
 Back in VS Code, open the integrated terminal and run:
 
-```shell
-git status
-```
+<Terminal title="bash — ~/my-ignition-project">
+{`$ git status
+On branch main
+Changes not staged for commit:
+  (use "git add [file]..." to update what will be committed)
+  (use "git restore [file]..." to discard changes in working directory)
+        modified:   services/ignition/projects/my_project/com.inductiveautomation.perspective/views/example_view/resource.json
+        modified:   services/ignition/projects/my_project/com.inductiveautomation.perspective/views/example_view/view.json
+
+no changes added to commit (use "git add" and/or "git commit -a")`}
+</Terminal>
 
 The new project files appear under `services/ignition/projects/my_project/`. This is the
 bind mount at work - no export or copy was needed.
-
-![git status showing new project files](/img/lab/git-status.png)
 
 Run `git diff` on one of the files to see what changed:
 
@@ -186,9 +192,10 @@ for the full pattern reference including host install patterns.
 
 Create a feature branch for your changes (do not commit directly to `main`):
 
-```shell
-git checkout -b feature/add-initial-view
-```
+<Terminal title="bash — ~/my-ignition-project">
+{`$ git checkout -b feature/add-initial-view
+Switched to a new branch 'feature/add-initial-view'`}
+</Terminal>
 
 Stage the project directory and commit:
 
@@ -199,11 +206,23 @@ git commit -m "feat: add initial perspective view"
 
 Push to GitHub:
 
-```shell
-git push -u origin HEAD
-```
-
-![git push output with PR link](/img/lab/new-branch-push.png)
+<Terminal title="bash — ~/my-ignition-project">
+{`$ git push -u origin HEAD
+Enumerating objects: 8, done.
+Counting objects: 100% (8/8), done.
+Delta compression using up to 10 threads
+Compressing objects: 100% (5/5), done.
+Writing objects: 100% (6/6), 1.24 KiB | 1.24 MiB/s, done.
+Total 6 (delta 2), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+remote:
+remote: Create a pull request for 'feature/add-initial-view' on GitHub by visiting:
+remote:     https://github.com/your-org/your-repo/pull/new/feature/add-initial-view
+remote:
+To https://github.com/your-org/your-repo.git
+ * [new branch]      HEAD -> feature/add-initial-view
+Branch 'feature/add-initial-view' set up to track remote branch 'feature/add-initial-view' from 'origin'.`}
+</Terminal>
 
 :::tip Commit message style
 Using prefixes like `feat:`, `fix:`, and `chore:` (Conventional Commits) makes it easy to
@@ -236,12 +255,23 @@ After pushing, Git prints a URL to create a pull request. Open it, or navigate t
 
 After merging, bring `main` up to date:
 
-```shell
-git checkout main
-git pull origin main
-```
-
-![git pull output](/img/lab/pull-remote-changes.png)
+<Terminal title="bash — ~/my-ignition-project">
+{`$ git checkout main
+Switched to branch 'main'
+Your branch is up to date with 'origin/main'.
+$ git pull origin main
+remote: Enumerating objects: 1, done.
+remote: Counting objects: 100% (1/1), done.
+remote: Total 1 (delta 0), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (1/1), 276 bytes | 276.00 KiB/s, done.
+From https://github.com/your-org/your-repo
+ * branch            main       -> FETCH_HEAD
+   9f805c2..31f1139  main       -> origin/main
+Updating 9f805c2..31f1139
+Fast-forward
+ services/ignition/projects/my_project/.../view.json | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)`}
+</Terminal>
 
 Your local `main` now matches the remote. Start the next feature with a new branch off `main`.
 
