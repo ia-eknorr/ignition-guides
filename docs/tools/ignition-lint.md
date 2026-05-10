@@ -9,7 +9,7 @@ sidebar_position: 3
 
 ## What it does
 
-`ignition-lint` is a linter for Ignition project resources. It statically analyzes Ignition project files and reports on style violations, common mistakes, and deviations from best practices — without needing a running gateway.
+`ignition-lint` is a linter for Ignition project resources. It statically analyzes Ignition project files and reports on style violations, common mistakes, and deviations from best practices - without needing a running gateway.
 
 ## When to use it
 

@@ -82,8 +82,9 @@ const config: Config = {
         {
           title: "Guides",
           items: [
-            { label: "Version Control", to: "/docs/version-control/intro" },
-            { label: "Hands-On Lab", to: "/docs/version-control/lab" },
+            { label: "Version Control", to: "/docs/guides/version-control/intro" },
+            { label: "Git Lab", to: "/docs/labs/git-ignition-lab" },
+            { label: "Style Guide", to: "/docs/reference/git-style-guide" },
             { label: "Tools", to: "/docs/tools/overview" },
           ],
         },

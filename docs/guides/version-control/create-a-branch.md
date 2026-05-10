@@ -26,7 +26,7 @@ This loosely follows [GitHub Flow](https://docs.github.com/en/get-started/using-
     ```
 
     :::tip
-    Per the [Style Guide](./style-guide.md), avoid developing directly on `main`. Create a feature branch with a descriptive name.
+    Per the [Style Guide](../../reference/git-style-guide.md), avoid developing directly on `main`. Create a feature branch with a descriptive name.
     :::
 
 3. Make edits in VS Code or the Ignition Designer.
@@ -73,8 +73,8 @@ This loosely follows [GitHub Flow](https://docs.github.com/en/get-started/using-
     git push origin HEAD
     ```
 
-    - `origin` — the name of the remote (set during [repo initialization](./initialize-repository.md))
-    - `HEAD` — the current branch's latest commit
+    - `origin` - the name of the remote (set during [repo initialization](./initialize-repository.md))
+    - `HEAD` - the current branch's latest commit
 
     :::tip Forgot the remote name?
     Run `git remote -v` to list all configured remotes.

@@ -6,7 +6,7 @@ sidebar_position: 1
 
 A collection of community tools built around Ignition that extend your development and operations workflow.
 
-These are reference pages — each links out to the official project with a summary of what it does and when to reach for it.
+These are reference pages - each links out to the official project with a summary of what it does and when to reach for it.
 
 | Tool | Description |
 | --- | --- |

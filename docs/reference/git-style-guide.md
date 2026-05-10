@@ -6,7 +6,7 @@ sidebar_position: 9
 
 ## Purpose
 
-Define a style guide for using version control with Git in Ignition projects — naming for repositories, branches, commits, and pull requests.
+Define a style guide for using version control with Git in Ignition projects - naming for repositories, branches, commits, and pull requests.
 
 ## Quick Reference
 
@@ -69,7 +69,7 @@ Recommended. Can be added in the initial commit if not created on GitHub.
 
 ### .gitignore
 
-`None` by default — add from VS Code during the initial commit.
+`None` by default - add from VS Code during the initial commit.
 
 ---
 
@@ -79,9 +79,9 @@ All branches should be lowercase with dashes separating words.
 
 ### Default Branches
 
-- `main` — production/stable. No direct commits.
-- `dev` — active development (GitFlow)
-- `release` — release candidate staging (GitFlow)
+- `main` - production/stable. No direct commits.
+- `dev` - active development (GitFlow)
+- `release` - release candidate staging (GitFlow)
 
 ### Feature Branches
 
@@ -115,8 +115,8 @@ If it's hard to summarize your work in one line, that's often a sign the commit 
 
 ### Bad commit messages
 
-- `Added style class and applied it to my view and added docstrings to myScripts/general` — too many things
-- `Built screens` — not descriptive enough
+- `Added style class and applied it to my view and added docstrings to myScripts/general` - too many things
+- `Built screens` - not descriptive enough
 
 ---
 
@@ -129,4 +129,4 @@ If it's hard to summarize your work in one line, that's often a sign the commit 
 
 ---
 
-**Next**: [Hands-On Lab](./lab.md)
+**Next**: [Hands-On Lab](../labs/git-ignition-lab.md)

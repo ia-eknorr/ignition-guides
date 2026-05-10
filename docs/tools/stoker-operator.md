@@ -18,7 +18,7 @@ No shared PVC required. Communication between controller and agent is entirely v
 
 ## When to use it
 
-Stoker is for teams running Ignition on Kubernetes who want GitOps-style config management — treat your Ignition project files as code, stored in Git, automatically deployed to gateways when changes land on a branch.
+Stoker is for teams running Ignition on Kubernetes who want GitOps-style config management - treat your Ignition project files as code, stored in Git, automatically deployed to gateways when changes land on a branch.
 
 ## Key features
 

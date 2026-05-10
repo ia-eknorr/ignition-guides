@@ -47,7 +47,7 @@ IA's preferred version control system.
 Winget is the official package manager for Windows. Homebrew is a package manager for macOS and Linux. Both simplify installing and managing software from the command line.
 :::
 
-**Installation**: Run the installation wizard. Override the default branch name to `main` — the historically used `master` has fallen out of favor.
+**Installation**: Run the installation wizard. Override the default branch name to `main` - the historically used `master` has fallen out of favor.
 
 **Configuration:**
 

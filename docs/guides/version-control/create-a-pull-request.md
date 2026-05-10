@@ -9,7 +9,7 @@ sidebar_position: 7
 Pull requests let others know about changes you've pushed to a branch. Once open, collaborators can discuss and review changes before they're merged into the base branch.
 
 :::tip Pull Request vs. Merge Request
-These are different terms for the same thing. GitHub uses "Pull Request"; GitLab uses "Merge Request." Git itself has no concept of either — they're features of the hosting platform.
+These are different terms for the same thing. GitHub uses "Pull Request"; GitLab uses "Merge Request." Git itself has no concept of either - they're features of the hosting platform.
 :::
 
 ## Procedure
@@ -26,7 +26,7 @@ These are different terms for the same thing. GitHub uses "Pull Request"; GitLab
 
 4. Select **Create Pull Request**.
 
-Once created, the code needs to be reviewed before merging. On solo projects, you can review and merge yourself — but the habit of going through a PR is good practice even when working alone.
+Once created, the code needs to be reviewed before merging. On solo projects, you can review and merge yourself - but the habit of going through a PR is good practice even when working alone.
 
 ---
 

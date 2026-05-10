@@ -64,7 +64,7 @@ Install the following:
    - [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python)
    - [Docker](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker)
 
-2. [Git for Windows](https://gitforwindows.org/) — select "Use Visual Studio Code" as the default editor during installation.
+2. [Git for Windows](https://gitforwindows.org/) - select "Use Visual Studio Code" as the default editor during installation.
 
 ## Install Docker Inside WSL Ubuntu
 

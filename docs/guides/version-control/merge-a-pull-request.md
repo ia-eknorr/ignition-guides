@@ -6,7 +6,7 @@ sidebar_position: 8
 
 ## Overview
 
-When the pull request is ready — conflicts resolved, approvals obtained — select a merge strategy and complete the merge.
+When the pull request is ready - conflicts resolved, approvals obtained - select a merge strategy and complete the merge.
 
 ## Procedure
 
@@ -25,16 +25,16 @@ When the pull request is ready — conflicts resolved, approvals obtained — se
 
    Three options exist:
 
-   - **Create a merge commit** — Adds all commits from the feature branch plus a merge commit. Simple, but can clutter the destination branch history.
+   - **Create a merge commit** - Adds all commits from the feature branch plus a merge commit. Simple, but can clutter the destination branch history.
 
-   - **Squash and merge** *(recommended)* — Combines all PR commits into a single commit. Keeps history clean and ties the change clearly to one PR.
+   - **Squash and merge** *(recommended)* - Combines all PR commits into a single commit. Keeps history clean and ties the change clearly to one PR.
 
-     1. Edit the title if needed (default includes the PR number — keep it)
+     1. Edit the title if needed (default includes the PR number - keep it)
      2. Trim the description to only high-level details
      3. Click **Confirm squash and merge**
 
-   - **Rebase and merge** — Advanced method; not recommended for most Ignition repos.
+   - **Rebase and merge** - Advanced method; not recommended for most Ignition repos.
 
 ---
 
-**Next**: [Style Guide](./style-guide.md)
+**Next**: [Style Guide](../../reference/git-style-guide.md)

@@ -12,7 +12,7 @@ A _Getting Started_ tutorial for those new to Git version control with Ignition.
 
 Ensure the following are set up:
 
-- [Workstation Setup](./workstation-setup.md) complete (Git, GitHub CLI, VS Code)
+- [Workstation Setup](../guides/version-control/workstation-setup.md) complete (Git, GitHub CLI, VS Code)
 - [Ignition](https://inductiveautomation.com/downloads/) installed (Docker container or host install)
 
 ---
@@ -67,16 +67,16 @@ This ignores Ignition's resource files that change frequently and don't need to 
 
 :::note
 `.gitignore` files are very useful. You may also want to exclude:
-- `com.inductiveautomation.vision/` — if your project doesn't use Vision
-- `.DS_Store` — macOS viewing preferences
-- `*.code-workspace` — VS Code workspace files
-- `.vscode/` — VS Code config files
-- `__pycache__/`, `.jython_cache`, `*.pyc` — Python caches
+- `com.inductiveautomation.vision/` - if your project doesn't use Vision
+- `.DS_Store` - macOS viewing preferences
+- `*.code-workspace` - VS Code workspace files
+- `.vscode/` - VS Code config files
+- `__pycache__/`, `.jython_cache`, `*.pyc` - Python caches
 :::
 
 ### Create a Remote Repository
 
-1. On GitHub, create a new repository. See the [Style Guide](./style-guide.md) for naming conventions.
+1. On GitHub, create a new repository. See the [Style Guide](../reference/git-style-guide.md) for naming conventions.
 2. Copy the repository link.
 
 ### Initialize and Push
@@ -90,11 +90,11 @@ git push -u origin main
 ```
 
 What each command does:
-- `git init` — initializes the repository
-- `git remote add origin <link>` — links local repo to GitHub
-- `git add .` — stages all files
-- `git commit -m "Initial commit"` — creates the first commit
-- `git push -u origin main` — pushes to remote and sets upstream tracking
+- `git init` - initializes the repository
+- `git remote add origin <link>` - links local repo to GitHub
+- `git add .` - stages all files
+- `git commit -m "Initial commit"` - creates the first commit
+- `git push -u origin main` - pushes to remote and sets upstream tracking
 
 ![Initial Commit on Repo](/img/lab/initial-commit.png)
 
@@ -183,7 +183,7 @@ git pull origin main
 Your local `main` now matches the remote. Start the next feature with a new branch.
 
 :::tip This feels like a lot. Is it always this involved?
-With repetition it becomes second nature and takes only seconds. A "feature" in practice could encompass many related changes — the overhead is worthwhile once you've had to recover from a merge gone wrong.
+With repetition it becomes second nature and takes only seconds. A "feature" in practice could encompass many related changes - the overhead is worthwhile once you've had to recover from a merge gone wrong.
 :::
 
 ---
@@ -200,4 +200,4 @@ With repetition it becomes second nature and takes only seconds. A "feature" in 
 ## Additional Resources
 
 - [Inductive Automation Deployment Best Practices](https://www.inductiveautomation.com/resources/article/ignition-8-deployment-best-practices#gitlab-example)
-- [Version Control Guide](./intro.md)
+- [Version Control Guide](../guides/version-control/intro.md)

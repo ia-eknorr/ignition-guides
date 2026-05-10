@@ -7,7 +7,7 @@ const features = [
   {
     title: "Version Control",
     description:
-      "Learn Git workflows for Ignition projects — from workstation setup and branching strategy to pull requests and style guidelines.",
+      "Learn Git workflows for Ignition projects: workstation setup, branching strategy, pull requests, and style guidelines.",
   },
   {
     title: "Hands-On Labs",
@@ -17,7 +17,7 @@ const features = [
   {
     title: "Tools & Ecosystem",
     description:
-      "Reference pages for community tools built around Ignition — operators, linters, and automation that extend your workflow.",
+      "Reference pages for community tools built around Ignition: operators, linters, and automation that extend your workflow.",
   },
 ];
 
@@ -37,7 +37,7 @@ function Hero() {
         <div style={{ marginTop: "1.5rem" }}>
           <Link
             className="button button--secondary button--lg"
-            to="/docs/version-control/intro"
+            to="/docs/guides/version-control/intro"
           >
             Get Started
           </Link>
