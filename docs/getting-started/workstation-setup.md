@@ -72,7 +72,7 @@ Winget is the official package manager for Windows. Homebrew is a package manage
 
     ```shell
     git config --global user.name "your username"
-    git config --global user.email "your email"
+    git config --global user.email "your@email.com"
     ```
 
 3. Verify:
