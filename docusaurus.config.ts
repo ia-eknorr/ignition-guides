@@ -25,8 +25,8 @@ const config: Config = {
   themes: [
     "@docusaurus/theme-mermaid",
     [
-      "@cmfcmf/docusaurus-search-local",
-      { indexBlog: false },
+      require.resolve("@easyops-cn/docusaurus-search-local"),
+      { hashed: true },
     ],
   ],
 
