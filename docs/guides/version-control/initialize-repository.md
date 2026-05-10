@@ -4,6 +4,10 @@ sidebar_position: 4
 
 # Initialize a Local Repository
 
+:::tip Using Docker?
+If you are using the `ia-eknorr/project-template` Docker setup, skip this page. The template already includes a pre-initialized repository structure. Fork the template on GitHub and clone it instead of following the steps below.
+:::
+
 ## Procedure
 
 1. Navigate to the project directory (create it if needed):
@@ -43,6 +47,50 @@ sidebar_position: 4
       :::
 
 The local repository is now linked with the remote and ready to accept changes.
+
+## Ignition 8.3 Directory Structure
+
+In Ignition 8.3, project and configuration files are stored on the filesystem (not in a SQLite database), making them directly trackable with Git.
+
+When using Docker with the `ia-eknorr/project-template`:
+
+| Directory | What it Contains |
+| --- | --- |
+| `services/ignition/projects/` | Ignition projects (tracked) |
+| `services/ignition/config/` | Gateway configuration (tracked) |
+| `data/` (Docker volume) | Runtime data - not tracked |
+
+### Recommended .gitignore
+
+Add this to your `.gitignore` for an Ignition 8.3 project:
+
+```text
+# Runtime and database files
+**/db/
+**/metricsdb/
+**/valueStore.idb
+**/jar-cache/
+
+# Local config and secrets
+**/config/local
+**/config/resources/local
+**/certificates/
+**/keystore/
+
+# Logs and temp files
+*.log
+*.tmp
+*.bak
+
+# Project artifacts
+conversion-report.txt
+.resources/
+
+# Vision (if not using Vision)
+com.inductiveautomation.vision/
+```
+
+For a host install (non-Docker), track the `data/projects/` directory directly and apply the same ignore patterns.
 
 ---
 
