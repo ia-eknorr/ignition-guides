@@ -24,16 +24,16 @@
 }
 
 .hero {
-  padding: 4rem 0;
+  padding: clamp(2rem, 5vw, 4rem) 0;
   text-align: center;
 }
 
 .hero__title {
-  font-size: 3rem;
+  font-size: clamp(1.75rem, 5vw, 3rem);
 }
 
 .hero__subtitle {
-  font-size: 1.25rem;
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
   max-width: 600px;
   margin: 0 auto;
 }
