@@ -266,7 +266,7 @@ After pushing, Git prints a URL to create a pull request. Open it, or navigate t
 
    ![Pull Request Page](/img/lab/pull-request-page.png)
 
-4. Select **Squash and merge** to keep a clean commit history on `main`
+4. Select **Squash and merge** to keep a clean commit history on `main` - see [Merge a Pull Request](../guides/version-control/merge-a-pull-request.md) for a comparison of all three merge strategies
 
 ---
 
@@ -329,3 +329,5 @@ Your local `main` now matches the remote. Start the next feature with a new bran
 - [Additive Approach](https://docs.inductiveautomation.com/docs/8.3/tutorials/version-control-guide#curated-configuration-mounts-additive-approach) - The bind-mount strategy used in this lab
 - [Version Control Guide](../guides/version-control/intro.md) - Git basics and branching strategies
 - [Git Style Guide](../reference/git-style-guide.md) - Naming conventions and commit standards
+- [Gateway Resource Collections](../reference/resource-collections.md) - Deep dive on core, deployment modes, and what to put where
+- [Traefik Reverse Proxy](../getting-started/traefik.md) - Named local URLs when running multiple gateways

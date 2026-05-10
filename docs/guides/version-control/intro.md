@@ -38,7 +38,7 @@ Version control allows a team to:
 
 | **Keyword** | **Description** |
 | --- | --- |
-| `Branch` | Pointer to a commit |
+| `Branch` | Pointer to a commit - see [Branching Strategies](./branching-strategy.md) |
 | `Cache` | Local memory intended to temporarily store uncommitted changes |
 | `CLI` | Command Line Interface |
 | `Commit` | Stores the current contents of the index in a new commit along with a log message |
@@ -48,7 +48,7 @@ Version control allows a team to:
 | `Local Repository` | Where you keep your copy of a Git repository on your workstation |
 | `Main` | Default name of the first branch |
 | `Merge` | Joining two or more commit histories |
-| `Pull Request` | GitHub-specific term to let others know about changes you've pushed to a branch |
+| `Pull Request` | GitHub-specific term to let others know about changes you've pushed to a branch - see [Create a Pull Request](./create-a-pull-request.md) |
 | `Remote Repository` | A repository where you push changes for collaboration or backup |
 | `Stash` | Another cache, acting as a stack, where changes can be stored without committing |
 | `Working tree` | Current branch in your workspace |
