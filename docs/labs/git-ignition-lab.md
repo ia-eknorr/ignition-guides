@@ -26,41 +26,83 @@ Ensure the following are set up:
 
 ---
 
-## Step 1: Fork and Clone the Template
+## Step 1: Create Your Repository from the Template
 
 The `ia-eknorr/project-template` gives you a pre-configured Ignition 8.3 Docker project
 with the right bind mounts already in place.
 
-1. Go to [github.com/ia-eknorr/project-template](https://github.com/ia-eknorr/project-template)
-2. Click **Use this template** → **Create a new repository**
-3. Name it (e.g., `my-ignition-project`), choose a visibility, and create it
-4. Clone your new repo and open it in VS Code:
+### Create the repository on GitHub
 
-   ```shell
-   git clone <your-repo-url>
-   code <repo-folder>
-   ```
+1. Go to [github.com/ia-eknorr/project-template](https://github.com/ia-eknorr/project-template)
+
+2. Click the green **Use this template** button, then select **Create a new repository**:
+
+   ![Use this template dropdown](/img/lab/use-this-template-dropdown.png)
+
+3. Fill in the form:
+
+   ![Create a new repository form](/img/lab/create-repo-from-template.png)
+
+   - **Owner**: select your personal GitHub account
+   - **Repository name**: use your project name, e.g. `my-ignition-project` (lowercase with dashes)
+   - **Description**: optional, but recommended
+   - **Visibility**: Private is a good default for a learning repo; Public if you want to share it
+   - Leave **Include all branches** off
+   - Click **Create repository**
 
 :::tip Why not just clone the template?
-Using "Use this template" creates a fresh repository on your GitHub account with no fork
-relationship and a clean commit history. If you cloned directly you would not be able to
-push to GitHub without changing the remote.
+"Use this template" creates a fresh repository on your account with a clean commit history
+and no fork relationship to the original. If you cloned the template directly you would not
+be able to push to GitHub without changing the remote.
 :::
+
+### Clone the repository to your machine
+
+1. On your new repository page, click the green **Code** button and copy the HTTPS URL:
+
+   ![Clone URL dropdown](/img/lab/clone-url.png)
+
+2. Open a terminal:
+   - **Mac**: open **Terminal** (or any terminal app)
+   - **Windows**: open **Git Bash** or **PowerShell**
+
+3. Navigate to where you keep projects, then clone:
+
+   ```shell
+   cd ~/projects
+   git clone https://github.com/<your-username>/my-ignition-project.git
+   ```
+
+   This creates a `my-ignition-project` folder in `~/projects/`.
+
+### Open in VS Code
+
+1. Open VS Code, then go to **File → Open Folder** and select the `my-ignition-project`
+   folder you just cloned.
+
+2. Open the integrated terminal: **Terminal → New Terminal** (or `` Ctrl+` ``).
+   All commands from this point forward are run here.
 
 ---
 
 ## Step 2: Configure the Environment
 
-The template uses a `.env` file for per-machine configuration.
+The template uses a `.env` file for per-machine settings that should not be committed.
 
-1. Copy the example file:
+1. In the VS Code integrated terminal, copy the example file:
 
    ```shell
+   # Mac / Linux
    cp .env.example .env
+
+   # Windows (PowerShell)
+   copy .env.example .env
    ```
 
-2. Open `.env` in VS Code and set `GATEWAY_NAME` to something short and meaningful
-   (e.g., `dev-gw`). This becomes the Docker container name.
+2. In the VS Code file tree on the left, click `.env` to open it. Set `GATEWAY_NAME` to
+   match your repository name (e.g., `my-ignition-project`). This becomes the Traefik
+   hostname — your gateway will be available at
+   `http://my-ignition-project.localtest.me`.
 
 3. Review `docker-compose.yml`. The two key volume mounts are:
 
@@ -70,13 +112,13 @@ The template uses a `.env` file for per-machine configuration.
      - ./services/ignition/config:/usr/local/bin/ignition/data/config
    ```
 
-   These two directories in your repo are bind-mounted directly into the container. Changes
+   These directories in your repo are bind-mounted directly into the container. Changes
    you make in the Designer appear instantly in `services/ignition/projects/` - no export
    step needed. This is the additive approach in action.
 
 :::note
-The `.env` file is in `.gitignore` by default. Environment-specific values (gateway name,
-credentials, ports) should never be committed. Share configuration through `.env.example`
+The `.env` file is listed in `.gitignore` by default. Environment-specific values (gateway
+name, credentials) should never be committed. Share configuration through `.env.example`
 instead.
 :::
 
@@ -104,7 +146,8 @@ docker compose logs -f gateway
 ```
 
 You'll see `Gateway started successfully` when it's ready. Then open
-[http://localhost:8088](http://localhost:8088) in your browser.
+`http://<GATEWAY_NAME>.localtest.me` in your browser (requires Traefik - see
+[Traefik Reverse Proxy](../getting-started/traefik.md)).
 
 If this is the first startup, complete the commissioning wizard:
 
@@ -112,11 +155,13 @@ If this is the first startup, complete the commissioning wizard:
 2. Set an admin username and password
 3. Select **Standard Edition** (or your licensed edition)
 
+After commissioning you'll land on the gateway home page:
+
 ![Gateway Homepage](/img/lab/gateway-homepage.png)
 
 :::tip Common startup issues
 
-- Port 8088 in use: stop any other running Ignition instances, or change `GATEWAY_HTTP_PORT` in `.env`
+- Port 80 in use: make sure Traefik is running (`docker compose up -d` in your Traefik directory)
 - Gateway not healthy after 2-3 minutes: run `docker compose logs gateway` to see what's wrong
 - On Windows: make sure Docker Desktop is running before running `docker compose up`
 - On Linux with native Docker (not Docker Desktop): if the gateway can't write to mounted volumes, run `sudo chown -R 2003:2003 services/ignition/` to match the container's `ignition` user
@@ -255,7 +300,7 @@ scan history at a glance. See the [Style Guide](../reference/git-style-guide.md)
 After pushing, Git prints a URL to create a pull request. Open it, or navigate to the
 **Pull Requests** tab on GitHub.
 
-![New PR banner on GitHub](/img/lab/feature-to-main.png)
+![Comparing changes on GitHub](/img/lab/feature-to-main.png)
 
 1. Review the file diff - you should see the view JSON you just created
 2. Add a title and a short description
