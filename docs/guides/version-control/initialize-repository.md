@@ -65,8 +65,11 @@ When using Docker with the `ia-eknorr/project-template`:
 | Directory | What it Contains |
 | --- | --- |
 | `services/ignition/projects/` | Ignition projects (tracked) |
-| `services/ignition/config/` | Gateway configuration (tracked) |
+| `services/ignition/config/resources/core/` | Shared gateway config (tracked) |
+| `services/ignition/config/resources/dev/` | Dev environment config (tracked) |
 | `data/` (Docker volume) | Runtime data - not tracked |
+
+See [Gateway Resource Collections](../../reference/resource-collections.md) for a full explanation of the `core/` and `dev/` directories and how to add more environments.
 
 ### Recommended .gitignore
 

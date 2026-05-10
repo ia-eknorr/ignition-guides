@@ -85,8 +85,8 @@ The template starts the gateway in `dev` deployment mode. Deployment modes allow
 config repository to serve multiple environments (dev, QA, prod) by layering
 environment-specific overrides at runtime - but this only applies to gateway configuration,
 not Perspective projects. For this lab the `dev` mode is pre-set and requires no changes.
-See the [Ignition 8.3 Version Control Guide](https://docs.inductiveautomation.com/docs/8.3/tutorials/version-control-guide)
-for more on deployment modes.
+See [Gateway Resource Collections](../reference/resource-collections.md) for a full
+explanation of the collection hierarchy and when to use deployment modes.
 :::
 
 ---

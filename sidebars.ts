@@ -39,7 +39,7 @@ const sidebars: SidebarsConfig = {
     {
       type: "category",
       label: "Reference",
-      items: ["reference/git-style-guide"],
+      items: ["reference/git-style-guide", "reference/resource-collections"],
     },
     {
       type: "category",
