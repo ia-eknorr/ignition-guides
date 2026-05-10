@@ -102,3 +102,38 @@
     display: none;
   }
 }
+
+/* Terminal window style for shell/bash/powershell code blocks */
+.theme-code-block:has(code[class*="language-shell"]),
+.theme-code-block:has(code[class*="language-bash"]),
+.theme-code-block:has(code[class*="language-powershell"]) {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.theme-code-block:has(code[class*="language-shell"]) pre,
+.theme-code-block:has(code[class*="language-bash"]) pre,
+.theme-code-block:has(code[class*="language-powershell"]) pre {
+  padding-top: 40px !important;
+  position: relative;
+}
+
+.theme-code-block:has(code[class*="language-shell"]) pre::before,
+.theme-code-block:has(code[class*="language-bash"]) pre::before,
+.theme-code-block:has(code[class*="language-powershell"]) pre::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 38px;
+  background-color: rgba(255, 255, 255, 0.06);
+  background-image:
+    radial-gradient(circle 5px, #ff5f57 100%, transparent 100%),
+    radial-gradient(circle 5px, #ffbd2e 100%, transparent 100%),
+    radial-gradient(circle 5px, #28ca41 100%, transparent 100%);
+  background-position: 14px center, 32px center, 50px center;
+  background-repeat: no-repeat;
+  pointer-events: none;
+}
