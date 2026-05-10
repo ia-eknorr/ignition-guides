@@ -136,8 +136,8 @@ Back in VS Code, open the integrated terminal and run:
 {`$ git status
 On branch main
 Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-  (use "git restore <file>..." to discard changes in working directory)
+  (use "git add [file]..." to update what will be committed)
+  (use "git restore [file]..." to discard changes in working directory)
         modified:   services/ignition/projects/my_project/com.inductiveautomation.perspective/views/example_view/resource.json
         modified:   services/ignition/projects/my_project/com.inductiveautomation.perspective/views/example_view/view.json
 
