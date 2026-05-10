@@ -13,7 +13,7 @@ Welcome to Ignition Guides - a collection of community guides for working with
 | --- | --- |
 | [Guides](../guides/version-control/intro.md) | Step-by-step procedures for real workflows (version control, etc.) |
 | [Labs](../labs/git-ignition-lab.md) | Hands-on exercises that walk a workflow end to end |
-| [Reference](../reference/git-style-guide.md) | Quick-reference pages for conventions and standards |
+| [Reference](../reference/git-style-guide.md) | Quick-reference pages for conventions, standards, and Ignition concepts |
 | [Tools](../tools/overview.md) | Community tools built around Ignition |
 
 ## Minimum Setup
