@@ -69,11 +69,11 @@ Version control allows a team to:
 | `push` | Send committed changes to remote |
 | `status` | List changed files |
 
-```bash
-git status
-git checkout my-branch
-git pull origin main
-```
+<Terminal title="bash — ~" lines={[
+  "$ git status",
+  "$ git checkout my-branch",
+  "$ git pull origin main",
+]} />
 
 ## Common Shell Commands
 

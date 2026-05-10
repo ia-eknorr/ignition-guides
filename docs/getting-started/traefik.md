@@ -54,7 +54,13 @@ once and leave it running.
 
 3. Verify Traefik is running:
 
-   Open [http://proxy.localtest.me](http://proxy.localtest.me) in your browser.
+   <Terminal title="bash — ~/projects/utilities/traefik" lines={[
+     "$ docker compose ps",
+     "NAME       IMAGE            COMMAND                  SERVICE   CREATED        STATUS                   PORTS",
+     "traefik    traefik:latest   \"/entrypoint.sh --pr…\"   traefik   3 seconds ago  Up 2 seconds (healthy)   0.0.0.0:80->80/tcp",
+   ]} />
+
+   Then open [http://proxy.localtest.me](http://proxy.localtest.me) in your browser.
    You should see the Traefik dashboard.
 
 ## Using Traefik with an Ignition Stack

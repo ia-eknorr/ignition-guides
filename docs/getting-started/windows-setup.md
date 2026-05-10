@@ -62,10 +62,14 @@ New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem" -Name
 If you prefer working in a Linux environment on Windows (bash, Linux CLI tools), WSL is still
 a good option. Install it from PowerShell:
 
-```shell
-wsl --install
-wsl --install -d Ubuntu
-```
+<Terminal title="PowerShell" lines={[
+  "$ wsl --install",
+  "Installing: Windows Subsystem for Linux",
+  "Windows Subsystem for Linux has been installed.",
+  "Installing: Ubuntu",
+  "Ubuntu has been installed.",
+  "The requested operation is successful. Changes will not be effective until the system is rebooted.",
+]} />
 
 Then install Git inside WSL and use it from VS Code's integrated terminal (with the
 [Remote - SSH extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh)).

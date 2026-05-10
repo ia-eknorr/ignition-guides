@@ -13,14 +13,14 @@ Define a style guide for using version control with Git in Ignition projects - n
 ### Repository Setup
 
 | Item | Style |
-| :---: | :---: |
+| --- | --- |
 | Name | `my-repository-name` |
 | Description | `A brief description of the repository` (required) |
 
 ### Branches
 
 | Branch | Style |
-| :---: | :---: |
+| --- | --- |
 | Default | `main` |
 | Development | `dev` |
 | Release | `release` |
@@ -30,13 +30,13 @@ Define a style guide for using version control with Git in Ignition projects - n
 ### Commits
 
 | Item | Style |
-| :---: | :---: |
+| --- | --- |
 | Message | `Brief Commit Description` |
 
 ### Merges
 
 | Item | Style |
-| :---: | :---: |
+| --- | --- |
 | Merge Type | Merge commit or Squash |
 
 ---
