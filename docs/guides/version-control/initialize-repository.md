@@ -29,6 +29,9 @@ sidebar_position: 4
 
 4. Link the local repository to the remote:
    1. Navigate to the remote repository page and copy the repository link.
+
+      ![Repository link location on GitHub](/img/version-control/repository-link.png)
+
    2. Run:
 
         ```shell

@@ -67,6 +67,8 @@ This loosely follows [GitHub Flow](https://docs.github.com/en/get-started/using-
     git status
     ```
 
+    ![Clean working tree output](/img/version-control/clean-working-tree.png)
+
 8. Push to the remote repository:
 
     ```shell
@@ -78,6 +80,8 @@ This loosely follows [GitHub Flow](https://docs.github.com/en/get-started/using-
 
     :::tip Forgot the remote name?
     Run `git remote -v` to list all configured remotes.
+
+    ![git remote -v output showing configured remotes](/img/version-control/remote-sources.png)
     :::
 
 ---

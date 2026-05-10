@@ -18,6 +18,9 @@ These are different terms for the same thing. GitHub uses "Pull Request"; GitLab
 
 2. Select the **Pull Requests** tab.
    - If you recently pushed a branch, GitHub may show a banner prompting you to create a PR. Click it.
+
+     ![GitHub banner prompting to create a pull request](/img/version-control/new-pull-request.png)
+
    - Otherwise, select **New pull request**, choose your branch, and confirm the direction (feature branch → `main`).
 
 3. Fill in the PR details:

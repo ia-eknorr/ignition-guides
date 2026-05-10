@@ -57,6 +57,8 @@ Winget is the official package manager for Windows. Homebrew is a package manage
     git -v
     ```
 
+    ![Git version output](/img/version-control/git-version.png)
+
 2. Configure username and email (shown on commits and pull requests):
 
     ```shell
@@ -97,6 +99,8 @@ Winget is the official package manager for Windows. Homebrew is a package manage
     gh status
     ```
 
+    ![GitHub CLI configuration](/img/version-control/gh-configuration.png)
+
 2. Authenticate:
 
     ```shell
@@ -104,6 +108,8 @@ Winget is the official package manager for Windows. Homebrew is a package manage
     ```
 
     Follow the prompts to log in to GitHub.
+
+    ![GitHub auth login](/img/version-control/gh-auth-login.png)
 
 More information: [GitHub Quickstart](https://docs.github.com/en/get-started/quickstart/set-up-git)
 
