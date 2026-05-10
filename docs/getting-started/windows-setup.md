@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 4
 ---
 
 # Windows Setup Notes
@@ -11,7 +11,7 @@ and Ignition on Windows.
 
 Docker Desktop for Windows handles Docker natively - WSL is not required to run the
 Ignition Docker stack. If you installed Docker Desktop per the
-[Workstation Setup](../../getting-started/workstation-setup.md) guide, you are ready to go.
+[Workstation Setup](./workstation-setup.md) guide, you are ready to go.
 
 :::tip WSL 2 Backend
 Docker Desktop uses the WSL 2 backend by default on Windows, which improves performance.
@@ -71,7 +71,3 @@ Then install Git inside WSL and use it from VS Code's integrated terminal (with 
 [Remote - SSH extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh)).
 Docker commands from WSL will reach Docker Desktop automatically if WSL integration is
 enabled in Docker Desktop settings.
-
----
-
-**Next**: [Initialize a Repository](./initialize-repository.md)

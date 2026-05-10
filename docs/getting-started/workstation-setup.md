@@ -63,11 +63,10 @@ Winget is the official package manager for Windows. Homebrew is a package manage
 
 1. Verify git installed correctly:
 
-    ```shell
-    git -v
-    ```
-
-    ![Git version output](/img/version-control/git-version.png)
+    <Terminal title="bash — ~" lines={[
+      "$ git -v",
+      "git version 2.47.1",
+    ]} />
 
 2. Configure username and email (shown on commits and pull requests):
 
@@ -125,10 +124,5 @@ More information: [GitHub Quickstart](https://docs.github.com/en/get-started/qui
 
 ## Windows Users
 
-If you are on Windows, review [Windows Setup Notes](../guides/version-control/wsl-setup.md)
+If you are on Windows, review [Windows Setup Notes](./windows-setup.md)
 for Git line-ending configuration and long-path settings.
-
----
-
-**Next**: Pick your guide from the [Getting Started overview](./index.md) or jump straight
-to the [Hands-On Lab](../labs/git-ignition-lab.md).

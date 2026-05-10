@@ -91,7 +91,3 @@ com.inductiveautomation.vision/
 ```
 
 For a host install (non-Docker), track the `data/projects/` directory directly and apply the same ignore patterns.
-
----
-
-**Next**: [Branching Strategy](./branching-strategy.md)

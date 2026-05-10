@@ -38,7 +38,3 @@ When the pull request is ready - conflicts resolved, approvals obtained - select
    - **Rebase and merge** - Advanced method; not recommended for most Ignition repos.
 
 ![Resulting merge history after squash and merge](/img/version-control/merge-history.png)
-
----
-
-**Next**: [Style Guide](../../reference/git-style-guide.md)

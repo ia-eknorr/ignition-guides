@@ -30,7 +30,3 @@ These are different terms for the same thing. GitHub uses "Pull Request"; GitLab
 4. Select **Create Pull Request**.
 
 Once created, the code needs to be reviewed before merging. On solo projects, you can review and merge yourself - but the habit of going through a PR is good practice even when working alone.
-
----
-
-**Next**: [Merge a Pull Request](./merge-a-pull-request.md)

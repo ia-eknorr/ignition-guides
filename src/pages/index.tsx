@@ -37,7 +37,7 @@ function Hero() {
         <div style={{ marginTop: "1.5rem" }}>
           <Link
             className="button button--secondary button--lg"
-            to="/docs/guides/version-control/intro"
+            to="/docs/getting-started"
           >
             Get Started
           </Link>
