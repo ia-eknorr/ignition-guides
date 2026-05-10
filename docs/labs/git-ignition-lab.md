@@ -21,7 +21,7 @@ the directories you care about into the container. Git only sees those directori
 
 Ensure the following are set up:
 
-- [Workstation Setup](../guides/version-control/workstation-setup.md) complete (Git, GitHub CLI, VS Code, Docker Desktop)
+- [Workstation Setup](../getting-started/workstation-setup.md) complete (Git, GitHub CLI, VS Code, Docker Desktop)
 - GitHub account with SSH or HTTPS access configured
 
 ---

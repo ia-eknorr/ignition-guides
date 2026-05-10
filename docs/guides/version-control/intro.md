@@ -86,4 +86,9 @@ git pull origin main
 
 ---
 
-**Next**: [Workstation Setup](./workstation-setup.md)
+:::tip Before continuing
+Make sure [Workstation Setup](../../getting-started/workstation-setup.md) is complete before
+following the procedures in this guide.
+:::
+
+**Next**: [Initialize a Repository](./initialize-repository.md)
