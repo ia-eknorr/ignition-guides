@@ -39,6 +39,3 @@ workflow from cloning to merging a pull request, with explanations along the way
 **Know Git but new to Ignition + Docker workflows?**
 Read the [Version Control Guide](../guides/version-control/intro.md) for context, then
 jump to the lab.
-
-**Looking for a specific procedure?**
-Use the sidebar or search (`Cmd+K` / `Ctrl+K`).
