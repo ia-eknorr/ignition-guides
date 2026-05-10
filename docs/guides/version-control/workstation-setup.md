@@ -20,8 +20,18 @@ One of the most widely used Integrated Development Environments (IDEs).
 - [Markdownlint](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint)
 - [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)
 - [Remote - SSH](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh)
-- [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python)
-- [Docker](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker)
+
+## Docker Desktop
+
+Required for running Ignition locally via Docker Compose.
+
+- [Downloads Page](https://www.docker.com/products/docker-desktop/)
+
+**Installation**: Run the installation wizard. On Windows, enable the WSL 2 backend when prompted.
+
+:::tip Already using Docker?
+If Docker Desktop is already installed, skip this step. Run `docker --version` to confirm.
+:::
 
 ## Git
 
