@@ -83,7 +83,3 @@ This loosely follows [GitHub Flow](https://docs.github.com/en/get-started/using-
 
     ![git remote -v output showing configured remotes](/img/version-control/remote-sources.png)
     :::
-
----
-
-**Next**: [Create a Pull Request](./create-a-pull-request.md)

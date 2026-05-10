@@ -24,16 +24,16 @@
 }
 
 .hero {
-  padding: 4rem 0;
+  padding: clamp(2rem, 5vw, 4rem) 0;
   text-align: center;
 }
 
 .hero__title {
-  font-size: 3rem;
+  font-size: clamp(1.75rem, 5vw, 3rem);
 }
 
 .hero__subtitle {
-  font-size: 1.25rem;
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
   max-width: 600px;
   margin: 0 auto;
 }
@@ -55,12 +55,27 @@
 
 .feature {
   flex: 1;
+  display: flex;
+  flex-direction: column;
   padding: 1.5rem;
   text-align: center;
   background: #f8fafc;
   border: 1px solid var(--ifm-color-emphasis-300, #cbd5e1);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
   border-radius: 8px;
+  text-decoration: none !important;
+  color: inherit !important;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.feature:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.feature__icon {
+  color: var(--ifm-color-primary);
+  margin-bottom: 0.75rem;
 }
 
 .feature h3 {
@@ -68,12 +83,29 @@
 }
 
 .feature p {
+  flex: 1;
   font-size: 0.95rem;
   color: var(--ifm-color-emphasis-700);
 }
 
+.feature__cta {
+  display: block;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ifm-color-primary);
+}
+
+.feature:hover .feature__cta {
+  text-decoration: underline;
+}
+
 [data-theme="dark"] .feature {
   background: var(--ifm-card-background-color);
+}
+
+[data-theme="dark"] .feature:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
 }
 
 /* Search bar: wider on desktop + keyboard shortcut hint */
@@ -101,39 +133,4 @@
   .search-shortcut-badge {
     display: none;
   }
-}
-
-/* Terminal window style for shell/bash/powershell code blocks */
-.theme-code-block:has(code[class*="language-shell"]),
-.theme-code-block:has(code[class*="language-bash"]),
-.theme-code-block:has(code[class*="language-powershell"]) {
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-}
-
-.theme-code-block:has(code[class*="language-shell"]) pre,
-.theme-code-block:has(code[class*="language-bash"]) pre,
-.theme-code-block:has(code[class*="language-powershell"]) pre {
-  padding-top: 40px !important;
-  position: relative;
-}
-
-.theme-code-block:has(code[class*="language-shell"]) pre::before,
-.theme-code-block:has(code[class*="language-bash"]) pre::before,
-.theme-code-block:has(code[class*="language-powershell"]) pre::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 38px;
-  background-color: rgba(255, 255, 255, 0.06);
-  background-image:
-    radial-gradient(circle 5px, #ff5f57 100%, transparent 100%),
-    radial-gradient(circle 5px, #ffbd2e 100%, transparent 100%),
-    radial-gradient(circle 5px, #28ca41 100%, transparent 100%);
-  background-position: 14px center, 32px center, 50px center;
-  background-repeat: no-repeat;
-  pointer-events: none;
 }

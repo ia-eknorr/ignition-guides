@@ -10,6 +10,7 @@ const sidebars: SidebarsConfig = {
       items: [
         "getting-started/workstation-setup",
         "getting-started/traefik",
+        "getting-started/windows-setup",
       ],
     },
     {
@@ -21,7 +22,6 @@ const sidebars: SidebarsConfig = {
           label: "Version Control",
           link: { type: "doc", id: "guides/version-control/intro" },
           items: [
-            "guides/version-control/wsl-setup",
             "guides/version-control/initialize-repository",
             "guides/version-control/branching-strategy",
             "guides/version-control/create-a-branch",

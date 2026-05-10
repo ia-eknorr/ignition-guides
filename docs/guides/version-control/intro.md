@@ -90,5 +90,3 @@ git pull origin main
 Make sure [Workstation Setup](../../getting-started/workstation-setup.md) is complete before
 following the procedures in this guide.
 :::
-
-**Next**: [Initialize a Repository](./initialize-repository.md)

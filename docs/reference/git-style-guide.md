@@ -163,7 +163,3 @@ For host installs or full data directory mounts, additional patterns may be need
 for the full reference.
 
 See the [Hands-On Lab](../labs/git-ignition-lab.md) for a walkthrough of this structure in practice.
-
----
-
-**Next**: [Hands-On Lab](../labs/git-ignition-lab.md)

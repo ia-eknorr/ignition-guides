@@ -163,4 +163,3 @@ gitGraph
 Inductive Automation's version control guide covers branching strategies and team environment best practices at [docs.inductiveautomation.com](https://docs.inductiveautomation.com/docs/8.3/tutorials/version-control-guide/best-practices-for-team-environments).
 :::
 
-**Next**: [Create a Branch](./create-a-branch.md)
