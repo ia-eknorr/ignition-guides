@@ -30,6 +30,18 @@ const config: Config = {
     ],
   ],
 
+  plugins: [
+    "@docusaurus/plugin-ideal-image",
+    "docusaurus-plugin-image-zoom",
+    [
+      "docusaurus-plugin-llms-txt",
+      {
+        title: "Ignition Guides",
+        description: "Unofficial guides for Ignition SCADA infrastructure and workflows",
+      },
+    ],
+  ],
+
   clientModules: ["./src/searchShortcut.js"],
 
   i18n: {
@@ -113,6 +125,13 @@ const config: Config = {
     colorMode: {
       defaultMode: "light",
       respectPrefersColorScheme: true,
+    },
+    zoom: {
+      selector: ".markdown img",
+      background: {
+        light: "rgb(255, 255, 255)",
+        dark: "rgb(50, 50, 50)",
+      },
     },
   } satisfies Preset.ThemeConfig,
 };
