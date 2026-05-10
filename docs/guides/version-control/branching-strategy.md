@@ -114,4 +114,53 @@ gitGraph
 
 ---
 
+## Trunk-Based Development (Low-Medium Complexity)
+
+All developers commit frequently to a single `main` branch, using very short-lived feature branches (usually merged within a day or two). Works well when combined with feature flags and a strong CI pipeline.
+
+```mermaid
+gitGraph
+   commit id: "initial-commit"
+   branch feature-a
+   checkout feature-a
+   commit
+   checkout main
+   merge feature-a
+   branch feature-b
+   checkout feature-b
+   commit
+   checkout main
+   merge feature-b
+   commit
+   branch hotfix
+   checkout hotfix
+   commit
+   checkout main
+   merge hotfix tag: "v1.1"
+```
+
+### Workflow
+
+1. Pull the latest `main`
+2. Create a short-lived branch for the feature or fix
+3. Open a pull request and merge within a day or two
+4. Repeat - no long-lived feature branches
+
+### Pros
+
+- Reduces merge conflicts (frequent integration)
+- Keeps the team moving fast
+- Well suited for CI/CD
+
+### Cons
+
+- Requires discipline to keep branches short-lived
+- Incomplete features need feature flags to avoid breaking `main`
+
+---
+
+:::tip Official IA Guidance
+Inductive Automation's version control guide covers branching strategies and team environment best practices at [docs.inductiveautomation.com](https://docs.inductiveautomation.com/docs/8.3/tutorials/version-control-guide/best-practices-for-team-environments).
+:::
+
 **Next**: [Create a Branch](./create-a-branch.md)
