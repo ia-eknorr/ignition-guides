@@ -2,133 +2,75 @@
 sidebar_position: 3
 ---
 
-# WSL Setup (Windows Only)
+# Windows Setup Notes
 
-This guide covers installing Windows Subsystem for Linux (WSL) and Docker inside WSL for Ignition development on Windows.
+This page covers Windows-specific setup steps and common gotchas for engineers using Git
+and Ignition on Windows.
 
-## Install WSL
+## Docker Desktop
+
+Docker Desktop for Windows handles Docker natively - WSL is not required to run the
+Ignition Docker stack. If you installed Docker Desktop per the
+[Workstation Setup](./workstation-setup.md) guide, you are ready to go.
+
+:::tip WSL 2 Backend
+Docker Desktop uses the WSL 2 backend by default on Windows, which improves performance.
+You can verify this in Docker Desktop → Settings → General → "Use the WSL 2 based engine."
+:::
+
+## Git Line Endings
+
+Windows and macOS/Linux use different line endings. Git can convert them automatically.
+
+Run this after installing Git:
+
+```shell
+git config --global core.autocrlf true
+```
+
+This converts LF → CRLF on checkout and CRLF → LF on commit, preventing line-ending
+noise in diffs when collaborating with Mac/Linux users.
 
 :::note
-If you already have Docker Desktop, WSL may already be installed. Follow the steps below to check.
+If your project has a `.gitattributes` file that explicitly sets line endings, that takes
+precedence over this setting.
 :::
 
-1. Launch Command Prompt (`Win+R`, then type `cmd`)
-2. Check current WSL state:
+## Long File Paths
 
-    ```bash
-    wsl -l -v
-    ```
+Windows limits file paths to 260 characters by default. Enable long path support to
+avoid errors with deeply nested Ignition project structures:
 
-3. If WSL is already installed, skip to step 5. Otherwise:
-
-    ```bash
-    wsl --install
-    ```
-
-4. Install Ubuntu:
-
-    ```bash
-    wsl --install -d Ubuntu
-    ```
-
-5. Restart your computer.
-6. Download the [WSL 2 Kernel Update Package](https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi) and run it.
-7. Set WSL 2 as default:
-
-    ```bash
-    wsl --set-version Ubuntu 2
-    ```
-
-8. Update the kernel:
-
-    ```bash
-    wsl --update
-    ```
-
-9. Set up Ubuntu credentials:
-
-    ```bash
-    wsl
-    ```
-
-    :::note
-    The password entry prompt will not show characters as you type.
-    :::
-
-## Program Installation
-
-Install the following:
-
-1. [Visual Studio Code](https://code.visualstudio.com/Download) with these extensions:
-   - [Remote Extension Pack](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack)
-   - [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python)
-   - [Docker](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker)
-
-2. [Git for Windows](https://gitforwindows.org/) - select "Use Visual Studio Code" as the default editor during installation.
-
-## Install Docker Inside WSL Ubuntu
-
-:::warning
-All commands in this section must be run in WSL Ubuntu.
-:::
-
-In VS Code, open a terminal panel with `` CTRL+Shift+` `` and verify the `>` icon shows `wsl`.
-
-1. Update package list:
-
-    ```bash
-    sudo apt update
-    ```
-
-2. Install Docker:
-
-    ```bash
-    sudo apt install docker.io -y
-    ```
-
-3. Verify:
-
-    ```bash
-    docker --version
-    ```
-
-### Configure Docker to Launch at Startup
-
-1. Open the sudoers file: `sudo visudo`
-2. Add to the end (replace `yourusername` with your Ubuntu username):
-
-    ```bash
-    yourusername ALL=(ALL) NOPASSWD: /usr/bin/dockerd
-    ```
-
-3. Save and exit (`CTRL+X`, `Y`, `ENTER`)
-4. Open bash config: `code ~/.bashrc`
-5. Add to the end:
-
-    ```bash
-    RUNNING=`ps aux | grep dockerd | grep -v grep`
-    if [ -z "$RUNNING" ]; then
-        sudo dockerd > /dev/null 2>&1 &
-        disown
-    fi
-    ```
-
-6. Add your user to the docker group:
-
-    ```bash
-    sudo usermod -aG docker $USER
-    ```
-
-7. Close and reopen VS Code.
-8. Verify: `docker ps` should return a header row with no errors.
-
-### Install Docker Compose
-
-```bash
-sudo curl -kL https://github.com/docker/compose/releases/latest/download/docker-compose-linux-x86_64 -o /usr/local/bin/docker-compose
-sudo chmod +x /usr/local/bin/docker-compose
-docker-compose --version
+```shell
+git config --global core.longpaths true
 ```
+
+Also enable long paths in Windows:
+
+1. Open **Group Policy Editor** (`gpedit.msc`)
+2. Navigate to: Local Computer Policy → Computer Configuration → Administrative Templates → System → Filesystem
+3. Enable **"Enable Win32 long paths"**
+
+Or via PowerShell (run as Administrator):
+
+```powershell
+New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem" -Name "LongPathsEnabled" -Value 1 -PropertyType DWORD -Force
+```
+
+## Optional: WSL for a Linux Shell
+
+If you prefer working in a Linux environment on Windows (bash, Linux CLI tools), WSL is still
+a good option. Install it from PowerShell:
+
+```shell
+wsl --install
+wsl --install -d Ubuntu
+```
+
+Then install Git inside WSL and use it from VS Code's integrated terminal (with the
+[Remote - SSH extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh)).
+Docker commands from WSL will reach Docker Desktop automatically if WSL integration is
+enabled in Docker Desktop settings.
 
 ---
 
