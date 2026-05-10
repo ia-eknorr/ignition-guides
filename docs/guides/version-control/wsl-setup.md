@@ -11,7 +11,7 @@ and Ignition on Windows.
 
 Docker Desktop for Windows handles Docker natively - WSL is not required to run the
 Ignition Docker stack. If you installed Docker Desktop per the
-[Workstation Setup](./workstation-setup.md) guide, you are ready to go.
+[Workstation Setup](../../getting-started/workstation-setup.md) guide, you are ready to go.
 
 :::tip WSL 2 Backend
 Docker Desktop uses the WSL 2 backend by default on Windows, which improves performance.

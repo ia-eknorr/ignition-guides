@@ -9,6 +9,13 @@ Unofficial guides for modern Ignition SCADA infrastructure and workflows.
 
 ## What Is in Here
 
+### Getting Started
+
+Tools and setup required across all guides - set up once, referenced everywhere.
+
+- [Workstation Setup](./getting-started/workstation-setup.md) - VS Code, Git, GitHub CLI, Docker Desktop
+- [Traefik Reverse Proxy](./getting-started/traefik.md) - Named local URLs for Docker-based guides
+
 ### Guides
 
 Step-by-step reference guides for working with Ignition in a professional development environment.

@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # Workstation Setup
 
-Before getting started with version control, set up your workstation with the necessary software. The tools below are tried and true in the industry and will serve as a solid starting point.
+These tools are used across all guides on this site. Set them up once here - individual guides will reference this page for prerequisites rather than repeating these steps.
 
 ## Visual Studio Code
 
@@ -35,7 +35,7 @@ If Docker Desktop is already installed, skip this step. Run `docker --version` t
 
 ## Git
 
-IA's preferred version control system.
+The version control system used across all guides.
 
 **Download:**
 
@@ -123,6 +123,12 @@ Winget is the official package manager for Windows. Homebrew is a package manage
 
 More information: [GitHub Quickstart](https://docs.github.com/en/get-started/quickstart/set-up-git)
 
+## Windows Users
+
+If you are on Windows, review [Windows Setup Notes](../guides/version-control/wsl-setup.md)
+for Git line-ending configuration and long-path settings.
+
 ---
 
-**Next**: [WSL Setup](./wsl-setup.md) (Windows only) or [Initialize a Repository](./initialize-repository.md)
+**Next**: Pick your guide from the [Getting Started overview](./index.md) or jump straight
+to the [Hands-On Lab](../labs/git-ignition-lab.md).

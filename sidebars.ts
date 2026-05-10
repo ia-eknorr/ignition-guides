@@ -5,6 +5,15 @@ const sidebars: SidebarsConfig = {
     { type: "doc", id: "index", label: "Home" },
     {
       type: "category",
+      label: "Getting Started",
+      link: { type: "doc", id: "getting-started/index" },
+      items: [
+        "getting-started/workstation-setup",
+        "getting-started/traefik",
+      ],
+    },
+    {
+      type: "category",
       label: "Guides",
       items: [
         {
@@ -12,7 +21,6 @@ const sidebars: SidebarsConfig = {
           label: "Version Control",
           link: { type: "doc", id: "guides/version-control/intro" },
           items: [
-            "guides/version-control/workstation-setup",
             "guides/version-control/wsl-setup",
             "guides/version-control/initialize-repository",
             "guides/version-control/branching-strategy",
