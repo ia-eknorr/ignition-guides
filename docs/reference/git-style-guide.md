@@ -103,6 +103,17 @@ Each commit must have a message (`git commit -m "<message>"`).
 
 Some teams prepend a category: `Feature:`, `Chore:`, `Bugfix:`. This helps visually scan history.
 
+An alternative is [Conventional Commits](https://www.conventionalcommits.org/), a formal
+specification for commit messages:
+
+- `feat: add motor faceplate component`
+- `fix: broken binding on Main Views/plant`
+- `chore: clean up myScripts/general`
+- `docs: update README with setup instructions`
+
+Both styles work. Pick one and be consistent within a project. Conventional Commits pairs
+well with automated changelog tools.
+
 :::note
 If it's hard to summarize your work in one line, that's often a sign the commit is too large. Break it into smaller, focused commits.
 :::
@@ -126,6 +137,32 @@ If it's hard to summarize your work in one line, that's often a sign the commit 
 - Recommended strategies:
   - **Merge Commit**: branches with few commits
   - **Squash and Merge**: branches with many commits (cleaner history)
+
+## Ignition .gitignore Reference
+
+When using the additive approach (bind-mounted `services/ignition/` directories), the `.gitignore`
+stays short because only mounted directories are visible to Git.
+
+Recommended patterns for an Ignition 8.3 Docker project:
+
+```text
+# Local config - environment-specific, should not be shared
+**/config/local
+**/config/resources/local
+
+# Conversion artifacts
+**/conversion-report.txt
+**/.resources/
+
+# Vision (if not using Vision)
+com.inductiveautomation.vision/
+```
+
+For host installs or full data directory mounts, additional patterns may be needed. See the
+[Ignition 8.3 Version Control Guide](https://docs.inductiveautomation.com/docs/8.3/tutorials/version-control-guide)
+for the full reference.
+
+See the [Hands-On Lab](../labs/git-ignition-lab.md) for a walkthrough of this structure in practice.
 
 ---
 
