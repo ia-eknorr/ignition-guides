@@ -13,6 +13,10 @@ const config: Config = {
   organizationName: "ia-eknorr",
   projectName: "ignition-guides",
 
+  future: {
+    v4: true,
+  },
+
   onBrokenLinks: "throw",
 
   markdown: {
