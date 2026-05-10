@@ -58,15 +58,15 @@ be able to push to GitHub without changing the remote.
 
 ### Clone the repository to your machine
 
-4. On your new repository page, click the green **Code** button and copy the HTTPS URL:
+1. On your new repository page, click the green **Code** button and copy the HTTPS URL:
 
    ![Clone URL dropdown](/img/lab/clone-url.png)
 
-5. Open a terminal:
+2. Open a terminal:
    - **Mac**: open **Terminal** (or any terminal app)
    - **Windows**: open **Git Bash** or **PowerShell**
 
-6. Navigate to where you keep projects, then clone:
+3. Navigate to where you keep projects, then clone:
 
    ```shell
    cd ~/projects
@@ -77,10 +77,10 @@ be able to push to GitHub without changing the remote.
 
 ### Open in VS Code
 
-7. Open VS Code, then go to **File → Open Folder** and select the `my-ignition-project`
+1. Open VS Code, then go to **File → Open Folder** and select the `my-ignition-project`
    folder you just cloned.
 
-8. Open the integrated terminal: **Terminal → New Terminal** (or `` Ctrl+` ``).
+2. Open the integrated terminal: **Terminal → New Terminal** (or `` Ctrl+` ``).
    All commands from this point forward are run here.
 
 ---
