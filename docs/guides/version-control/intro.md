@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # Basics of Git
 
-A quick-reference page for Git concepts and commands used throughout this guide. If you're new to Git, start with the [Hands-On Lab](../../labs/git-ignition-lab.md) for a guided walkthrough before using these pages as reference.
+A quick-reference page for Git concepts and commands used throughout this guide. If you're new to Git, start with the [Version Control Lab](../../labs/version-control-lab.md) for a guided walkthrough before using these pages as reference.
 
 :::tip Before continuing
 Make sure [Workstation Setup](../../getting-started/workstation-setup.md) is complete before

@@ -129,7 +129,104 @@ Winget is the official package manager for Windows. Homebrew is a package manage
 
 More information: [GitHub Quickstart](https://docs.github.com/en/get-started/quickstart/set-up-git)
 
+## kubectl
+
+Required for the Orchestration pathway. `kubectl` is the command-line tool for interacting with Kubernetes clusters.
+
+:::tip Already installed?
+Run `kubectl version --client` to confirm.
+:::
+
+**Download:**
+
+- macOS (Homebrew)
+
+  ```shell
+  brew install kubectl
+  ```
+
+- Windows (Winget)
+
+  ```shell
+  winget install -e --id Kubernetes.kubectl
+  ```
+
+- [Direct Download](https://kubernetes.io/docs/tasks/tools/)
+
+## Helm
+
+Required for the Orchestration pathway. Helm is the package manager for Kubernetes.
+
+:::tip Already installed?
+Run `helm version` to confirm.
+:::
+
+**Download:**
+
+- macOS (Homebrew)
+
+  ```shell
+  brew install helm
+  ```
+
+- Windows (Winget)
+
+  ```shell
+  winget install -e --id Helm.Helm
+  ```
+
+- [Direct Download](https://helm.sh/docs/intro/install/)
+
+## Terraform
+
+Required for the Orchestration pathway. Terraform provisions infrastructure declaratively.
+
+:::tip Already installed?
+Run `terraform version` to confirm.
+:::
+
+**Download:**
+
+- macOS (Homebrew)
+
+  ```shell
+  brew tap hashicorp/tap
+  brew install hashicorp/tap/terraform
+  ```
+
+- Windows (Winget)
+
+  ```shell
+  winget install -e --id Hashicorp.Terraform
+  ```
+
+- [Direct Download](https://developer.hashicorp.com/terraform/install)
+
+## kind
+
+Required for the Orchestration pathway. kind (Kubernetes in Docker) runs local Kubernetes clusters inside Docker containers. Terraform manages kind clusters in the labs, but the kind CLI is useful for inspecting cluster state.
+
+:::tip Already installed?
+Run `kind version` to confirm.
+:::
+
+**Download:**
+
+- macOS (Homebrew)
+
+  ```shell
+  brew install kind
+  ```
+
+- Windows (Winget)
+
+  ```shell
+  winget install -e --id Kubernetes.kind
+  ```
+
+- [Direct Download](https://kind.sigs.k8s.io/docs/user/quick-start/#installation)
+
 ## Windows Users
 
 If you are on Windows, review [Windows Setup Notes](./windows-setup.md)
-for Git line-ending configuration and long-path settings.
+for Git line-ending configuration and long-path settings. For the Orchestration pathway, WSL2 is strongly recommended - kind and Terraform work most reliably in a Linux environment.

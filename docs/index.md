@@ -26,7 +26,7 @@ Step-by-step reference guides for working with Ignition in a professional develo
 
 Hands-on labs that walk through real Ignition workflows end to end.
 
-- [Git + Ignition Lab](./labs/git-ignition-lab.md) - Set up version control for an Ignition project from scratch using Docker and GitHub.
+- [Version Control Lab](./labs/version-control-lab.md) - Set up version control for an Ignition project from scratch using Docker and GitHub.
 
 ### Reference
 

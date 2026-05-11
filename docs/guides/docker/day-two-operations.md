@@ -1,0 +1,129 @@
+---
+sidebar_position: 5
+---
+
+# Day-Two Operations
+
+This guide covers everything you need to operate an Ignition gateway running in Docker after the initial setup. It assumes the gateway is already running from the [ia-eknorr/project-template](https://github.com/ia-eknorr/project-template).
+
+:::tip Before continuing
+Read [The Compose Architecture](./compose-architecture.md) to understand how the services, volumes, and bind mounts fit together before running any of the commands below.
+:::
+
+## Common Operations
+
+All commands run from the project directory - the folder that contains your `docker-compose.yml` file.
+
+| Command | What it does |
+| --- | --- |
+| `docker compose up -d` | Start all services in the background |
+| `docker compose down` | Stop and remove containers (volume and data preserved) |
+| `docker compose down -v` | Stop and remove containers AND delete all volumes (full reset) |
+| `docker compose ps` | Show running services and their status |
+| `docker compose logs -f gateway` | Stream gateway logs (Ctrl+C to stop) |
+| `docker compose logs -f config-cleanup` | Stream config-cleanup logs to confirm it is running |
+| `docker compose restart gateway` | Restart only the gateway (preserves the volume) |
+| `docker compose exec gateway bash` | Open a shell inside the running gateway container |
+| `docker compose pull` | Pull the latest version of all images (does not restart) |
+
+## First-Start Commissioning
+
+When you run `docker compose up -d` for the first time against a fresh project-template clone, the services start in a defined order:
+
+1. `bootstrap` runs first: seeds the `ignition-data` volume, generates a UUID from `GATEWAY_NAME`, writes the sentinel file, then exits.
+2. `db` starts and passes its healthcheck (PostgreSQL ready to accept connections).
+3. `gateway` starts: Ignition initializes, reads the bind-mounted config from `services/ignition/config/resources/`, connects to the database, and loads projects from `services/ignition/projects/`.
+4. `config-cleanup` starts: begins watching the bind-mounted directories and reverting any in-container writes.
+
+The gateway takes 60-120 seconds to finish starting. Watch progress with:
+
+```shell
+docker compose logs -f gateway
+```
+
+When you see a line containing `Gateway successfully started`, the gateway is ready. Open `https://${GATEWAY_NAME}.localtest.me` in your browser and accept the self-signed certificate warning (or add the Traefik CA to your trusted roots).
+
+:::note Default credentials
+The default admin username is `admin` and password is `password`. Change these immediately in any shared or production environment.
+:::
+
+## Restarting the Gateway
+
+Two options depending on what you need:
+
+- `docker compose restart gateway` - restarts the gateway process without touching the volume. Use this after changing gateway configuration in the Designer or after a `.env` change that does not require a volume reset.
+- `docker compose down && docker compose up -d` - stops all services and starts them again. The volume is preserved. Use this for a clean restart of the full stack.
+
+## Resetting to a Clean State
+
+:::warning This deletes all gateway data
+`docker compose down -v` deletes the `ignition-data` volume. Any changes made inside the gateway - Designer changes that were not committed to git, installed modules, license activation - are permanently lost.
+:::
+
+Use a full reset when:
+
+- Upgrading to a new Ignition version
+- The gateway is in an unrecoverable state
+- Starting fresh for a clean lab environment
+
+```shell
+docker compose down -v
+docker compose up -d
+```
+
+The bootstrap service re-seeds the volume on the next start.
+
+## Upgrading the Ignition Version
+
+1. Open `docker-compose.yml` and update the image tag:
+
+   ```yaml
+   image: inductiveautomation/ignition:8.3.7   # was 8.3.6
+   ```
+
+2. Pull the new image:
+
+   ```shell
+   docker compose pull
+   ```
+
+3. Do a full reset and restart:
+
+   ```shell
+   docker compose down -v
+   docker compose up -d
+   ```
+
+4. If using a standard license, reactivate it from the gateway's **Config > Licensing** page after startup.
+
+:::danger Never mix version and volume
+Never start a new image version against an existing volume from a different version without a reset. Ignition's internal database schema changes between versions and an incompatible volume will leave the gateway in a broken state.
+:::
+
+## Getting a Shell in the Gateway
+
+```shell
+docker compose exec gateway bash
+```
+
+From inside the container you can inspect files, check the Ignition data directory at `/usr/local/bin/ignition/data/`, or run Ignition's command-line tools. Exit with `exit` or Ctrl+D.
+
+## Reading Gateway Logs
+
+Ignition writes structured logs. Follow them live:
+
+```shell
+docker compose logs -f gateway
+```
+
+Filter for errors only:
+
+```shell
+docker compose logs gateway | grep -i error
+```
+
+The gateway also writes logs to `/usr/local/bin/ignition/logs/` inside the container. These are not bind-mounted, so they live in the volume and are lost on a `down -v` reset.
+
+## Installing Third-Party Modules
+
+Third-party modules (MQTT Engine, Azure Injector, etc.) installed through the gateway UI do not survive a `docker compose down -v` reset. Two patterns for making modules permanent are covered in [Third-Party Modules in Containers](../../guides/advanced/third-party-modules.md) in the Orchestration pathway.

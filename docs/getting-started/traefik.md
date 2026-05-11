@@ -19,7 +19,7 @@ managing port numbers gets messy fast. Traefik solves this by listening on port 
 routing requests by hostname.
 
 :::note Not required for the basic version control lab
-The [Hands-On Lab](../labs/git-ignition-lab.md) uses `localhost:8088` directly and does
+The [Version Control Lab](../labs/version-control-lab.md) uses `localhost:8088` directly and does
 not require Traefik. This setup becomes useful when running multiple gateways or following
 guides that reference `.localtest.me` URLs.
 :::
