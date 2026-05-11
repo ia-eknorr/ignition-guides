@@ -109,8 +109,7 @@ Traefik generates a self-signed certificate for `*.localtest.me`. Your browser w
 
 Log in with your admin credentials. On the gateway Status page, confirm that the gateway name at the top matches `GATEWAY_NAME` from your `.env` file.
 
-![Gateway status page showing the gateway name](/img/docker/gateway-status-name.png)
-{/* TODO: screenshot */}
+{/* TODO: screenshot - gateway status page showing gateway name */}
 
 **Traefik routes the `*.localtest.me` domain to the correct container based on the gateway name - no port numbers needed in the URL.** Without Traefik, you would need to expose host ports and use `http://localhost:8088`.
 
@@ -162,8 +161,7 @@ Launch the Designer from the gateway homepage:
 2. Log in with your admin credentials
 3. In the Tag Browser on the left, right-click on the tag provider and select **New Tag - Memory Tag**
 
-   ![Creating a new memory tag in the Tag Browser](/img/docker/new-memory-tag.png)
-   {/* TODO: screenshot */}
+   {/* TODO: screenshot - creating a new memory tag in the Tag Browser */}
 
 4. Name the tag `DockerLabTest` and set the **Data Type** to `Float`
 5. Click **OK** to create the tag
@@ -290,8 +288,7 @@ docker compose logs -f gateway
 
 Wait for `Gateway successfully started`, then open the Designer again and check the Tag Browser. The `DockerLabTest` tag is still there.
 
-![DockerLabTest tag visible in the Tag Browser after restart](/img/docker/dockerlabtest-tag-persistent.png)
-{/* TODO: screenshot */}
+{/* TODO: screenshot - DockerLabTest tag visible in Tag Browser after restart */}
 
 **The tag persists because it lives in `services/ignition/projects/` on your machine's filesystem - not inside the Docker volume.** Restarting the container does not touch bind-mounted files. The named volume holds runtime state (module caches, the database WAL); your project files live in git.
 
