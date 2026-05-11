@@ -5,7 +5,7 @@ import type * as Preset from "@docusaurus/preset-classic";
 const config: Config = {
   title: "Ignition Guides",
   tagline: "Unofficial guides for Ignition SCADA infrastructure and workflows",
-  favicon: "img/logo.png",
+  favicon: "img/favicon.ico",
 
   url: "https://ia-eknorr.github.io",
   baseUrl: "/ignition-guides/",
