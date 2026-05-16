@@ -58,3 +58,10 @@ On first start, if the gateway finds no existing data in its data directory, it 
 Docker does not change how Ignition licensing works - it changes how licensing is stored and activated. The license is tied to the gateway's UUID, which is stored in the named volume. If the volume is deleted, the activation is lost and must be restored. The bootstrap service in the `ia-eknorr/project-template` generates a deterministic UUID from the gateway name so that activation can be recovered predictably.
 
 See [Licensing in Containers](./licensing.md) for the full picture before running a licensed gateway in Docker.
+
+## Further Reading
+
+These guides cover Docker through the lens of running Ignition. If you want to go deeper on Docker and Compose themselves:
+
+- [Docker Compose Documentation](https://docs.docker.com/compose/) - official reference for compose file syntax, commands, and concepts
+- [Docker Documentation](https://docs.docker.com/) - the broader Docker engine, images, networking, and storage
