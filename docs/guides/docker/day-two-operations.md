@@ -41,8 +41,8 @@ docker compose logs -f gateway
 
 When you see a line containing `Gateway successfully started`, the gateway is ready. Open `https://${GATEWAY_NAME}.localtest.me` in your browser and accept the self-signed certificate warning (or add the Traefik CA to your trusted roots).
 
-:::note Default credentials
-The default admin username is `admin` and password is `password`. Change these immediately in any shared or production environment.
+:::note Gateway login
+The gateway login is whatever you set via `GATEWAY_ADMIN_USERNAME` and `GATEWAY_ADMIN_PASSWORD` in your `.env` file. To change either value, edit `.env` and restart the gateway with `docker compose up -d` (or `docker compose restart gateway`).
 :::
 
 ## Restarting the Gateway

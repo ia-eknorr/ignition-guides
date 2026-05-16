@@ -15,7 +15,7 @@ Prerequisites:
 - [Version Control Lab](./version-control-lab.md) completed - you should have a project-template fork cloned locally and understand the git workflow
 - [Workstation Setup](../getting-started/workstation-setup.md) complete (Docker Desktop running)
 - [Traefik Reverse Proxy](../getting-started/traefik.md) set up and running
-- `.env` file created from `.env.example` in your project-template repository
+- `.env` file created from `.env.example` in your project-template repository, with `GATEWAY_ADMIN_PASSWORD` (and optionally `GATEWAY_ADMIN_USERNAME`) set before bringing up the stack
 
 If you do not have a project-template repository yet, complete the [Version Control Lab](./version-control-lab.md) first.
 
@@ -104,7 +104,7 @@ Replace `<GATEWAY_NAME>` with the value you set in your `.env` file (for example
 Traefik generates a self-signed certificate for `*.localtest.me`. Your browser will show a security warning. This is expected for local development - click **Advanced** and then **Proceed** (the exact wording varies by browser). You will not see this warning in a production deployment that uses a real certificate.
 :::
 
-Log in with your admin credentials. On the gateway Status page, confirm that the gateway name at the top matches `GATEWAY_NAME` from your `.env` file.
+Log in with the username and password you set in `.env` (`GATEWAY_ADMIN_USERNAME` and `GATEWAY_ADMIN_PASSWORD`). On the gateway Status page, confirm that the gateway name at the top matches `GATEWAY_NAME` from your `.env` file.
 
 {/* TODO: screenshot - gateway status page showing gateway name */}
 

@@ -96,6 +96,8 @@ Docker Compose reads variables from a `.env` file in the project root and substi
 | `GATEWAY_NAME` | Gateway display name, container hostname, and Traefik route - the gateway is accessible at `${GATEWAY_NAME}.localtest.me` |
 | `DB_USER` | PostgreSQL username for the Ignition database connection |
 | `DB_PASSWORD` | PostgreSQL password |
+| `GATEWAY_ADMIN_USERNAME` | Username for the initial gateway admin login |
+| `GATEWAY_ADMIN_PASSWORD` | Password for the initial gateway admin login - change before the first start |
 | `TZ` | Container timezone (e.g. `America/Los_Angeles`) - affects timestamps in Ignition logs and tag history |
 | `DEPLOYMENT_MODE` | Activates a named resource collection - `dev` by default (see [Gateway Resource Collections](../../reference/resource-collections.md)) |
 
