@@ -85,18 +85,14 @@ The bootstrap service re-seeds the volume on the next start.
    docker compose pull
    ```
 
-3. Do a full reset and restart:
+3. Restart the stack:
 
    ```shell
-   docker compose down -v
+   docker compose down
    docker compose up -d
    ```
 
-4. If using a standard license, reactivate it from the gateway's **Config > Licensing** page after startup.
-
-:::danger Never mix version and volume
-Never start a new image version against an existing volume from a different version without a reset. Ignition's internal database schema changes between versions and an incompatible volume will leave the gateway in a broken state.
-:::
+The volume is preserved across the restart. Ignition reads the existing data directory on startup and applies any necessary migrations automatically.
 
 ## Getting a Shell in the Gateway
 
