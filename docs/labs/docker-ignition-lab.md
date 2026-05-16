@@ -23,7 +23,7 @@ If you do not have a project-template repository yet, complete the [Version Cont
 
 ## Step 1: Start the Stack
 
-From the root of your project-template repository, bring up all four services:
+From the root of your project-template repository, bring up all three services:
 
 ```shell
 docker compose up -d
@@ -31,12 +31,11 @@ docker compose up -d
 
 <Terminal title="bash — ~/my-ignition-project" lines={[
   "$ docker compose up -d",
-  "[+] Running 5/5",
+  "[+] Running 4/4",
   " ✔ Network my-ignition-project_default  Created",
   " ✔ Container my-ignition-project-db-1              Started",
   " ✔ Container my-ignition-project-bootstrap-1       Started",
-  " ✔ Container my-ignition-project-gateway-1         Started",
-  " ✔ Container my-ignition-project-config-cleanup-1  Started"
+  " ✔ Container my-ignition-project-gateway-1         Started"
 ]} />
 
 **The startup order is not random - it is enforced by `depends_on` conditions in the compose file.** Here is what happens in sequence:
@@ -44,7 +43,6 @@ docker compose up -d
 1. `db` starts and begins its healthcheck loop (PostgreSQL is initializing)
 2. `bootstrap` starts, seeds the `ignition-data` volume with Ignition's base files, writes the `.ignition-seed-complete` sentinel file, and exits with code 0
 3. Once `bootstrap` exits successfully and `db` passes its healthcheck, `gateway` starts
-4. `config-cleanup` starts alongside the gateway and begins watching for Ignition write-backs
 
 :::tip Bootstrap runs only once
 The sentinel file at `.ignition-seed-complete` inside the named volume is the key. On every subsequent `docker compose up`, bootstrap checks for that file, finds it, and exits immediately without re-seeding. The volume is only seeded on the very first start, or after a `docker compose down -v` wipes the volume.
@@ -78,13 +76,12 @@ Press `Ctrl+C` to stop following the logs once you see `Gateway successfully sta
 This is normal. Ignition loads every module (Vision, Perspective, Reporting, Alarm Notification, and more) during startup, and each module initializes against the database. A fresh start on modest hardware commonly takes 90 seconds. **Do not assume the gateway is broken if it has not appeared after 30 seconds.**
 :::
 
-Once the logs settle, confirm all four services are running:
+Once the logs settle, confirm all three services are running:
 
 <Terminal title="bash — ~/my-ignition-project" lines={[
   "$ docker compose ps",
   "NAME                                   IMAGE                            COMMAND                  SERVICE          CREATED          STATUS                    PORTS",
   "my-ignition-project-bootstrap-1        ghcr.io/ia-eknorr/bootstrap      \"/bootstrap.sh\"          bootstrap        2 minutes ago    Exited (0) 2 minutes ago",
-  "my-ignition-project-config-cleanup-1   ghcr.io/ia-eknorr/config-cleanup \"/cleanup.sh\"            config-cleanup   2 minutes ago    Up 2 minutes",
   "my-ignition-project-db-1               postgres:15                      \"docker-entrypoint.s…\"   db               2 minutes ago    Up 2 minutes (healthy)",
   "my-ignition-project-gateway-1          inductiveautomation/ignition      \"/usr/local/bin/igni…\"   gateway          2 minutes ago    Up 2 minutes (healthy)"
 ]} />
@@ -193,58 +190,9 @@ Ignition stores each tag definition as a file in the project directory. The `tag
 
 ---
 
-## Step 6: Observe the config-cleanup Service
+## Step 6: Commit Your Tag
 
-Run `git status` again and look for changes in the config directory:
-
-<Terminal title="bash — ~/my-ignition-project" lines={[
-  "$ git status",
-  "On branch main",
-  "Changes not staged for commit:",
-  "        modified:   services/ignition/config/resources/core/ignition/database-connection/db/resource.json",
-  "        modified:   services/ignition/config/resources/core/ignition/tag-provider/default/resource.json",
-  "        modified:   services/ignition/projects/<project-name>/tags/DockerLabTest/tag.json"
-]} />
-
-The `resource.json` files in `services/ignition/config/` are showing as modified, but you did not change them intentionally. Those are Ignition's automatic write-backs - runtime metadata the gateway writes back into the config files after reading them.
-
-Wait 10-15 seconds, then run `git status` again:
-
-<Terminal title="bash — ~/my-ignition-project" lines={[
-  "$ git status",
-  "On branch main",
-  "Changes not staged for commit:",
-  "        modified:   services/ignition/projects/<project-name>/tags/DockerLabTest/tag.json",
-  "",
-  "no changes added to commit (use \"git add\" and/or \"git commit -a\")"
-]} />
-
-**The `resource.json` modifications in `config/` are gone - `config-cleanup` reverted them automatically.** Only your intentional change (the `DockerLabTest` tag) remains.
-
-Confirm in the logs:
-
-```shell
-docker compose logs config-cleanup
-```
-
-<Terminal title="bash — ~/my-ignition-project" lines={[
-  "$ docker compose logs config-cleanup",
-  "config-cleanup-1  | Watching for Ignition write-backs...",
-  "config-cleanup-1  | Detected modification: services/ignition/config/resources/core/ignition/database-connection/db/resource.json",
-  "config-cleanup-1  | Reverting: git restore services/ignition/config/resources/core/ignition/database-connection/db/resource.json",
-  "config-cleanup-1  | Detected modification: services/ignition/config/resources/core/ignition/tag-provider/default/resource.json",
-  "config-cleanup-1  | Reverting: git restore services/ignition/config/resources/core/ignition/tag-provider/default/resource.json"
-]} />
-
-:::note Why this service exists
-Ignition 8.3 writes back to the same `resource.json` files it reads during startup. Without `config-cleanup`, every `git status` after a gateway start would show dozens of noisy modifications, making it impossible to tell which changes are intentional. `config-cleanup` runs `git restore` in a loop so those write-backs never accumulate. See [The Compose Architecture](../guides/docker/compose-architecture.md) for a full explanation.
-:::
-
----
-
-## Step 7: Commit Your Tag
-
-Stage only the projects directory - not the config directory, which `config-cleanup` has already cleaned up:
+Stage only the projects directory:
 
 ```shell
 git add services/ignition/projects/
@@ -262,7 +210,7 @@ Confirm what is staged:
   "nothing to commit, working tree clean"
 ]} />
 
-The `config/` files are not staged. **This is the intended workflow: changes inside `projects/` represent intentional work; the `config/` write-backs are noise that `config-cleanup` silently discards.**
+**This is the intended workflow: changes inside `projects/` represent intentional work that should be committed.**
 
 Commit:
 
@@ -272,7 +220,7 @@ git commit -m "add DockerLabTest memory tag"
 
 ---
 
-## Step 8: Restart and Verify Persistence
+## Step 7: Restart and Verify Persistence
 
 Restart the gateway to confirm the tag survives a restart:
 
@@ -298,7 +246,7 @@ Wait for `Gateway successfully started`, then open the Designer again and check 
 
 ---
 
-## Step 9: Full Reset
+## Step 8: Full Reset
 
 Run a full teardown with volume removal:
 
@@ -308,8 +256,7 @@ docker compose down -v
 
 <Terminal title="bash — ~/my-ignition-project" lines={[
   "$ docker compose down -v",
-  "[+] Running 6/6",
-  " ✔ Container my-ignition-project-config-cleanup-1  Removed",
+  "[+] Running 5/5",
   " ✔ Container my-ignition-project-gateway-1         Removed",
   " ✔ Container my-ignition-project-db-1              Removed",
   " ✔ Container my-ignition-project-bootstrap-1       Removed",
@@ -341,7 +288,7 @@ On a production system, the named volume holds your alarm journal, transaction g
 
 ## What You Built
 
-You started a four-service Ignition stack from scratch, watched each service fulfill its role in the startup sequence, made a change through the Designer and saw it appear immediately in git, and observed `config-cleanup` silently discarding Ignition's automatic write-backs so your working tree stays clean.
+You started a three-service Ignition stack from scratch, watched each service fulfill its role in the startup sequence, and made a change through the Designer and saw it appear immediately in git.
 
 You also verified the core architectural guarantee: **git-tracked files survive a full volume reset**. The bind-mounted `projects/` directory is not inside Docker's storage - it is on your filesystem, in your repository. Docker volumes hold runtime state; git holds configuration.
 

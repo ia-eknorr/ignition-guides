@@ -21,7 +21,6 @@ All commands run from the project directory - the folder that contains your `doc
 | `docker compose down -v` | Stop and remove containers AND delete all volumes (full reset) |
 | `docker compose ps` | Show running services and their status |
 | `docker compose logs -f gateway` | Stream gateway logs (Ctrl+C to stop) |
-| `docker compose logs -f config-cleanup` | Stream config-cleanup logs to confirm it is running |
 | `docker compose restart gateway` | Restart only the gateway (preserves the volume) |
 | `docker compose exec gateway bash` | Open a shell inside the running gateway container |
 | `docker compose pull` | Pull the latest version of all images (does not restart) |
@@ -33,7 +32,6 @@ When you run `docker compose up -d` for the first time against a fresh project-t
 1. `bootstrap` runs first: seeds the `ignition-data` volume, generates a UUID from `GATEWAY_NAME`, writes the sentinel file, then exits.
 2. `db` starts and passes its healthcheck (PostgreSQL ready to accept connections).
 3. `gateway` starts: Ignition initializes, reads the bind-mounted config from `services/ignition/config/resources/`, connects to the database, and loads projects from `services/ignition/projects/`.
-4. `config-cleanup` starts: begins watching the bind-mounted directories and reverting any in-container writes.
 
 The gateway takes 60-120 seconds to finish starting. Watch progress with:
 

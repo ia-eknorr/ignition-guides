@@ -24,7 +24,6 @@ A quick-reference page for Docker Compose commands used with Ignition projects. 
 | Command | What it does |
 | --- | --- |
 | `docker compose logs -f gateway` | Stream gateway logs live (Ctrl+C to stop) |
-| `docker compose logs -f config-cleanup` | Stream config-cleanup logs live |
 | `docker compose logs gateway` | Print all gateway logs to stdout |
 | `docker compose logs gateway \| grep -i error` | Filter gateway logs for errors |
 | `docker compose logs --tail=100 gateway` | Print last 100 lines of gateway logs |
@@ -48,7 +47,6 @@ A quick-reference page for Docker Compose commands used with Ignition projects. 
 | Symptom | Command to run |
 | --- | --- |
 | Gateway not starting | `docker compose logs gateway` |
-| config-cleanup not reverting files | `docker compose logs config-cleanup` |
 | Port conflict on startup | `docker compose ps` to see what is running and which ports are bound |
 | Traefik route not working | `docker compose ps` - verify the `proxy` network is up and `gateway` is healthy |
 | Gateway stuck in trial mode after reset | Volume was deleted with `-v`; reactivate the license from **Config > Licensing** |

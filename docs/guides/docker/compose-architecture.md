@@ -9,9 +9,9 @@ sidebar_position: 2
 - [Traefik Reverse Proxy](../../getting-started/traefik.md) must be set up and running before `docker compose up` will succeed.
 :::
 
-The [Project Template](https://github.com/ia-eknorr/project-template) defines four services in its compose file. Each one exists for a specific reason. This guide walks through exactly what happens when you run `docker compose up`, service by service.
+The [Project Template](https://github.com/ia-eknorr/project-template) defines three services in its compose file. Each one exists for a specific reason. This guide walks through exactly what happens when you run `docker compose up`, service by service.
 
-## The Four Services
+## The Three Services
 
 ### The `bootstrap` Service
 
@@ -75,31 +75,15 @@ Inside Docker's network, services reach each other by service name. The database
 
 The database data is stored in a named volume so it survives container restarts. Stopping and restarting the `db` service does not lose your data unless you explicitly remove the volume with `docker compose down -v`.
 
-### The `config-cleanup` Service
-
-`config-cleanup` exists entirely because of how Ignition 8.3 manages resource files.
-
-When the gateway starts, it reads configuration from `resource.json` files in the bind-mounted directories - the same files Git tracks. After reading them, Ignition writes back to those files with its own runtime metadata: internal IDs, timestamps, and other fields Ignition manages internally. This write-back happens automatically and silently. The result is that after every gateway start, `git status` shows dozens of modified files even though you changed nothing intentional.
-
-`config-cleanup` watches the bind-mounted configuration directories with `git diff` in a loop. When it sees a file modified, it immediately runs `git restore` to revert Ignition's write-back. The loop runs continuously while the gateway is running, so Ignition's automatic writes are reverted as fast as they are made.
-
-You will see `config-cleanup` listed as a running service in `docker ps`. It is doing its job silently in the background.
-
-:::note Why not just .gitignore the resource.json files?
-The `resource.json` files contain both runtime metadata (that Ignition writes automatically) and configuration (that you set intentionally). Ignoring them entirely would mean your configuration changes - the database connection you set up, the tag provider you configured - would not be tracked in Git. The config-cleanup approach preserves your intentional changes while discarding Ignition's automatic write-backs.
-:::
-
 ## The External `proxy` Network
 
-The `gateway` service is attached to an external Docker network named `proxy`. This is the network Traefik listens on. Traffic from a browser to `${GATEWAY_NAME}.localtest.me` enters Traefik, which forwards it across the `proxy` network to the gateway container.
+The `gateway` service is attached to an external Docker network named `proxy`. This network is created and managed by Traefik, which you set up in [Traefik Reverse Proxy](../../getting-started/traefik.md). Traffic from a browser to `${GATEWAY_NAME}.localtest.me` enters Traefik, which forwards it across the `proxy` network to the gateway container.
 
 If Traefik is not running when you run `docker compose up`, Docker will fail immediately with:
 
 ```text
 network proxy not found
 ```
-
-The `proxy` network is created when you start Traefik, not when you start the project. See [Traefik Reverse Proxy](../../getting-started/traefik.md) for setup instructions.
 
 The `db` service is not attached to the `proxy` network. It is only reachable from other services in the same compose project, on the internal network Docker creates automatically. Keeping the database off the proxy network means it is never reachable from a browser, even accidentally.
 
@@ -114,5 +98,9 @@ Docker Compose reads variables from a `.env` file in the project root and substi
 | `DB_PASSWORD` | PostgreSQL password |
 | `TZ` | Container timezone (e.g. `America/Los_Angeles`) - affects timestamps in Ignition logs and tag history |
 | `DEPLOYMENT_MODE` | Activates a named resource collection - `dev` by default (see [Gateway Resource Collections](../../reference/resource-collections.md)) |
+
+:::tip Full environment variable reference
+For the complete list of environment variables the Ignition image supports, see the [Platform Environment Variables reference](https://docs.inductiveautomation.com/docs/8.3/appendix/reference-pages/platform-environment-variables#environment-variables) in the Ignition 8.3 docs.
+:::
 
 `.env` is listed in `.gitignore` and will not be committed. Never remove it from `.gitignore` - it may contain database credentials. If you need to share default values with your team, edit `.env.example` instead.
