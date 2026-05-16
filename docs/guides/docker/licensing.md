@@ -27,6 +27,28 @@ IGNITION_ACTIVATION_TOKEN=your-activation-token
 
 For Kubernetes Secrets (covered in the Orchestration pathway), use the `_FILE` variant to load values from a mounted secret instead of plain env vars.
 
+## Release the Lease on Shutdown
+
+Leased activations are tracked server-side. If a container stops without releasing its lease, the activation can stay marked active on Inductive Automation's servers, preventing the same key from being used elsewhere until the lease expires. For Docker, where containers stop and start frequently, configure the gateway to release the lease cleanly on shutdown.
+
+Pass the property as a JVM argument after the `--` delimiter in your `command:` block in `docker-compose.yml`:
+
+```yaml
+command: >
+  -n ${GATEWAY_NAME}
+  -m 4096
+  -h 80
+  -s 443
+  -a ${GATEWAY_NAME}.localtest.me
+  --
+  -Dignition.license.leased-activation-terminate-sessions-on-shutdown=true
+```
+
+References:
+
+- [Leased Licensing Parameters](https://docs.inductiveautomation.com/docs/8.3/appendix/reference-pages/gateway-configuration-file-reference#leased-licensing-parameters) - the exact property and related timeout settings
+- [Supplemental JVM and Wrapper Arguments](https://docs.inductiveautomation.com/docs/8.3/platform/docker-image#supplemental-jvm-and-wrapper-arguments) - how the `--` delimiter passes JVM args to the gateway
+
 ## Trial Mode for Labs
 
 Every lab on this site runs in trial mode. Trial mode gives full functionality for 2 hours; reset it from the gateway's Status page when it expires. No license is required to complete any lab.
