@@ -12,12 +12,12 @@ By the end of this lab, you will have started an Ignition gateway from the proje
 
 Prerequisites:
 
-- [Version Control Lab](./version-control-lab.md) completed - you should have a project-template fork cloned locally and understand the git workflow
+- [Version Control Lab](./version-control-lab.md) completed - you should have a repository created from project-template cloned locally and understand the git workflow
 - [Workstation Setup](../getting-started/workstation-setup.md) complete (Docker Desktop running)
 - [Traefik Reverse Proxy](../getting-started/traefik.md) set up and running
-- `.env` file created from `.env.example` in your project-template repository, with `GATEWAY_ADMIN_PASSWORD` (and optionally `GATEWAY_ADMIN_USERNAME`) set before bringing up the stack
+- `.env` file created from `.env.example` in your repository, with `GATEWAY_ADMIN_PASSWORD` (and optionally `GATEWAY_ADMIN_USERNAME`) set before bringing up the stack
 
-If you do not have a project-template repository yet, complete the [Version Control Lab](./version-control-lab.md) first.
+If you do not have a repository created from project-template yet, complete the [Version Control Lab](./version-control-lab.md) first.
 
 ---
 
@@ -144,8 +144,8 @@ docker compose exec gateway ls /usr/local/bin/ignition/data/
 
 **The `.ignition-seed-complete` file is the sentinel that prevents bootstrap from re-seeding.** As long as this file exists inside the named volume, bootstrap will exit immediately on every subsequent start without touching anything.
 
-:::tip Why a deterministic UUID matters
-Bootstrap derives the gateway UUID from `GATEWAY_NAME` using `md5sum`. If you lose the named volume (for example, after `docker compose down -v`), the bootstrap service recreates it with the same UUID. Ignition's license is bound to that UUID, so a license activated on this gateway can be restored after a volume reset without contacting Inductive Automation.
+:::tip Why deterministic UUIDs matter
+Ignition's license activation is tied to the gateway's UUID. Deriving it from `GATEWAY_NAME` means a recreated volume gets the same UUID and the license can be restored without reactivation. See [The bootstrap Service](../guides/docker/compose-architecture.md#the-bootstrap-service) for full details.
 :::
 
 ---

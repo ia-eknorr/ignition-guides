@@ -33,13 +33,9 @@ The critical difference is filesystem lifetime. Everything written inside a cont
 
 ## Named Volumes vs. Bind Mounts: Why Ignition Needs Both
 
-Ignition's data falls into two categories that require different persistence strategies.
+Ignition's data falls into two categories that need different persistence strategies. Named volumes handle runtime state (the internal database, installed modules, license activation) that must survive restarts but does not belong in Git. Bind mounts handle the git-tracked project files and gateway configuration that you edit in your repository.
 
-A named volume is a storage area that Docker manages on your host filesystem at a path Docker controls. You give it a name (`ignition-data`) and Docker handles the rest. Named volumes are the right tool for Ignition's runtime state: the internal database, installed modules, certificates, and license activation. This data needs to survive container restarts, but you do not want it in Git. You do not edit the internal database directly and you do not want license activation files tracked in version control. Docker manages the path; you treat it as a black box that keeps Ignition running across restarts.
-
-A bind mount maps a specific directory on your machine into the container at a specific path. The directory exists on your machine, Git tracks it, and Docker makes it visible inside the container at runtime. This is how Git-tracked project files and gateway configuration get into the gateway. Your `services/ignition/projects/` directory on disk appears inside the container at the path Ignition reads projects from. When you edit a project file in your editor, Ignition sees the change immediately because it is reading from the same directory.
-
-Ignition needs both because the two categories of data have fundamentally different requirements. Runtime state should persist but must not be in Git. Project files and gateway configuration must be in Git but do not need Docker to manage their path. Named volumes cover the first category; bind mounts cover the second.
+See [Volume Strategy](./volume-strategy.md) for the full breakdown of what lives where and why.
 
 ## The Official `inductiveautomation/ignition` Image
 
