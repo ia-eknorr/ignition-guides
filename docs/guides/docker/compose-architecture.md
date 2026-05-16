@@ -62,7 +62,7 @@ environment:
 This tells Ignition to trust the `X-Forwarded-For` and `X-Forwarded-Proto` headers that Traefik adds to proxied requests. Without it, Ignition sees HTTP traffic arriving at port 80 (the internal container port) and generates redirect URLs using `http://` - even though Traefik is serving HTTPS externally. The gateway and Traefik end up in a redirect loop, and Perspective sessions fail.
 
 :::warning Perspective sessions will fail without this
-`gateway.useProxyForwardedHeader=true` and `-a ${GATEWAY_NAME}.localtest.me` must both be set correctly when running behind a reverse proxy. If either is missing or wrong, opening a Perspective project produces a `MissingGatewayAddressException` error. This was a known issue in pre-8.3.0 builds - if you see this on an older version, update before troubleshooting further.
+`gateway.useProxyForwardedHeader=true` and `-a ${GATEWAY_NAME}.localtest.me` must both be set correctly when running behind a reverse proxy. If either is missing or wrong, opening a Perspective project produces a `MissingGatewayAddressException` error.
 :::
 
 ### The `db` Service

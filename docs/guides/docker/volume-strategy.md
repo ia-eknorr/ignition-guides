@@ -2,15 +2,15 @@
 sidebar_position: 3
 ---
 
-# The Additive Mount Strategy
+# Volumes and Bind Mounts
 
 :::tip Before continuing
 Read [The Compose Architecture](./compose-architecture.md) before this page.
 :::
 
-Naive approaches to Docker + Ignition version control tend to fail in one of two directions: tracking too much, or too little. Mounting the entire `/data` directory captures license files, internal databases, certificates, and runtime state - none of which belong in Git. Mounting only `projects/` misses gateway configuration entirely, so connections, OPC-UA settings, and themes live outside version control. The additive mount strategy is Inductive Automation's recommended approach for Ignition 8.3 - it mounts only the specific subdirectories you want Git to track, layered on top of a named volume that holds everything else.
+The project-template combines two storage mechanisms: a Docker-managed named volume for runtime state, and bind mounts from your repository for the files Git should track. The bind mounts layer on top of the volume at the same paths, so Ignition sees a unified `/data` directory while Git only sees the specific subdirectories you care about.
 
-Full reference: [Version Control Guide - Curated Configuration Mounts (Additive Approach)](https://docs.inductiveautomation.com/docs/8.3/tutorials/version-control-guide#curated-configuration-mounts-additive-approach)
+Full reference: [Ignition 8.3 Version Control Guide - Curated Configuration Mounts (Additive Approach)](https://docs.inductiveautomation.com/docs/8.3/tutorials/version-control-guide#curated-configuration-mounts-additive-approach)
 
 ### What the named volume holds
 
@@ -37,9 +37,9 @@ Three directories from your repository are mounted into the container on top of 
 
 Git only sees these three directories. Everything else in the container lives in the volume and is invisible to Git.
 
-### Why "additive"
+### How the layering works
 
-The bind mounts layer on top of the named volume at the same path. If a file exists in the volume at `/data/config/resources/core/ignition/database-connection/db/resource.json`, the bind mount at `/data/config/resources/core/` makes the repository's version of that file take precedence. The volume provides the base; the bind mounts add and override specific paths.
+The bind mounts apply on top of the named volume at the same path. If a file exists in the volume at `/data/config/resources/core/ignition/database-connection/db/resource.json`, the bind mount at `/data/config/resources/core/` makes the repository's version of that file take precedence. The volume provides the base; the bind mounts add and override specific paths.
 
 In practice this means:
 
