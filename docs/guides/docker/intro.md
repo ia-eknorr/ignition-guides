@@ -9,7 +9,7 @@ sidebar_position: 1
 - Familiarity with the [Version Control guide](../version-control/intro.md) is helpful but not required.
 :::
 
-Docker changes how you install, run, and share Ignition gateways. Instead of running an installer on your workstation and managing a system service, you declare a gateway in a compose file and start it with a single command. This guide explains the concepts you need before working with the `ia-eknorr/project-template`.
+Docker changes how you install, run, and share Ignition gateways. Instead of running an installer on your workstation and managing a system service, you declare a gateway in a compose file and start it with a single command. This guide explains the concepts you need before working with the [Project Template](https://github.com/ia-eknorr/project-template).
 
 ## What Docker Solves for Ignition Developers
 
@@ -51,11 +51,11 @@ inductiveautomation/ignition:8.3.6
 
 The image packages the same Ignition installer used for bare-metal deployments. The gateway inside the image is configured to accept command-line arguments and environment variables for headless operation - no installer wizard, no manual configuration screen. You pass the gateway name, port assignments, JVM memory, and other settings through the compose file.
 
-On first start, if the gateway finds no existing data in its data directory, it initializes a fresh gateway automatically. If data already exists (from a named volume that was seeded), the gateway loads that existing state instead. The `ia-eknorr/project-template` takes advantage of this by running a bootstrap service that seeds the named volume before the gateway starts, ensuring the gateway always finds a properly initialized data directory rather than starting completely cold. This is covered in detail in [The Compose Architecture](./compose-architecture.md).
+On first start, if the gateway finds no existing data in its data directory, it initializes a fresh gateway automatically. If data already exists (from a named volume that was seeded), the gateway loads that existing state instead. The project-template takes advantage of this by running a bootstrap service that seeds the named volume before the gateway starts, ensuring the gateway always finds a properly initialized data directory rather than starting completely cold. This is covered in detail in [The Compose Architecture](./compose-architecture.md).
 
 ## Licensing in Containers
 
-Docker does not change how Ignition licensing works - it changes how licensing is stored and activated. The license is tied to the gateway's UUID, which is stored in the named volume. If the volume is deleted, the activation is lost and must be restored. The bootstrap service in the `ia-eknorr/project-template` generates a deterministic UUID from the gateway name so that activation can be recovered predictably.
+Docker does not change how Ignition licensing works - it changes how licensing is stored and activated. The license is tied to the gateway's UUID, which is stored in the named volume. If the volume is deleted, the activation is lost and must be restored. The bootstrap service in the project-template generates a deterministic UUID from the gateway name so that activation can be recovered predictably.
 
 See [Licensing in Containers](./licensing.md) for the full picture before running a licensed gateway in Docker.
 

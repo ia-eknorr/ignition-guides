@@ -9,7 +9,7 @@ sidebar_position: 2
 - [Traefik Reverse Proxy](../../getting-started/traefik.md) must be set up and running before `docker compose up` will succeed.
 :::
 
-The `ia-eknorr/project-template` at [github.com/ia-eknorr/project-template](https://github.com/ia-eknorr/project-template) defines four services in its compose file. Each one exists for a specific reason. This guide walks through exactly what happens when you run `docker compose up`, service by service.
+The [Project Template](https://github.com/ia-eknorr/project-template) defines four services in its compose file. Each one exists for a specific reason. This guide walks through exactly what happens when you run `docker compose up`, service by service.
 
 ## The Four Services
 
