@@ -101,7 +101,7 @@ const config: Config = {
           items: [
             { label: "Getting Started", to: "/docs/getting-started" },
             { label: "Version Control", to: "/docs/guides/version-control/intro" },
-            { label: "Git Lab", to: "/docs/labs/git-ignition-lab" },
+            { label: "Version Control Lab", to: "/docs/labs/version-control-lab" },
             { label: "Style Guide", to: "/docs/reference/git-style-guide" },
             { label: "Tools", to: "/docs/tools/overview" },
           ],
