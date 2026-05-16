@@ -4,7 +4,8 @@
   "whitespace": false,
   "MD013": false,
   "MD024": false,
-  "MD033": { "allowed_elements": ["Terminal"] },
+  "MD033": { "allowed_elements": ["Terminal", "file"] },
+  "MD050": false,
   "MD046":
   {
     "style": "fenced"

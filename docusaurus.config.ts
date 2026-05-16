@@ -1,6 +1,8 @@
 import { themes as prismThemes } from "prism-react-renderer";
 import type { Config } from "@docusaurus/types";
 import type * as Preset from "@docusaurus/preset-classic";
+import remarkTokenSubstitution from "./src/plugins/remark-token-substitution";
+import { IGNITION_VERSION } from "./src/constants";
 
 const config: Config = {
   title: "Ignition Guides",
@@ -62,6 +64,9 @@ const config: Config = {
           sidebarPath: "./sidebars.ts",
           editUrl:
             "https://github.com/ia-eknorr/ignition-guides/tree/main/",
+          beforeDefaultRemarkPlugins: [
+            [remarkTokenSubstitution, { tokens: { IGNITION_VERSION } }],
+          ],
         },
         blog: false,
         theme: {
@@ -101,7 +106,7 @@ const config: Config = {
           items: [
             { label: "Getting Started", to: "/docs/getting-started" },
             { label: "Version Control", to: "/docs/guides/version-control/intro" },
-            { label: "Git Lab", to: "/docs/labs/git-ignition-lab" },
+            { label: "Version Control Lab", to: "/docs/labs/version-control-lab" },
             { label: "Style Guide", to: "/docs/reference/git-style-guide" },
             { label: "Tools", to: "/docs/tools/overview" },
           ],

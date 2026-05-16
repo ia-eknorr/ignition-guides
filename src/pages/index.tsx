@@ -43,10 +43,10 @@ const features: Feature[] = [
     cta: "Read the guide",
   },
   {
-    title: "Hands-On Lab",
+    title: "Version Control Lab",
     Icon: TerminalIcon,
     description: "Set up a Docker-based Ignition project with version control end to end, from fork to merged pull request.",
-    to: "/docs/labs/git-ignition-lab",
+    to: "/docs/labs/version-control-lab",
     cta: "Start the lab",
   },
   {

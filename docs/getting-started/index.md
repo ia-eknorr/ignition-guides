@@ -11,31 +11,55 @@ Welcome to Ignition Guides - a collection of community guides for working with
 
 | Section | What You Will Find |
 | --- | --- |
-| [Guides](../guides/version-control/intro.md) | Step-by-step procedures for real workflows (version control, etc.) |
-| [Labs](../labs/git-ignition-lab.md) | Hands-on exercises that walk a workflow end to end |
+| [Guides](../guides/docker/intro.md) | Step-by-step procedures for real workflows |
+| [Labs](../labs/docker-ignition-lab.md) | Hands-on exercises that walk a workflow end to end |
 | [Reference](../reference/git-style-guide.md) | Quick-reference pages for conventions, standards, and Ignition concepts |
 | [Tools](../tools/overview.md) | Community tools built around Ignition |
 
 ## Minimum Setup
 
-Most guides on this site require the same core tools. Set them up once here and every
-guide will reference back to this page rather than repeating the steps.
+Set up these tools once - every guide references back here rather than repeating the steps.
 
 **Required for all guides:**
 
 - [Workstation Setup](./workstation-setup.md) - VS Code, Git, GitHub CLI, Docker Desktop
 
-**Required for Docker-based guides** (most labs and some advanced guides):
+**Required for labs:**
 
 - [Traefik Reverse Proxy](./traefik.md) - Named local URLs instead of port numbers
   (e.g., `my-gw.localtest.me` instead of `localhost:9088`)
 
-## Where to Start
+## Learning Pathways
 
-**New to Git and version control?**
-Start with the [Hands-On Lab](../labs/git-ignition-lab.md). It walks you through a complete
-workflow from cloning to merging a pull request, with explanations along the way.
+Pathways are named by what you are learning, not by skill level. Each pathway ends with a lab before the next one begins. If you already know the topic, skip the guide and jump straight to the lab to verify - or skip the pathway entirely and enter at the next one.
 
-**Know Git but new to Ignition + Docker workflows?**
-Read the [Version Control Guide](../guides/version-control/intro.md) for context, then
-jump to the lab.
+```mermaid
+flowchart TD
+    WS["Workstation Setup"]
+    TR["Traefik\n(required for labs)"]
+
+    WS --> TR
+    WS --> CONTAINERIZATION
+
+    subgraph CONTAINERIZATION ["Containerization"]
+        direction TB
+        CG["Docker & Compose"]
+        CL["Lab"]
+        CG --> CL
+    end
+
+    subgraph VERSION_CONTROL ["Version Control"]
+        direction TB
+        VG["Git Workflow"]
+        VL["Lab"]
+        VG --> VL
+    end
+
+    TR --> CL
+    CL --> VERSION_CONTROL
+    TR --> VL
+```
+
+**Containerization** covers Docker Compose, the project-template architecture, licensing, and day-to-day gateway operations. Start here to run an Ignition gateway locally with the project-template.
+
+**Version Control** covers Git, GitHub, and source control workflows for the Ignition project files produced by your gateway. Continue here once you have a running gateway and want to track its configuration in Git.

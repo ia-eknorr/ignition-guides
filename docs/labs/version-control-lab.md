@@ -1,8 +1,8 @@
 ---
-sidebar_position: 10
+sidebar_position: 2
 ---
 
-# Hands-On Lab
+# Version Control Lab
 
 ## Purpose
 

@@ -162,4 +162,4 @@ For host installs or full data directory mounts, additional patterns may be need
 [Ignition 8.3 Version Control Guide](https://docs.inductiveautomation.com/docs/8.3/tutorials/version-control-guide)
 for the full reference.
 
-See the [Hands-On Lab](../labs/git-ignition-lab.md) for a walkthrough of this structure in practice.
+See the [Version Control Lab](../labs/version-control-lab.md) for a walkthrough of this structure in practice.
