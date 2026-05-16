@@ -11,8 +11,8 @@ Welcome to Ignition Guides - a collection of community guides for working with
 
 | Section | What You Will Find |
 | --- | --- |
-| [Guides](../guides/version-control/intro.md) | Step-by-step procedures for real workflows |
-| [Labs](../labs/version-control-lab.md) | Hands-on exercises that walk a workflow end to end |
+| [Guides](../guides/docker/intro.md) | Step-by-step procedures for real workflows |
+| [Labs](../labs/docker-ignition-lab.md) | Hands-on exercises that walk a workflow end to end |
 | [Reference](../reference/git-style-guide.md) | Quick-reference pages for conventions, standards, and Ignition concepts |
 | [Tools](../tools/overview.md) | Community tools built around Ignition |
 
@@ -39,14 +39,7 @@ flowchart TD
     TR["Traefik\n(required for labs)"]
 
     WS --> TR
-    WS --> FOUNDATIONS
-
-    subgraph FOUNDATIONS ["Foundations"]
-        direction TB
-        FG["Version Control"]
-        FL["Lab"]
-        FG --> FL
-    end
+    WS --> CONTAINERIZATION
 
     subgraph CONTAINERIZATION ["Containerization"]
         direction TB
@@ -55,11 +48,18 @@ flowchart TD
         CG --> CL
     end
 
-    TR --> FL
-    FL --> CONTAINERIZATION
+    subgraph VERSION_CONTROL ["Version Control"]
+        direction TB
+        VG["Git Workflow"]
+        VL["Lab"]
+        VG --> VL
+    end
+
     TR --> CL
+    CL --> VERSION_CONTROL
+    TR --> VL
 ```
 
-**Foundations** covers Git, GitHub, and version control workflows for Ignition projects. Start here if you are new to tracking Ignition configuration in source control.
+**Containerization** covers Docker Compose, the project-template architecture, licensing, and day-to-day gateway operations. Start here to run an Ignition gateway locally with the project-template.
 
-**Containerization** covers Docker Compose, the project-template architecture, licensing, and day-to-day gateway operations. Start here if you are comfortable with Git but new to running Ignition in containers.
+**Version Control** covers Git, GitHub, and source control workflows for the Ignition project files produced by your gateway. Continue here once you have a running gateway and want to track its configuration in Git.

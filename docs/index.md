@@ -20,12 +20,14 @@ Tools and setup required across all guides - set up once, referenced everywhere.
 
 Step-by-step reference guides for working with Ignition in a professional development environment.
 
+- [Docker](./guides/docker/intro.md) - Compose architecture, volume strategy, licensing, and day-two operations for the project-template.
 - [Version Control](./guides/version-control/intro.md) - Git workflows for Ignition projects: workstation setup, branching, pull requests, and more.
 
 ### Labs
 
 Hands-on labs that walk through real Ignition workflows end to end.
 
+- [Docker Lab](./labs/docker-ignition-lab.md) - Start an Ignition gateway from the project-template, watch each service boot, and practice day-two operations.
 - [Version Control Lab](./labs/version-control-lab.md) - Set up version control for an Ignition project from scratch using Docker and GitHub.
 
 ### Reference

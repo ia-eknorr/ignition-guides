@@ -18,10 +18,10 @@ When you are running multiple Ignition gateways locally (common in more advanced
 managing port numbers gets messy fast. Traefik solves this by listening on port 80 and
 routing requests by hostname.
 
-:::note Not required for the basic version control lab
-The [Version Control Lab](../labs/version-control-lab.md) uses `localhost:8088` directly and does
-not require Traefik. This setup becomes useful when running multiple gateways or following
-guides that reference `.localtest.me` URLs.
+:::note Required for the labs
+The [Docker Lab](../labs/docker-ignition-lab.md) and [Version Control Lab](../labs/version-control-lab.md)
+both reach the gateway at `https://<GATEWAY_NAME>.localtest.me`, which requires Traefik to
+route the hostname to the right container.
 :::
 
 ## How It Works

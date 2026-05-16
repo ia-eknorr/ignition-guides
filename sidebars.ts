@@ -19,17 +19,6 @@ const sidebars: SidebarsConfig = {
       items: [
         {
           type: "category",
-          label: "Version Control",
-          link: { type: "doc", id: "guides/version-control/intro" },
-          items: [
-            "guides/version-control/initialize-repository",
-            "guides/version-control/branching-strategy",
-            "guides/version-control/create-a-branch",
-            "guides/version-control/merge-a-pull-request",
-          ],
-        },
-        {
-          type: "category",
           label: "Docker",
           link: { type: "doc", id: "guides/docker/intro" },
           items: [
@@ -39,14 +28,25 @@ const sidebars: SidebarsConfig = {
             "guides/docker/day-two-operations",
           ],
         },
+        {
+          type: "category",
+          label: "Version Control",
+          link: { type: "doc", id: "guides/version-control/intro" },
+          items: [
+            "guides/version-control/initialize-repository",
+            "guides/version-control/branching-strategy",
+            "guides/version-control/create-a-branch",
+            "guides/version-control/merge-a-pull-request",
+          ],
+        },
       ],
     },
     {
       type: "category",
       label: "Labs",
       items: [
-        "labs/version-control-lab",
         "labs/docker-ignition-lab",
+        "labs/version-control-lab",
       ],
     },
     {

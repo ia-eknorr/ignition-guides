@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 1
 ---
 
 # Docker Lab
@@ -12,12 +12,57 @@ By the end of this lab, you will have started an Ignition gateway from the proje
 
 Prerequisites:
 
-- [Version Control Lab](./version-control-lab.md) completed - you should have a repository created from project-template cloned locally and understand the git workflow
-- [Workstation Setup](../getting-started/workstation-setup.md) complete (Docker Desktop running)
+- [Workstation Setup](../getting-started/workstation-setup.md) complete (Docker Desktop running, Git installed)
 - [Traefik Reverse Proxy](../getting-started/traefik.md) set up and running
-- `.env` file created from `.env.example` in your repository, with `GATEWAY_ADMIN_PASSWORD` (and optionally `GATEWAY_ADMIN_USERNAME`) set before bringing up the stack
+- A GitHub account
 
-If you do not have a repository created from project-template yet, complete the [Version Control Lab](./version-control-lab.md) first.
+This lab is self-contained: you will create a repository from `project-template`, clone it, and configure `.env` in Step 0. If you have already done these steps as part of the [Version Control Lab](./version-control-lab.md), skip ahead to Step 1.
+
+---
+
+## Step 0: Create Your Project
+
+The [`ia-eknorr/project-template`](https://github.com/ia-eknorr/project-template) repository
+is a pre-configured Ignition 8.3 Docker project. Create your own copy of it.
+
+### Create the repository on GitHub
+
+1. Go to [github.com/ia-eknorr/project-template](https://github.com/ia-eknorr/project-template)
+2. Click the green **Use this template** button, then select **Create a new repository**
+3. Fill in the form:
+   - **Owner**: your personal GitHub account
+   - **Repository name**: your project name, e.g. `my-ignition-project` (lowercase with dashes)
+   - **Visibility**: Private is a good default for a learning repo
+   - Click **Create repository**
+
+### Clone the repository to your machine
+
+```shell
+cd ~/projects
+git clone https://github.com/<your-username>/my-ignition-project.git
+cd my-ignition-project
+```
+
+### Configure the environment
+
+The template uses a `.env` file for per-machine settings that should not be committed.
+
+```shell
+# Mac / Linux
+cp .env.example .env
+
+# Windows (PowerShell)
+copy .env.example .env
+```
+
+Open `.env` in your editor and set:
+
+- `GATEWAY_NAME` to match your repository name (e.g., `my-ignition-project`). This becomes the Traefik hostname - your gateway will be available at `https://my-ignition-project.localtest.me`.
+- `GATEWAY_ADMIN_USERNAME` and `GATEWAY_ADMIN_PASSWORD` to the credentials you want for the gateway's admin user.
+
+:::note .env stays out of git
+`.env` is listed in `.gitignore` by default. Environment-specific values (gateway name, credentials) should never be committed. Share configuration through `.env.example` instead.
+:::
 
 ---
 
