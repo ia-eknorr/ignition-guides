@@ -13,7 +13,7 @@ Docker changes how you install, run, and share Ignition gateways. Instead of run
 
 ## What Docker Solves for Ignition Developers
 
-The most immediate benefit is running multiple Ignition versions simultaneously. If you support a client on 8.3.4 and another on 8.3.6, you can run both gateways on the same machine without any manual installer switching. Each gateway lives in its own container, on its own ports, behind its own Traefik route.
+The most immediate benefit is running multiple Ignition versions simultaneously. If you support a client on 8.3.4 and another on __IGNITION_VERSION__, you can run both gateways on the same machine without any manual installer switching. Each gateway lives in its own container, on its own ports, behind its own Traefik route.
 
 Beyond version isolation, Docker gives every developer on a project an identical environment. The gateway a new team member starts on day one behaves the same as the one that has been running in a CI pipeline for six months. There is no "works on my machine" because the image and compose configuration define the environment completely.
 
@@ -42,7 +42,7 @@ See [Volume Strategy](./volume-strategy.md) for the full breakdown of what lives
 Inductive Automation publishes official Docker images at `inductiveautomation/ignition` on Docker Hub. Images are tagged by Ignition version:
 
 ```text
-inductiveautomation/ignition:8.3.6
+inductiveautomation/ignition:__IGNITION_VERSION__
 ```
 
 The image packages the same Ignition installer used for bare-metal deployments. The gateway inside the image is configured to accept command-line arguments and environment variables for headless operation - no installer wizard, no manual configuration screen. You pass the gateway name, port assignments, JVM memory, and other settings through the compose file.

@@ -111,7 +111,7 @@ Scan the output for these milestones:
   "$ docker compose logs -f gateway",
   "my-ignition-project  | wrapper  | 2026/05/15 21:25:17 | --> Wrapper Started as Console",
   "my-ignition-project  | wrapper  | 2026/05/15 21:25:18 | Launching a JVM...",
-  "my-ignition-project  | jvm 1    | 2026/05/15 21:25:19 | I [IgnitionGateway               ] [21:25:19.001]: Starting Ignition 8.3.6 (b2026042713)",
+  "my-ignition-project  | jvm 1    | 2026/05/15 21:25:19 | I [IgnitionGateway               ] [21:25:19.001]: Starting Ignition __IGNITION_VERSION__ (b2026042713)",
   "my-ignition-project  | jvm 1    | 2026/05/15 21:25:19 | I [g.ModuleManager               ] [21:25:19.304]: Loading modules....",
   "my-ignition-project  | jvm 1    | 2026/05/15 21:25:27 | I [ModuleInstance                ] [21:25:27.282]: Starting up module 'com.inductiveautomation.perspective' v3.3.6 (b2026042713)... module-name=Perspective",
   "my-ignition-project  | jvm 1    | 2026/05/15 21:25:27 | I [IgnitionGateway               ] [21:25:27.450]: Gateway started in 8 seconds."
@@ -129,13 +129,13 @@ Once the logs settle, confirm all three services are accounted for. Pass `-a` so
   "$ docker compose ps -a",
   "NAME                          IMAGE                                COMMAND                  SERVICE     CREATED          STATUS                      PORTS",
   "db-my-ignition-project        postgres:18.4                        \"docker-entrypoint.s…\"   db          2 minutes ago    Up 2 minutes (healthy)      5432/tcp",
-  "my-ignition-project           inductiveautomation/ignition:8.3.6   \"docker-entrypoint.s…\"   gateway     2 minutes ago    Up 2 minutes (healthy)      8088/tcp",
-  "my-ignition-project-bootstrap-1   inductiveautomation/ignition:8.3.6   \"/bin/bash /docker-b…\"   bootstrap   2 minutes ago    Exited (0) 2 minutes ago"
+  "my-ignition-project           inductiveautomation/ignition:__IGNITION_VERSION__   \"docker-entrypoint.s…\"   gateway     2 minutes ago    Up 2 minutes (healthy)      8088/tcp",
+  "my-ignition-project-bootstrap-1   inductiveautomation/ignition:__IGNITION_VERSION__   \"/bin/bash /docker-b…\"   bootstrap   2 minutes ago    Exited (0) 2 minutes ago"
 ]} />
 
 **`bootstrap` showing `Exited (0)` is correct and expected.** It is a one-shot service that exits after completing its work, so it does not appear in `docker compose ps` without the `-a` flag.
 
-Notice that bootstrap uses the same `inductiveautomation/ignition:8.3.6` image as the gateway. It is not a separate prebuilt image - it is the standard Ignition image with a different entrypoint (`/docker-bootstrap.sh`) that runs the seed script and exits.
+Notice that bootstrap uses the same `inductiveautomation/ignition:__IGNITION_VERSION__` image as the gateway. It is not a separate prebuilt image - it is the standard Ignition image with a different entrypoint (`/docker-bootstrap.sh`) that runs the seed script and exits.
 
 ---
 

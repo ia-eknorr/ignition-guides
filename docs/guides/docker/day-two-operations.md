@@ -76,7 +76,7 @@ The bootstrap service re-seeds the volume on the next start.
 1. Open `docker-compose.yml` and update the image tag:
 
    ```yaml
-   image: inductiveautomation/ignition:8.3.7   # was 8.3.6
+   image: inductiveautomation/ignition:8.3.7   # was __IGNITION_VERSION__
    ```
 
 2. Pull the new image:

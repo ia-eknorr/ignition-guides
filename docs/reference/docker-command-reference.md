@@ -39,7 +39,7 @@ A quick-reference page for Docker Compose commands used with Ignition projects. 
 | `docker compose pull` | Pull the latest version of all images (does not restart services) |
 | `docker compose pull gateway` | Pull only the Ignition gateway image |
 | `docker images \| grep ignition` | List locally cached Ignition images and their tags |
-| `docker rmi inductiveautomation/ignition:8.3.6` | Remove a specific image version from local cache |
+| `docker rmi inductiveautomation/ignition:__IGNITION_VERSION__` | Remove a specific image version from local cache |
 | `docker compose build` | Build any services with a local `build:` context (not applicable to the stock template) |
 
 ## Troubleshooting Quick-Reference
