@@ -57,7 +57,7 @@ copy .env.example .env
 
 Open `.env` in your editor and set `GATEWAY_NAME` to match your repository name (for example, `my-ignition-project`). This becomes the Traefik hostname - your gateway will be available at `https://my-ignition-project.localtest.me`. The default `DB_USER`, `DB_PASSWORD`, and `TZ` are fine for local development.
 
-Admin credentials are set the first time you load the gateway in your browser, through the commissioning wizard (see Step 3).
+The gateway auto-commissions on first start from the resource collections committed to the template - no wizard runs. Refer to your project-template README for the admin credentials provided by your project setup.
 
 :::note .env stays out of git
 `.env` is listed in `.gitignore` by default. Environment-specific values should never be committed. Share configuration through `.env.example` instead.
@@ -153,13 +153,7 @@ Replace `<GATEWAY_NAME>` with the value you set in your `.env` file (for example
 Traefik generates a self-signed certificate for `*.localtest.me`. Your browser will show a security warning. This is expected for local development - click **Advanced** and then **Proceed** (the exact wording varies by browser). You will not see this warning in a production deployment that uses a real certificate.
 :::
 
-On the first start, the gateway runs the commissioning wizard. Step through it:
-
-1. Accept the license agreement
-2. Set an admin username and password (you will use these for the rest of the lab)
-3. Select **Standard Edition** (or your licensed edition)
-
-After commissioning you will land on the gateway home page. On the gateway Status page, confirm that the gateway name at the top matches `GATEWAY_NAME` from your `.env` file.
+The gateway auto-commissions from the resource collections committed in the template, so there is no first-run wizard - the browser lands directly on the login screen. Sign in with the admin credentials provided by your project setup (refer to your project-template README), then on the gateway Status page confirm that the gateway name at the top matches `GATEWAY_NAME` from your `.env` file.
 
 {/* TODO: screenshot - gateway status page showing gateway name */}
 
@@ -327,7 +321,7 @@ Start the stack again:
 docker compose up -d
 ```
 
-Wait for startup. The gateway runs commissioning again because the named volume is brand new, then you can open the Designer. The `docker_lab` project and its `hello` view are still there.
+Wait for startup. The gateway auto-commissions again because the named volume is brand new, then you can open the Designer. The `docker_lab` project and its `hello` view are still there.
 
 **`down -v` deletes volumes but does not touch git-tracked files.** The bind-mounted `services/ignition/projects/` directory is on your machine's disk - Docker never owns it. When the gateway starts fresh, the bind mount re-applies your committed project files and the view is back.
 
