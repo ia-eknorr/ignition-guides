@@ -5,8 +5,10 @@ sidebar_position: 2
 # The Compose Architecture
 
 :::tip Before continuing
+
 - [Introduction to Docker for Ignition](./intro.md)
 - [Traefik Reverse Proxy](../../getting-started/traefik.md) must be set up and running before `docker compose up` will succeed.
+
 :::
 
 The [Project Template](https://github.com/ia-eknorr/project-template) defines three services in its compose file. Each one exists for a specific reason. This guide walks through exactly what happens when you run `docker compose up`, service by service.

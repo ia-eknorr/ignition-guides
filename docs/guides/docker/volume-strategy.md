@@ -10,7 +10,7 @@ Read [The Compose Architecture](./compose-architecture.md) before this page.
 
 The [Project Template](https://github.com/ia-eknorr/project-template) combines two storage mechanisms based on the [IA Version Control Guide](https://docs.inductiveautomation.com/docs/8.3/tutorials/version-control-guide#advanced-version-control-considerations): a Docker-managed named volume for runtime state, and bind mounts from your repository for the files Git should track. The bind mounts layer on top of the volume at the same paths, so Ignition sees a unified `/data` directory while Git only sees the specific subdirectories you care about.
 
-### What the named volume holds
+## What the named volume holds
 
 The `ignition-data` volume is managed by Docker and holds everything that should persist across restarts but should NOT be tracked in Git:
 
@@ -23,7 +23,7 @@ The `ignition-data` volume is managed by Docker and holds everything that should
 
 The volume survives `docker compose down` but is deleted by `docker compose down -v`. Think of it as Ignition's installed files - analogous to what lives under `C:\Program Files\Inductive Automation\Ignition\data` on a Windows host install.
 
-### What the bind mounts hold
+## What the bind mounts hold
 
 Three directories from your repository are mounted into the container on top of the volume:
 
@@ -35,7 +35,7 @@ Three directories from your repository are mounted into the container on top of 
 
 Git only sees these three directories. Everything else in the container lives in the volume and is invisible to Git.
 
-### How the layering works
+## How the layering works
 
 The bind mounts apply on top of the named volume at the same path. If a file exists in the volume at `/data/config/resources/core/ignition/database-connection/db/resource.json`, the bind mount at `/data/config/resources/core/` makes the repository's version of that file take precedence. The volume provides the base; the bind mounts add and override specific paths.
 
@@ -47,7 +47,7 @@ In practice this means:
 
 No container rebuild is required when you add or change files in the mounted directories. The gateway reads them from the host filesystem on startup.
 
-### Why you cannot mount `/data` directly
+## Why you cannot mount `/data` directly
 
 :::danger
 Mounting a fresh empty volume - or an empty host directory - at `/data` causes `CrashLoopBackOff`. The Ignition container expects certain files to already exist at startup (`gateway.xml_clean`, `metro-keystore`, etc.). An empty mount hides the files that the container image itself provides, and the gateway cannot start.
@@ -55,7 +55,7 @@ Mounting a fresh empty volume - or an empty host directory - at `/data` causes `
 This is the most common cause of immediate container crashes when running Ignition on Kubernetes without an init container. The project-template avoids this entirely by mounting only subdirectories, leaving the top-level `/data` structure from the image's own filesystem intact.
 :::
 
-### Resource collections and deployment modes
+## Resource collections and deployment modes
 
 The `config/resources/` directory supports multiple named collections as subdirectories. The JVM argument `-Dignition.config.mode=dev` activates the `dev` collection. Both `core` and `dev` are active simultaneously when the gateway starts: `core` applies to all environments, `dev` overrides or supplements it for local development.
 

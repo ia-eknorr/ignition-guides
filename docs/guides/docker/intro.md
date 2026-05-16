@@ -5,8 +5,10 @@ sidebar_position: 1
 # Introduction to Docker for Ignition
 
 :::tip Before continuing
+
 - [Workstation Setup](../../getting-started/workstation-setup.md) must be complete - Docker Desktop must be installed and running.
 - Familiarity with the [Version Control guide](../version-control/intro.md) is helpful but not required.
+
 :::
 
 Docker changes how you install, run, and share Ignition gateways. Instead of running an installer on your workstation and managing a system service, you declare a gateway in a compose file and start it with a single command. This guide explains the concepts you need before working with the [Project Template](https://github.com/ia-eknorr/project-template).
