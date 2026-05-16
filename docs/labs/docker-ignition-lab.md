@@ -57,7 +57,7 @@ copy .env.example .env
 
 Open `.env` in your editor and set `GATEWAY_NAME` to match your repository name (for example, `my-ignition-project`). This becomes the Traefik hostname - your gateway will be available at `https://my-ignition-project.localtest.me`. The default `DB_USER`, `DB_PASSWORD`, and `TZ` are fine for local development.
 
-Admin credentials are set the first time you load the gateway in your browser, through the commissioning wizard (see Step 3).
+The gateway ships open by default: the UI does not require a login. A committed admin user (see the [project-template Security section](https://github.com/ia-eknorr/project-template#security)) is available when you need to launch the Designer.
 
 :::note .env stays out of git
 `.env` is listed in `.gitignore` by default. Environment-specific values should never be committed. Share configuration through `.env.example` instead.
@@ -153,13 +153,11 @@ Replace `<GATEWAY_NAME>` with the value you set in your `.env` file (for example
 Traefik generates a self-signed certificate for `*.localtest.me`. Your browser will show a security warning. This is expected for local development - click **Advanced** and then **Proceed** (the exact wording varies by browser). You will not see this warning in a production deployment that uses a real certificate.
 :::
 
-On the first start, the gateway runs the commissioning wizard. Step through it:
+The gateway auto-commissions during startup and lands directly on the gateway home page - no login is required to browse the UI. Confirm that the gateway name at the top matches `GATEWAY_NAME` from your `.env` file.
 
-1. Accept the license agreement
-2. Set an admin username and password (you will use these for the rest of the lab)
-3. Select **Standard Edition** (or your licensed edition)
-
-After commissioning you will land on the gateway home page. On the gateway Status page, confirm that the gateway name at the top matches `GATEWAY_NAME` from your `.env` file.
+:::note Open by default
+The `project-template` ships with `forceIdpAuth: false` so a new clone is immediately usable. You only need to authenticate for privileged operations like launching the Designer. Before deploying anywhere that is not your local machine, follow the [Security section of the project-template README](https://github.com/ia-eknorr/project-template#security) to lock the gateway down.
+:::
 
 {/* TODO: screenshot - gateway status page showing gateway name */}
 
@@ -214,7 +212,7 @@ Ignition's license activation is tied to the gateway's UUID. Deriving it from `G
 Launch the Designer from the gateway homepage:
 
 1. Click **Launch Designer** on the gateway homepage
-2. Log in with your admin credentials
+2. Log in with the committed admin credentials (see the [project-template Security section](https://github.com/ia-eknorr/project-template#security))
 3. Click **New Project**, name it `docker_lab` (or similar), and open it
 4. In the Project Browser, right-click **Views** and add a new view named `hello`
 5. Drag a **Label** component onto the view and change its text to something recognizable
