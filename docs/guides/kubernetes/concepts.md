@@ -6,7 +6,7 @@ sidebar_position: 1
 
 :::tip Before continuing
 
-- The [Docker tier](../docker/intro.md) is recommended before working through Kubernetes. The mental model carries over directly.
+- The [Containerization guide](../docker/intro.md) is recommended before working through Kubernetes. The mental model carries over directly.
 - [Kubernetes Setup](../../getting-started/kubernetes-setup.md) must be complete - you need a running cluster and `kubectl` configured.
 
 :::
@@ -17,7 +17,7 @@ The chart at [charts.ia.io](https://charts.ia.io) handles most of these primitiv
 
 ## From Containers to Pods
 
-You already know containers from the Docker tier: when running Ignition in a container, the gateway process lives inside a container started from the `inductiveautomation/ignition` image (Ignition can also run as a traditional bare-metal install, but containers are what brought you here).
+You already know containers from the Containerization guide: when running Ignition in a container, the gateway process lives inside a container started from the `inductiveautomation/ignition` image (Ignition can also run as a traditional bare-metal install, but containers are what brought you here).
 
 Kubernetes takes that idea and spreads it across a cluster of machines that work together. Each machine in the cluster is called a [**node**](https://kubernetes.io/docs/concepts/architecture/nodes/). A node is just a computer (a physical server, a VM, or a cloud instance) that runs container workloads. A production cluster typically has many nodes; a local development cluster usually has just one ([Docker Desktop](https://docs.docker.com/desktop/kubernetes/) and [kind](https://kind.sigs.k8s.io/) both run single-node clusters by default). Kubernetes has a [scheduler](https://kubernetes.io/docs/concepts/scheduling-eviction/kube-scheduler/) built in that decides which node should run each workload, so you almost never pick a node manually: you tell Kubernetes "run this," and it figures out where.
 
@@ -43,7 +43,7 @@ The Ignition Helm chart at charts.ia.io uses a StatefulSet by default, so you do
 
 ## Where Pods Store Data: PersistentVolumeClaim
 
-Pods are ephemeral. If the gateway pod restarts, anything written to its container filesystem is gone. To keep data across pod restarts, the pod mounts a [**PersistentVolumeClaim**](https://kubernetes.io/docs/concepts/storage/persistent-volumes/) (PVC). The PVC is conceptually the same role as the `ignition-data` named volume in the Docker tier: it is the durable storage that lives on outside the pod's lifecycle.
+Pods are ephemeral. If the gateway pod restarts, anything written to its container filesystem is gone. To keep data across pod restarts, the pod mounts a [**PersistentVolumeClaim**](https://kubernetes.io/docs/concepts/storage/persistent-volumes/) (PVC). The PVC is conceptually the same role as the `ignition-data` named volume in the Containerization guide: it is the durable storage that lives on outside the pod's lifecycle.
 
 The Ignition gateway needs persistent storage for `/usr/local/bin/ignition/data`. The StatefulSet automatically creates a PVC for each pod (so `gateway-0` always gets the same PVC).
 
@@ -65,7 +65,7 @@ For browser access from outside the cluster, you have a few options:
 - [**LoadBalancer**](https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer) Service: the cluster provisions an external load balancer. Standard for cloud deployments.
 - [**Ingress**](https://kubernetes.io/docs/concepts/services-networking/ingress/): an HTTP/HTTPS router (with TLS termination via cert-manager). The production-grade option for multi-host setups.
 
-If you use an Ingress, the gateway must trust forwarded headers (chart value `gateway.gatewayArgs.useProxyForwardedHeader`, default `true` when ingress is enabled). This is the same gotcha as the [Docker tier with Traefik](../docker/compose-architecture.md): mismatched proxy and gateway-advertised address produces a `MissingGatewayAddressException` when opening a Perspective project.
+If you use an Ingress, the gateway must trust forwarded headers (chart value `gateway.gatewayArgs.useProxyForwardedHeader`, default `true` when ingress is enabled). This is the same gotcha as the [Containerization guide with Traefik](../docker/compose-architecture.md): mismatched proxy and gateway-advertised address produces a `MissingGatewayAddressException` when opening a Perspective project.
 
 ## How Pods Get Config: ConfigMaps and Secrets
 
@@ -75,7 +75,7 @@ Pods need configuration: gateway names, ingress hostnames, license keys, admin p
 
 [**Secret**](https://kubernetes.io/docs/concepts/configuration/secret/) holds credentials: license activation tokens, database passwords, admin passwords. Secrets are still base64-encoded rather than encrypted at rest by default, so treat them as access-controlled config rather than as vault entries (cloud secret stores like AWS Secrets Manager or Vault are the next step up).
 
-Ignition's `_FILE` env var variants let the gateway read values from files mounted from Secrets, which keeps credentials out of pod environment dumps and CI logs. The same `IGNITION_ACTIVATION_TOKEN_FILE` pattern from the Docker tier applies here.
+Ignition's `_FILE` env var variants let the gateway read values from files mounted from Secrets, which keeps credentials out of pod environment dumps and CI logs. The same `IGNITION_ACTIVATION_TOKEN_FILE` pattern from the Containerization guide applies here.
 
 ## Putting It Together
 

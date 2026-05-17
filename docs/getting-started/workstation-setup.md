@@ -131,7 +131,7 @@ More information: [GitHub Quickstart](https://docs.github.com/en/get-started/qui
 
 ## kubectl
 
-Required for the Orchestration pathway. `kubectl` is the command-line tool for interacting with Kubernetes clusters.
+Required for the Helm Ignition lab. `kubectl` is the command-line tool for interacting with Kubernetes clusters.
 
 :::tip Already installed?
 Run `kubectl version --client` to confirm.
@@ -155,7 +155,7 @@ Run `kubectl version --client` to confirm.
 
 ## Helm
 
-Required for the Orchestration pathway. Helm is the package manager for Kubernetes.
+Required for the Helm Ignition lab. Helm is the package manager for Kubernetes.
 
 :::tip Already installed?
 Run `helm version` to confirm.
@@ -179,7 +179,7 @@ Run `helm version` to confirm.
 
 ## Terraform
 
-Required for the Orchestration pathway. Terraform provisions infrastructure declaratively.
+Required for the Helm Ignition lab. Terraform provisions infrastructure declaratively.
 
 :::tip Already installed?
 Run `terraform version` to confirm.
@@ -204,7 +204,7 @@ Run `terraform version` to confirm.
 
 ## kind
 
-Required for the Orchestration pathway. kind (Kubernetes in Docker) runs local Kubernetes clusters inside Docker containers. Terraform manages kind clusters in the labs, but the kind CLI is useful for inspecting cluster state.
+Required for the Helm Ignition lab. kind (Kubernetes in Docker) runs local Kubernetes clusters inside Docker containers. Terraform manages kind clusters in the labs, but the kind CLI is useful for inspecting cluster state.
 
 :::tip Already installed?
 Run `kind version` to confirm.
@@ -229,4 +229,4 @@ Run `kind version` to confirm.
 ## Windows Users
 
 If you are on Windows, review [Windows Setup Notes](./windows-setup.md)
-for Git line-ending configuration and long-path settings. For the Orchestration pathway, WSL2 is strongly recommended - kind and Terraform work most reliably in a Linux environment.
+for Git line-ending configuration and long-path settings. For the Helm Ignition lab, WSL2 is strongly recommended - kind and Terraform work most reliably in a Linux environment.

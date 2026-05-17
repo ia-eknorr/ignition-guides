@@ -1,0 +1,73 @@
+---
+sidebar_position: 1
+---
+
+# Getting Started
+
+Welcome to Ignition Guides - a collection of community guides for working with
+[Ignition SCADA](https://inductiveautomation.com/) using modern development practices.
+
+## What Is in Here
+
+| Section | What You Will Find |
+| --- | --- |
+| [Guides](../guides/docker/intro.md) | Concept guides explaining how each piece of the stack works |
+| [Labs](../labs/docker-ignition-lab.md) | Hands-on exercises that run end to end on a local gateway |
+| [Reference](../reference/git-style-guide.md) | Quick-reference pages for conventions, standards, and Ignition concepts |
+| [Tools](../tools/overview.md) | Community tools built around Ignition |
+
+## Start Learning
+
+Concept guides and hands-on labs are organized separately because they have different shapes. Guides are independent reading: each one stands on its own and you can read them in any order. Labs share a local Ignition gateway, so they have a recommended order and a few prerequisites you should set up first.
+
+<div className="learn-tier">
+  <div className="learn-tier__label">Set up once</div>
+  <div className="learn-setup">
+    <ul>
+      <li><a href="./workstation-setup">Workstation Setup</a> - required for every guide</li>
+      <li><a href="./traefik">Traefik Reverse Proxy</a> - required for any lab</li>
+      <li><a href="./kubernetes-setup">Kubernetes Setup</a> - required for the Helm lab only</li>
+    </ul>
+  </div>
+</div>
+
+<div className="learn-tier">
+  <div className="learn-tier__label">Concept guides</div>
+  <p className="learn-tier__desc">Read in any order. Each guide stands on its own and explains how a piece of the system works.</p>
+  <div className="learn-grid">
+    <a className="learn-card" href="../guides/docker/intro">
+      <h3 className="learn-card__title">Containerization</h3>
+      <p className="learn-card__desc">Docker Compose, the project-template architecture, licensing, and day-to-day gateway operations.</p>
+    </a>
+    <a className="learn-card" href="../guides/version-control/intro">
+      <h3 className="learn-card__title">Version Control</h3>
+      <p className="learn-card__desc">Git, GitHub, and source-control workflows for the Ignition project files your gateway produces.</p>
+    </a>
+    <a className="learn-card" href="../guides/kubernetes/concepts">
+      <h3 className="learn-card__title">Orchestration</h3>
+      <p className="learn-card__desc">Kubernetes concepts for Ignition and the official Inductive Automation Helm chart.</p>
+    </a>
+  </div>
+</div>
+
+<div className="learn-tier">
+  <div className="learn-tier__label">Hands-on labs</div>
+  <p className="learn-tier__desc">Recommended order. Labs build on a local Ignition gateway, so later labs reuse the setup from earlier ones.</p>
+  <div className="learn-grid">
+    <a className="learn-card learn-card--lab" href="../labs/docker-ignition-lab">
+      <div className="learn-card__number">1</div>
+      <h3 className="learn-card__title">Docker Ignition</h3>
+      <p className="learn-card__desc">Stand up an Ignition gateway from the project template using Docker Compose.</p>
+    </a>
+    <a className="learn-card learn-card--lab" href="../labs/version-control-lab">
+      <div className="learn-card__number">2</div>
+      <h3 className="learn-card__title">Version Control</h3>
+      <p className="learn-card__desc">Put your gateway's project files under Git: branch, commit, and merge a change.</p>
+    </a>
+    <a className="learn-card learn-card--lab" href="../labs/helm-ignition-lab">
+      <div className="learn-card__number">3</div>
+      <h3 className="learn-card__title">Helm Ignition</h3>
+      <p className="learn-card__desc">Deploy an Ignition gateway on a local Kubernetes cluster with the official Helm chart.</p>
+    </a>
+  </div>
+</div>

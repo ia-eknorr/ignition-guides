@@ -134,3 +134,125 @@
     display: none;
   }
 }
+
+/* Start Learning */
+.learn-tier {
+  margin: 2rem 0;
+}
+
+.learn-tier__label {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0 0 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ifm-color-emphasis-600);
+}
+
+.learn-tier__label::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--ifm-color-emphasis-200);
+}
+
+.learn-setup {
+  padding: 1rem 1.25rem;
+  border-left: 4px solid var(--ifm-color-primary);
+  background: var(--ifm-color-emphasis-100);
+  border-radius: 0 6px 6px 0;
+}
+
+.learn-setup ul {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.learn-setup li {
+  margin: 0.25rem 0;
+}
+
+.learn-tier__desc {
+  font-size: 0.95rem;
+  color: var(--ifm-color-emphasis-700);
+  margin: 0 0 1rem;
+}
+
+.learn-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+  margin: 0 0 2rem;
+}
+
+.learn-card {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding: 1.25rem;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 8px;
+  background: var(--ifm-card-background-color);
+  color: inherit;
+  text-decoration: none;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease,
+    transform 0.15s ease;
+}
+
+.learn-card:hover,
+.learn-card:focus-visible {
+  border-color: var(--ifm-color-primary);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+  color: inherit;
+  text-decoration: none;
+  outline: none;
+}
+
+[data-theme="dark"] .learn-card:hover,
+[data-theme="dark"] .learn-card:focus-visible {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+}
+
+.learn-card__title {
+  font-size: 1.05rem;
+  margin: 0 0 0.4rem;
+  color: var(--ifm-heading-color);
+}
+
+.learn-card:hover .learn-card__title {
+  color: var(--ifm-color-primary);
+}
+
+.learn-card__desc {
+  font-size: 0.9rem;
+  color: var(--ifm-color-emphasis-700);
+  margin: 0;
+  flex-grow: 1;
+}
+
+.learn-card--lab {
+  padding-left: 3.5rem;
+}
+
+.learn-card__number {
+  position: absolute;
+  top: 1.25rem;
+  left: 1.25rem;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  background: var(--ifm-color-primary);
+  color: var(--ifm-color-content-inverse);
+  font-size: 0.9rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
