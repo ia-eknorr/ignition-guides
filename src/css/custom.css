@@ -184,12 +184,25 @@
 }
 
 .pathway__badge {
+  display: inline-block;
+  align-self: flex-start;
   font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--ifm-color-emphasis-700);
+  background: var(--ifm-color-emphasis-100);
+  border: 1px solid var(--ifm-color-emphasis-200);
+  padding: 2px 8px;
+  border-radius: 999px;
+  margin-bottom: 0.75rem;
+}
+
+.pathway__badge--start {
+  color: var(--ifm-color-content-inverse);
+  background: var(--ifm-color-primary);
+  border-color: var(--ifm-color-primary);
   text-transform: uppercase;
-  color: var(--ifm-color-primary);
-  margin-bottom: 0.5rem;
+  letter-spacing: 0.08em;
 }
 
 .pathway__title {
@@ -239,5 +252,5 @@
 
 .pathway__chip--lab {
   background: var(--ifm-color-primary);
-  color: var(--ifm-background-color);
+  color: var(--ifm-color-content-inverse);
 }

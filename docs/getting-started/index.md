@@ -29,12 +29,12 @@ Set up these tools once - every guide references back here rather than repeating
 - [Traefik Reverse Proxy](./traefik.md) - Named local URLs instead of port numbers
   (e.g., `my-gw.localtest.me` instead of `localhost:9088`)
 
-## Learning Pathways
+## Topics
 
-Pathways are named by what you are learning, not by skill level. Each pathway ends with a lab before the next one begins. If you already know the topic, skip the guide and jump straight to the lab to verify - or skip the pathway entirely and enter at the next one.
+Each topic pairs a concept guide with a hands-on lab. The order below is the recommended sequence for someone starting from scratch, since each topic builds on the previous one. Every topic lists what it builds on, so if you already know the prerequisites you can drop in anywhere.
 
 <div className="pathways__setup">
-  <strong>Set up once before any pathway:</strong>
+  <strong>Set up once before any topic:</strong>
   <ul>
     <li><a href="./workstation-setup">Workstation Setup</a> - required for every guide</li>
     <li><a href="./traefik">Traefik Reverse Proxy</a> - required for any lab</li>
@@ -45,9 +45,9 @@ Pathways are named by what you are learning, not by skill level. Each pathway en
 <div className="pathways">
 
 <div className="pathway">
-  <div className="pathway__badge">Pathway 1</div>
+  <div className="pathway__badge pathway__badge--start">Start here</div>
   <h3 className="pathway__title">Containerization</h3>
-  <p className="pathway__desc">Docker Compose, the project-template architecture, licensing, and day-to-day gateway operations. Start here to run an Ignition gateway locally.</p>
+  <p className="pathway__desc">Docker Compose, the project-template architecture, licensing, and day-to-day gateway operations. Get an Ignition gateway running locally.</p>
   <div className="pathway__links">
     <a className="pathway__link" href="../guides/docker/intro"><span className="pathway__chip">Guide</span> Docker &amp; Compose</a>
     <a className="pathway__link" href="../labs/docker-ignition-lab"><span className="pathway__chip pathway__chip--lab">Lab</span> Docker Ignition</a>
@@ -55,9 +55,9 @@ Pathways are named by what you are learning, not by skill level. Each pathway en
 </div>
 
 <div className="pathway">
-  <div className="pathway__badge">Pathway 2</div>
+  <div className="pathway__badge">Builds on: Containerization</div>
   <h3 className="pathway__title">Version Control</h3>
-  <p className="pathway__desc">Git, GitHub, and source control workflows for the Ignition project files produced by your gateway. Continue here once you have a running gateway.</p>
+  <p className="pathway__desc">Git, GitHub, and source control workflows for the Ignition project files your gateway produces. Track gateway configuration as code.</p>
   <div className="pathway__links">
     <a className="pathway__link" href="../guides/version-control/intro"><span className="pathway__chip">Guide</span> Git Workflow</a>
     <a className="pathway__link" href="../labs/version-control-lab"><span className="pathway__chip pathway__chip--lab">Lab</span> Version Control</a>
@@ -65,9 +65,9 @@ Pathways are named by what you are learning, not by skill level. Each pathway en
 </div>
 
 <div className="pathway">
-  <div className="pathway__badge">Pathway 3</div>
+  <div className="pathway__badge">Builds on: Containerization, Version Control</div>
   <h3 className="pathway__title">Orchestration</h3>
-  <p className="pathway__desc">Kubernetes concepts for Ignition and the official Inductive Automation Helm chart for deploying gateways on a local cluster. Continue here once you understand Docker and version control.</p>
+  <p className="pathway__desc">Kubernetes concepts for Ignition and the official Inductive Automation Helm chart for deploying gateways on a local cluster.</p>
   <div className="pathway__links">
     <a className="pathway__link" href="../guides/kubernetes/concepts"><span className="pathway__chip">Guide</span> Kubernetes &amp; Helm</a>
     <a className="pathway__link" href="../labs/helm-ignition-lab"><span className="pathway__chip pathway__chip--lab">Lab</span> Helm Ignition</a>
