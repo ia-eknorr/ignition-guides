@@ -72,15 +72,17 @@ Named resources can exist only in specific collections, or override a parent col
 
 ### Singleton Resources
 
-Single configuration objects - exactly one per gateway:
+Single configuration objects with exactly one per gateway. Examples include:
 
-| Singleton Resource | Description |
-| --- | --- |
-| `gateway-network-settings` | Global gateway network configuration |
-| `system-properties` | Gateway system properties |
-| `security-properties` | Security settings |
-| `security-levels` | Security level definitions |
-| `general-alarm-settings` | Global alarm configuration |
+- `gateway-network-settings` - Global gateway network configuration
+- `system-properties` - Gateway system properties (name, address, redundancy)
+- `security-properties` - Security settings (auth strategy, designer permissions)
+- `security-levels` - Security level definitions
+- `cobranding` - Gateway branding (logo, colors, custom CSS)
+- `general-alarm-settings` - Global alarm configuration
+- `quickstart` - First-run quickstart wizard state
+
+This is not an exhaustive list. Installed modules and edition-specific features (Edge, Cloud) introduce additional singletons. For the full set, see Inductive Automation's [Resource Types](https://docs.inductiveautomation.com/docs/8.3/platform/gateway/web-interface/platform/gateway-deployment-modes#resource-types) and [Gateway Folder Structure](https://docs.inductiveautomation.com/docs/8.3/appendix/reference-pages/gateway-folder-structure) references.
 
 :::warning
 All singleton resources **must exist in core** (or external), even if you override them in a deployment mode. The gateway needs a base configuration to start with. A singleton that exists only in a deployment mode will cause the gateway to fail to start.
