@@ -10,6 +10,7 @@ const sidebars: SidebarsConfig = {
       items: [
         "getting-started/workstation-setup",
         "getting-started/traefik",
+        "getting-started/kubernetes-setup",
         "getting-started/windows-setup",
       ],
     },
@@ -30,6 +31,14 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: "category",
+          label: "Kubernetes",
+          link: { type: "doc", id: "guides/kubernetes/concepts" },
+          items: [
+            "guides/kubernetes/helm-chart-essentials",
+          ],
+        },
+        {
+          type: "category",
           label: "Version Control",
           link: { type: "doc", id: "guides/version-control/intro" },
           items: [
@@ -46,6 +55,7 @@ const sidebars: SidebarsConfig = {
       label: "Labs",
       items: [
         "labs/docker-ignition-lab",
+        "labs/helm-ignition-lab",
         "labs/version-control-lab",
       ],
     },
@@ -56,6 +66,8 @@ const sidebars: SidebarsConfig = {
         "reference/git-style-guide",
         "reference/resource-collections",
         "reference/docker-command-reference",
+        "reference/kubernetes-sizing",
+        "reference/licensing-decision-tree",
       ],
     },
     {

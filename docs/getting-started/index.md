@@ -37,8 +37,10 @@ Pathways are named by what you are learning, not by skill level. Each pathway en
 flowchart TD
     WS["Workstation Setup"]
     TR["Traefik\n(required for labs)"]
+    KS["Kubernetes Setup\n(required for Helm lab)"]
 
     WS --> TR
+    WS --> KS
     WS --> CONTAINERIZATION
 
     subgraph CONTAINERIZATION ["Containerization"]
@@ -55,11 +57,22 @@ flowchart TD
         VG --> VL
     end
 
+    subgraph ORCHESTRATION ["Orchestration"]
+        direction TB
+        OG["Kubernetes & Helm"]
+        OL["Lab"]
+        OG --> OL
+    end
+
     TR --> CL
     CL --> VERSION_CONTROL
     TR --> VL
+    VL --> ORCHESTRATION
+    KS --> OL
 ```
 
 **Containerization** covers Docker Compose, the project-template architecture, licensing, and day-to-day gateway operations. Start here to run an Ignition gateway locally with the project-template.
 
 **Version Control** covers Git, GitHub, and source control workflows for the Ignition project files produced by your gateway. Continue here once you have a running gateway and want to track its configuration in Git.
+
+**Orchestration** covers Kubernetes concepts for Ignition and using the official Inductive Automation Helm chart to deploy gateways on a local cluster. Continue here once you understand the Docker and version-control workflows.
