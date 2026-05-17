@@ -51,7 +51,7 @@ The `project-template` uses `dev` as its deployment mode, set via `DEPLOYMENT_MO
 
 ### Local
 
-Host-specific data that should not be shared (certificates, local secrets). Not inherited by deployment modes and not version controlled.
+Host-specific data that should not be shared (certificates, local secrets). Not inherited by deployment modes, and typically excluded from version control.
 
 ## Resource Types
 
