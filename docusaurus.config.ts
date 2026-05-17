@@ -43,10 +43,14 @@ const config: Config = {
     "@docusaurus/plugin-ideal-image",
     "docusaurus-plugin-image-zoom",
     [
-      "docusaurus-plugin-llms-txt",
+      "@signalwire/docusaurus-plugin-llms-txt",
       {
-        title: "Ignition Guides",
-        description: "Unofficial guides for Ignition SCADA infrastructure and workflows",
+        siteTitle: "Ignition Guides",
+        siteDescription: "Unofficial guides for Ignition SCADA infrastructure and workflows",
+        depth: 2,
+        content: {
+          enableLlmsFullTxt: true,
+        },
       },
     ],
   ],
