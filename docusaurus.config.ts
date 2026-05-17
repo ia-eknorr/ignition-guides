@@ -21,6 +21,18 @@ const config: Config = {
 
   onBrokenLinks: "throw",
 
+  headTags: [
+    {
+      // Sets data-theme before React hydrates: respects the user's stored choice
+      // (theme-cdb) if any, otherwise falls back to the system color-scheme preference.
+      // Combined with colorMode.respectPrefersColorScheme = false, this gives a binary
+      // light/dark toggle that defaults to system on first visit.
+      tagName: "script",
+      attributes: {},
+      innerHTML: `(function(){try{var s=localStorage.getItem('theme-cdb');var t=(s==='light'||s==='dark')?s:(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);}catch(e){}})();`,
+    },
+  ],
+
   markdown: {
     mermaid: true,
     hooks: {
@@ -138,7 +150,7 @@ const config: Config = {
     },
     colorMode: {
       defaultMode: "light",
-      respectPrefersColorScheme: true,
+      respectPrefersColorScheme: false,
     },
     zoom: {
       selector: ".markdown img",
