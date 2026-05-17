@@ -54,6 +54,10 @@ helm search repo ignition
 
 If `kubectl get nodes` does not return a Ready node, revisit the [Local Kubernetes Setup](../getting-started/kubernetes-setup.md) guide before continuing. The chart name shown above (`ignition/ignition`) is what you will install in the next step.
 
+:::note Multiple repo rows are fine
+If you have several Ignition chart repos registered (for example, `ignition/`, `ia/`, `ia-charts/`, and `inductiveautomation/`), `helm search repo ignition` will show one row per alias. The chart is the same in every case; pick any alias and stay consistent.
+:::
+
 :::note Any local cluster works
 Docker Desktop's built-in Kubernetes, `kind`, `minikube`, and `k3d` all behave the same for this lab. Use whichever one you configured during workstation setup.
 :::
@@ -85,14 +89,16 @@ helm install my-gw ignition/ignition \
   "REVISION: 1",
   "DESCRIPTION: Install complete",
   "NOTES:",
-  "Thank you for installing Ignition __IGNITION_VERSION__ by Inductive Automation!",
+  "🎉 Thank you for installing Ignition __IGNITION_VERSION__ by Inductive Automation!",
   "",
-  "Ignition Gateway is reachable at:",
+  "🚀 Ignition Gateway is reachable at:",
   "  - http://my-gw-ignition.localtest.me",
   "",
-  "The initial Ignition Gateway `admin` password can be retrieved with:",
+  "🔐 The initial Ignition Gateway `admin` password can be retrieved with:",
   "",
-  "  kubectl get secret -n ignition my-gw-ignition-gateway-admin-password --template='{{ printf \"%s\\n\" (index .data \"gateway-admin-password\" | base64decode) }}'"
+  "  kubectl get secret -n ignition my-gw-ignition-gateway-admin-password --template='{{ printf \"%s\\n\" (index .data \"gateway-admin-password\" | base64decode) }}'",
+  "",
+  "To learn more about Ignition, please visit our website at https://inductiveautomation.com"
 ]} />
 
 One command produced a StatefulSet, Service, headless DNS, PVC, ConfigMap, and a Secret with the generated admin password. Inspect what landed in the namespace:
@@ -109,8 +115,8 @@ kubectl get statefulset,svc,pvc -n ignition
   "NAME                     TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)                      AGE",
   "service/my-gw-ignition   ClusterIP   None         <none>        8060/TCP,8088/TCP,8043/TCP   3s",
   "",
-  "NAME                                                  STATUS    CAPACITY   STORAGECLASS",
-  "persistentvolumeclaim/data-my-gw-ignition-gateway-0   Pending              standard"
+  "NAME                                                  STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE",
+  "persistentvolumeclaim/data-my-gw-ignition-gateway-0   Bound    pvc-635b8a56-19bb-472c-b293-6c0b0bde90a2   3Gi        RWO            standard       <unset>                 4s"
 ]} />
 
 The service is `my-gw-ignition` (headless, ClusterIP `None`), and the StatefulSet creates pod `my-gw-ignition-gateway-0` with PVC `data-my-gw-ignition-gateway-0`. These names follow the `<release>-<chart>` convention from Helm.
@@ -295,14 +301,33 @@ helm upgrade my-gw ignition/ignition --namespace ignition --values values.yaml
   "$ helm upgrade my-gw ignition/ignition --namespace ignition --values values.yaml",
   "Release \"my-gw\" has been upgraded. Happy Helming!",
   "NAME: my-gw",
-  "LAST DEPLOYED: Sat May 16 15:24:59 2026",
+  "LAST DEPLOYED: Sat May 16 17:43:33 2026",
   "NAMESPACE: ignition",
   "STATUS: deployed",
   "REVISION: 2",
-  "DESCRIPTION: Upgrade complete"
+  "DESCRIPTION: Upgrade complete",
+  "NOTES:",
+  "🎉 Thank you for installing Ignition __IGNITION_VERSION__ by Inductive Automation!",
+  "",
+  "🚀 Ignition Gateway is reachable at:",
+  "  - http://my-gw-ignition.localtest.me",
+  "",
+  "To learn more about Ignition, please visit our website at https://inductiveautomation.com"
 ]} />
 
-Confirm the new resource limits applied to the pod:
+The StatefulSet rolls the pod asynchronously, so checking the pod spec immediately after `helm upgrade` returns the OLD values until the replacement pod takes over. Wait for the rollout to finish before inspecting the new resource limits:
+
+```shell
+kubectl rollout status statefulset/my-gw-ignition-gateway -n ignition
+```
+
+<Terminal title="bash — ~" lines={[
+  "$ kubectl rollout status statefulset/my-gw-ignition-gateway -n ignition",
+  "Waiting for 1 pods to be ready...",
+  "partitioned roll out complete: 1 new pods have been updated..."
+]} />
+
+This blocks until the new pod is ready (typically 30-60 seconds on a warm cluster). Now confirm the new resource limits applied to the pod:
 
 ```shell
 kubectl get pod -n ignition my-gw-ignition-gateway-0 \
