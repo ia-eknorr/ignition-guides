@@ -159,7 +159,7 @@ The gateway auto-commissions during startup and lands directly on the gateway ho
 The `project-template` ships open: no login is required to browse the Gateway. You only need to authenticate for privileged operations like launching the Designer. Before any non-local deployment, follow the [Security section of the project-template README](https://github.com/ia-eknorr/project-template#security) to lock it down.
 :::
 
-{/* TODO: screenshot - gateway status page showing gateway name */}
+![Gateway homepage](/img/lab/gateway-homepage.png)
 
 **Traefik routes the `*.localtest.me` domain to the correct container based on the gateway name - no port numbers needed in the URL.** Without Traefik, you would need to expose host ports and use `http://localhost:8088`.
 
@@ -218,7 +218,7 @@ Launch the Designer from the gateway homepage:
 5. Drag a **Label** component onto the view and change its text to something recognizable
 6. Save: **File - Save and Publish** (or `Ctrl+S`)
 
-   {/* TODO: screenshot - new view in Perspective Designer */}
+   ![Creating a new view in the Designer](/img/lab/new-view-ignition.png)
 
 Back in your terminal, run:
 
@@ -289,7 +289,7 @@ docker compose logs -f gateway
 
 Wait for `Gateway started in N seconds.`, then open the Designer again and check the Project Browser. The `docker_lab` project and its `hello` view are still there.
 
-{/* TODO: screenshot - docker_lab project visible in Designer after restart */}
+![View persisted in the Designer after restart](/img/lab/edited-view.png)
 
 **The view persists because it lives in `services/ignition/projects/` on your machine's filesystem - not inside the Docker volume.** Restarting the container does not touch bind-mounted files. The named volume holds runtime state (module caches, the internal database); your project files live in git.
 
