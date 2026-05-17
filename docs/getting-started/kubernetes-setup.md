@@ -8,7 +8,7 @@ The [Helm Lab](../labs/helm-ignition-lab.md) needs a Kubernetes cluster running 
 machine. The easiest path is [Docker Desktop](https://docs.docker.com/desktop/kubernetes/)'s built-in Kubernetes: one
 checkbox in settings and you have a cluster. If that's not an option (Windows without
 Docker Desktop Kubernetes, or you just want more control over your setup),
-[`kind`](https://kind.sigs.k8s.io/) works great too.
+[`kind`](https://kind.sigs.k8s.io/) (Kubernetes IN Docker) works great too.
 
 :::note Install kubectl and helm first
 Both `kubectl` and `helm` are covered in [Workstation Setup](./workstation-setup.md).
