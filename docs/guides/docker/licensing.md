@@ -25,7 +25,7 @@ IGNITION_ACTIVATION_TOKEN=your-activation-token
 `.env` is listed in `.gitignore` for a reason. Never commit it - your license key and activation token are credentials.
 :::
 
-For Kubernetes Secrets (covered in the Orchestration pathway), use the `_FILE` variant to load values from a mounted secret instead of plain env vars.
+For Kubernetes Secrets (covered in the Kubernetes & Helm guide), use the `_FILE` variant to load values from a mounted secret instead of plain env vars.
 
 ## Release the Lease on Shutdown
 
