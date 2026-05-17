@@ -17,7 +17,7 @@ The chart at [charts.ia.io](https://charts.ia.io) handles most of these primitiv
 
 ## From Containers to Pods
 
-You already know containers from the Docker tier: an Ignition gateway runs as a process inside a container started from the `inductiveautomation/ignition` image. Kubernetes abstracts that one step further with a **pod**.
+You already know containers from the Docker tier: when running Ignition in a container, the gateway process lives inside a container started from the `inductiveautomation/ignition` image (Ignition can also run as a traditional bare-metal install, but containers are what brought you to this guide). Kubernetes abstracts the container one step further with a **pod**.
 
 A pod is the smallest unit Kubernetes manages. In most cases (including Ignition's), a pod is just a wrapper around a single container. You can think of it as a container with extra Kubernetes metadata attached: a name, labels, networking, and lifecycle hooks. When you ask Kubernetes to run Ignition, you are really asking it to run a pod whose container is the Ignition image.
 
