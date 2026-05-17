@@ -33,60 +33,45 @@ Set up these tools once - every guide references back here rather than repeating
 
 Pathways are named by what you are learning, not by skill level. Each pathway ends with a lab before the next one begins. If you already know the topic, skip the guide and jump straight to the lab to verify - or skip the pathway entirely and enter at the next one.
 
-```mermaid
-flowchart LR
-    subgraph SETUP["Setup (one-time)"]
-        direction TB
-        WS["Workstation Setup"]
-        TR["Traefik<br/><i>required for labs</i>"]
-        KS["Kubernetes Setup<br/><i>required for Helm lab</i>"]
-        WS --> TR
-        WS --> KS
-    end
+<div className="pathways__setup">
+  <strong>Set up once before any pathway:</strong>
+  <ul>
+    <li><a href="./workstation-setup">Workstation Setup</a> - required for every guide</li>
+    <li><a href="./traefik">Traefik Reverse Proxy</a> - required for any lab</li>
+    <li><a href="./kubernetes-setup">Kubernetes Setup</a> - required for the Helm lab</li>
+  </ul>
+</div>
 
-    subgraph CONTAINERS["Pathway 1: Containerization"]
-        direction TB
-        CG["Guide<br/>Docker &amp; Compose"]
-        CL["Lab<br/>Docker Ignition"]
-        CG --> CL
-    end
+<div className="pathways">
 
-    subgraph VCS["Pathway 2: Version Control"]
-        direction TB
-        VG["Guide<br/>Git Workflow"]
-        VL["Lab<br/>Version Control"]
-        VG --> VL
-    end
+<div className="pathway">
+  <div className="pathway__badge">Pathway 1</div>
+  <h3 className="pathway__title">Containerization</h3>
+  <p className="pathway__desc">Docker Compose, the project-template architecture, licensing, and day-to-day gateway operations. Start here to run an Ignition gateway locally.</p>
+  <div className="pathway__links">
+    <a className="pathway__link" href="../guides/docker/intro"><span className="pathway__chip">Guide</span> Docker &amp; Compose</a>
+    <a className="pathway__link" href="../labs/docker-ignition-lab"><span className="pathway__chip pathway__chip--lab">Lab</span> Docker Ignition</a>
+  </div>
+</div>
 
-    subgraph ORCH["Pathway 3: Orchestration"]
-        direction TB
-        OG["Guide<br/>Kubernetes &amp; Helm"]
-        OL["Lab<br/>Helm Ignition"]
-        OG --> OL
-    end
+<div className="pathway">
+  <div className="pathway__badge">Pathway 2</div>
+  <h3 className="pathway__title">Version Control</h3>
+  <p className="pathway__desc">Git, GitHub, and source control workflows for the Ignition project files produced by your gateway. Continue here once you have a running gateway.</p>
+  <div className="pathway__links">
+    <a className="pathway__link" href="../guides/version-control/intro"><span className="pathway__chip">Guide</span> Git Workflow</a>
+    <a className="pathway__link" href="../labs/version-control-lab"><span className="pathway__chip pathway__chip--lab">Lab</span> Version Control</a>
+  </div>
+</div>
 
-    SETUP ==> CONTAINERS ==> VCS ==> ORCH
+<div className="pathway">
+  <div className="pathway__badge">Pathway 3</div>
+  <h3 className="pathway__title">Orchestration</h3>
+  <p className="pathway__desc">Kubernetes concepts for Ignition and the official Inductive Automation Helm chart for deploying gateways on a local cluster. Continue here once you understand Docker and version control.</p>
+  <div className="pathway__links">
+    <a className="pathway__link" href="../guides/kubernetes/concepts"><span className="pathway__chip">Guide</span> Kubernetes &amp; Helm</a>
+    <a className="pathway__link" href="../labs/helm-ignition-lab"><span className="pathway__chip pathway__chip--lab">Lab</span> Helm Ignition</a>
+  </div>
+</div>
 
-    click WS "/ignition-guides/docs/getting-started/workstation-setup" "Workstation Setup"
-    click TR "/ignition-guides/docs/getting-started/traefik" "Traefik Reverse Proxy"
-    click KS "/ignition-guides/docs/getting-started/kubernetes-setup" "Kubernetes Setup"
-    click CG "/ignition-guides/docs/guides/docker/intro" "Docker & Compose Guide"
-    click CL "/ignition-guides/docs/labs/docker-ignition-lab" "Docker Ignition Lab"
-    click VG "/ignition-guides/docs/guides/version-control/intro" "Git Workflow Guide"
-    click VL "/ignition-guides/docs/labs/version-control-lab" "Version Control Lab"
-    click OG "/ignition-guides/docs/guides/kubernetes/concepts" "Kubernetes & Helm Guide"
-    click OL "/ignition-guides/docs/labs/helm-ignition-lab" "Helm Ignition Lab"
-
-    classDef pathway fill:#f0f7ff,stroke:#3578e5,stroke-width:1px,color:#1a1a1a;
-    classDef setup fill:#fff8e6,stroke:#d4a017,stroke-width:1px,color:#1a1a1a;
-    class CG,CL,VG,VL,OG,OL pathway;
-    class WS,TR,KS setup;
-```
-
-Click any node to jump to that guide or lab.
-
-**Containerization** covers Docker Compose, the project-template architecture, licensing, and day-to-day gateway operations. Start here to run an Ignition gateway locally with the project-template.
-
-**Version Control** covers Git, GitHub, and source control workflows for the Ignition project files produced by your gateway. Continue here once you have a running gateway and want to track its configuration in Git.
-
-**Orchestration** covers Kubernetes concepts for Ignition and using the official Inductive Automation Helm chart to deploy gateways on a local cluster. Continue here once you understand the Docker and version-control workflows.
+</div>

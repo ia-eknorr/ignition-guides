@@ -134,3 +134,110 @@
     display: none;
   }
 }
+
+/* Learning Pathways */
+.pathways__setup {
+  margin: 1.5rem 0;
+  padding: 1rem 1.25rem;
+  border-left: 4px solid var(--ifm-color-primary);
+  background: var(--ifm-color-emphasis-100);
+  border-radius: 0 6px 6px 0;
+}
+
+.pathways__setup ul {
+  margin: 0.5rem 0 0;
+  padding-left: 1.25rem;
+}
+
+.pathways__setup li {
+  margin: 0.25rem 0;
+}
+
+.pathways {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0 2rem;
+}
+
+.pathway {
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 8px;
+  background: var(--ifm-card-background-color);
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease,
+    transform 0.15s ease;
+}
+
+.pathway:hover {
+  border-color: var(--ifm-color-primary);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+[data-theme="dark"] .pathway:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+}
+
+.pathway__badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ifm-color-primary);
+  margin-bottom: 0.5rem;
+}
+
+.pathway__title {
+  font-size: 1.15rem;
+  margin: 0 0 0.5rem;
+}
+
+.pathway__desc {
+  font-size: 0.9rem;
+  color: var(--ifm-color-emphasis-700);
+  margin: 0 0 1rem;
+  flex-grow: 1;
+}
+
+.pathway__links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  border-top: 1px solid var(--ifm-color-emphasis-200);
+  padding-top: 0.75rem;
+}
+
+.pathway__link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.pathway__link:hover {
+  text-decoration: underline;
+}
+
+.pathway__chip {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 2px 6px;
+  border-radius: 3px;
+  background: var(--ifm-color-emphasis-200);
+  color: var(--ifm-color-emphasis-800);
+}
+
+.pathway__chip--lab {
+  background: var(--ifm-color-primary);
+  color: var(--ifm-background-color);
+}
