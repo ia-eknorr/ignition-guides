@@ -11,9 +11,9 @@ sidebar_position: 1
 
 :::
 
-Just enough Kubernetes to make sense of the Ignition Helm chart values and the choices behind them. For a broader introduction to Kubernetes itself, head over to the [Kubernetes documentation](https://kubernetes.io/docs/).
+The goal of this guide is to prepare you to work with the Ignition Helm chart by covering just the Kubernetes primitives that come up most. It is not a comprehensive Kubernetes guide; for that, the [Kubernetes documentation](https://kubernetes.io/docs/) has everything. What you will get here is enough to follow the chart values, understand the choices behind them, and feel confident customizing your deployment.
 
-The official Ignition Helm chart at [charts.ia.io](https://charts.ia.io) handles most of these primitives automatically, but knowing what's happening underneath helps when something goes wrong or when you want to customize beyond the defaults.
+The chart at [charts.ia.io](https://charts.ia.io) handles most of these primitives automatically, so you do not need to write any of it yourself. Knowing what is going on underneath still helps when something behaves unexpectedly or when you want to go beyond the defaults.
 
 ## StatefulSet vs Deployment
 
