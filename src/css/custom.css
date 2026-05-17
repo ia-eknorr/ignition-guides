@@ -135,12 +135,12 @@
   }
 }
 
-/* Topics */
-.pathways__tier {
+/* Start Learning */
+.learn-tier {
   margin: 2rem 0;
 }
 
-.pathways__tier-label {
+.learn-tier__label {
   display: flex;
   align-items: center;
   gap: 0.75rem;
@@ -152,43 +152,43 @@
   color: var(--ifm-color-emphasis-600);
 }
 
-.pathways__tier-label::after {
+.learn-tier__label::after {
   content: "";
   flex: 1;
   height: 1px;
   background: var(--ifm-color-emphasis-200);
 }
 
-.pathways__setup {
+.learn-setup {
   padding: 1rem 1.25rem;
   border-left: 4px solid var(--ifm-color-primary);
   background: var(--ifm-color-emphasis-100);
   border-radius: 0 6px 6px 0;
 }
 
-.pathways__setup ul {
+.learn-setup ul {
   margin: 0;
   padding-left: 1.25rem;
 }
 
-.pathways__setup li {
+.learn-setup li {
   margin: 0.25rem 0;
 }
 
-.pathways__tier-desc {
+.learn-tier__desc {
   font-size: 0.95rem;
   color: var(--ifm-color-emphasis-700);
   margin: 0 0 1rem;
 }
 
-.pathways {
+.learn-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 1rem;
   margin: 0 0 2rem;
 }
 
-.pathway-card {
+.learn-card {
   display: flex;
   flex-direction: column;
   position: relative;
@@ -204,8 +204,8 @@
     transform 0.15s ease;
 }
 
-.pathway-card:hover,
-.pathway-card:focus-visible {
+.learn-card:hover,
+.learn-card:focus-visible {
   border-color: var(--ifm-color-primary);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
   transform: translateY(-2px);
@@ -214,33 +214,33 @@
   outline: none;
 }
 
-[data-theme="dark"] .pathway-card:hover,
-[data-theme="dark"] .pathway-card:focus-visible {
+[data-theme="dark"] .learn-card:hover,
+[data-theme="dark"] .learn-card:focus-visible {
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
 }
 
-.pathway-card__title {
+.learn-card__title {
   font-size: 1.05rem;
   margin: 0 0 0.4rem;
   color: var(--ifm-heading-color);
 }
 
-.pathway-card:hover .pathway-card__title {
+.learn-card:hover .learn-card__title {
   color: var(--ifm-color-primary);
 }
 
-.pathway-card__desc {
+.learn-card__desc {
   font-size: 0.9rem;
   color: var(--ifm-color-emphasis-700);
   margin: 0;
   flex-grow: 1;
 }
 
-.pathway-card--lab {
+.learn-card--lab {
   padding-left: 3.5rem;
 }
 
-.pathway-card__number {
+.learn-card__number {
   position: absolute;
   top: 1.25rem;
   left: 1.25rem;
