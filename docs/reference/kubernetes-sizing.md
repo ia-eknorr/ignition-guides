@@ -70,4 +70,3 @@ Override the exec command itself with `gateway.readinessProbe.commandOverride` o
 - [charts.ia.io](https://charts.ia.io) - authoritative chart reference
 - [Helm Chart Essentials](../guides/kubernetes/helm-chart-essentials.md) - the values that drive sizing
 - [Helm Lab](../labs/helm-ignition-lab.md) - hands-on sizing override
-- [Ignition Server Sizing and Architecture Guide](https://inductiveautomation.com/resources/article/ignition-server-sizing-and-architecture-guide) - IA's general sizing model
