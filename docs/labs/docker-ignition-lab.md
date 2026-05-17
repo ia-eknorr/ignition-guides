@@ -57,7 +57,7 @@ copy .env.example .env
 
 Open `.env` in your editor and set `GATEWAY_NAME` to match your repository name (for example, `my-ignition-project`). This becomes the Traefik hostname - your gateway will be available at `https://my-ignition-project.localtest.me`. The default `DB_USER`, `DB_PASSWORD`, and `TZ` are fine for local development.
 
-Admin credentials are set the first time you load the gateway in your browser, through the commissioning wizard (see Step 3).
+The gateway ships open by default: the UI does not require a login. A committed admin user (see the [project-template Security section](https://github.com/ia-eknorr/project-template#security)) is available when you need to launch the Designer.
 
 :::note .env stays out of git
 `.env` is listed in `.gitignore` by default. Environment-specific values should never be committed. Share configuration through `.env.example` instead.
@@ -153,15 +153,13 @@ Replace `<GATEWAY_NAME>` with the value you set in your `.env` file (for example
 Traefik generates a self-signed certificate for `*.localtest.me`. Your browser will show a security warning. This is expected for local development - click **Advanced** and then **Proceed** (the exact wording varies by browser). You will not see this warning in a production deployment that uses a real certificate.
 :::
 
-On the first start, the gateway runs the commissioning wizard. Step through it:
+The gateway auto-commissions during startup and lands directly on the gateway home page - no login is required to browse the UI. Confirm that the gateway name at the top matches `GATEWAY_NAME` from your `.env` file.
 
-1. Accept the license agreement
-2. Set an admin username and password (you will use these for the rest of the lab)
-3. Select **Standard Edition** (or your licensed edition)
+:::note Open by default
+The `project-template` ships open: no login is required to browse the Gateway. You only need to authenticate for privileged operations like launching the Designer. Before any non-local deployment, follow the [Security section of the project-template README](https://github.com/ia-eknorr/project-template#security) to lock it down.
+:::
 
-After commissioning you will land on the gateway home page. On the gateway Status page, confirm that the gateway name at the top matches `GATEWAY_NAME` from your `.env` file.
-
-{/* TODO: screenshot - gateway status page showing gateway name */}
+![Gateway homepage](/img/lab/gateway-homepage.png)
 
 **Traefik routes the `*.localtest.me` domain to the correct container based on the gateway name - no port numbers needed in the URL.** Without Traefik, you would need to expose host ports and use `http://localhost:8088`.
 
@@ -214,13 +212,13 @@ Ignition's license activation is tied to the gateway's UUID. Deriving it from `G
 Launch the Designer from the gateway homepage:
 
 1. Click **Launch Designer** on the gateway homepage
-2. Log in with your admin credentials
+2. Log in with the committed admin credentials (see the [project-template Security section](https://github.com/ia-eknorr/project-template#security))
 3. Click **New Project**, name it `docker_lab` (or similar), and open it
 4. In the Project Browser, right-click **Views** and add a new view named `hello`
 5. Drag a **Label** component onto the view and change its text to something recognizable
 6. Save: **File - Save and Publish** (or `Ctrl+S`)
 
-   {/* TODO: screenshot - new view in Perspective Designer */}
+   ![Creating a new view in the Designer](/img/lab/new-view-ignition.png)
 
 Back in your terminal, run:
 
@@ -228,19 +226,14 @@ Back in your terminal, run:
 git status
 ```
 
-{/* TODO: capture real git status output - requires Designer GUI interaction. Expected format below mirrors the Version Control Lab. */}
-
 <Terminal title="bash — ~/my-ignition-project" lines={[
   "$ git status",
   "On branch main",
-  "Changes not staged for commit:",
-  "  (use \"git add <file>...\" to update what will be committed)",
-  "  (use \"git restore <file>...\" to discard changes in working directory)",
-  "        new file:   services/ignition/projects/docker_lab/project.json",
-  "        new file:   services/ignition/projects/docker_lab/com.inductiveautomation.perspective/views/hello/resource.json",
-  "        new file:   services/ignition/projects/docker_lab/com.inductiveautomation.perspective/views/hello/view.json",
+  "Untracked files:",
+  "  (use \"git add <file>...\" to include in what will be committed)",
+  "        services/ignition/projects/docker_lab/",
   "",
-  "no changes added to commit (use \"git add\" and/or \"git commit -a\")"
+  "nothing added to commit but untracked files present (use \"git add\" to track)"
 ]} />
 
 **The view files appeared in `services/ignition/projects/` the moment you saved in the Designer - no export step, no manual copy.** The bind mount means the Designer writes directly to the files Git tracks.
@@ -291,7 +284,7 @@ docker compose logs -f gateway
 
 Wait for `Gateway started in N seconds.`, then open the Designer again and check the Project Browser. The `docker_lab` project and its `hello` view are still there.
 
-{/* TODO: screenshot - docker_lab project visible in Designer after restart */}
+![View persisted in the Designer after restart](/img/lab/edited-view.png)
 
 **The view persists because it lives in `services/ignition/projects/` on your machine's filesystem - not inside the Docker volume.** Restarting the container does not touch bind-mounted files. The named volume holds runtime state (module caches, the internal database); your project files live in git.
 
