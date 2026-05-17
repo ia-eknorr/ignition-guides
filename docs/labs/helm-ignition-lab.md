@@ -15,7 +15,21 @@ Prerequisites:
 - [Docker Lab](./docker-ignition-lab.md) and [Version Control Lab](./version-control-lab.md) completed
 - [Workstation Setup](../getting-started/workstation-setup.md) complete (`kubectl` and `helm` installed)
 - [Local Kubernetes Setup](../getting-started/kubernetes-setup.md) complete (cluster running, chart repo added)
-- Familiarity with the [Helm Chart Essentials](../guides/kubernetes/helm-chart-essentials.md) guide
+- Familiarity with the [Kubernetes Concepts](../guides/kubernetes/concepts.md) guide and the [Helm Chart Essentials](../guides/kubernetes/helm-chart-essentials.md) guide
+
+## Lab Overview
+
+Here is the path you will follow:
+
+1. **Verify the cluster** is running and the Ignition Helm repo is available.
+2. **Install the chart** with one command. Helm will create a StatefulSet, Service, PVC, ConfigMap, and Secret all at once.
+3. **Watch the pod start**. Ignition takes 60-180 seconds to come up, so you will see Kubernetes wait it out before marking the pod Ready.
+4. **Access the gateway** in your browser via `kubectl port-forward`, a development-friendly way to reach the gateway without setting up an Ingress.
+5. **Test persistence**. Drop a marker file inside the pod, delete the pod, and watch the StatefulSet rebuild it with the same data still attached. This is the moment that proves StatefulSets are the right choice for Ignition.
+6. **Customize the deployment** with a `values.yaml` and `helm upgrade`.
+7. **Clean up** the namespace and PVCs.
+
+If you skim the steps and see something that looks unfamiliar, the [Kubernetes Concepts](../guides/kubernetes/concepts.md) guide explains the underlying pieces.
 
 ---
 
@@ -47,6 +61,8 @@ Docker Desktop's built-in Kubernetes, `kind`, `minikube`, and `k3d` all behave t
 ---
 
 ## Step 2: Install the Chart with Defaults
+
+A Helm chart is a packaged set of Kubernetes resources with sensible defaults you can override. Running `helm install` against the Ignition chart will create everything the gateway needs (StatefulSet, Service, PVC, ConfigMap, and Secret) from one command, all scoped to a Kubernetes namespace.
 
 Create a dedicated namespace and install the chart. The chart requires you to accept the Ignition EULA via a values flag.
 
@@ -133,6 +149,8 @@ The chart's `startupProbe` gives the gateway up to 5 minutes to come up. A stand
 ---
 
 ## Step 4: Access the Gateway via Port-Forward
+
+The gateway pod has its own internal IP, but it is not reachable from your browser by default. `kubectl port-forward` opens a temporary tunnel from a port on your workstation into the cluster, so you can hit the gateway from your browser as if it were running locally. It is the simplest way to access a workload during development; production deployments use an Ingress or a `LoadBalancer` Service instead.
 
 Check the service name, then port-forward `8088` to your workstation.
 
