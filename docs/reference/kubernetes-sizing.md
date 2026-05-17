@@ -7,26 +7,14 @@ sidebar_position: 4
 :::tip Before continuing
 
 - [Helm Chart Essentials](../guides/kubernetes/helm-chart-essentials.md) covers the value keys this page references.
-- For the general Ignition sizing model, see the [Ignition Server Sizing and Architecture Guide](https://inductiveautomation.com/resources/article/ignition-server-sizing-and-architecture-guide).
 
 :::
 
-Sizing depends on tag count, history rate, project complexity, and module load. The tables below are starting points for development and small production deployments. Production sizing requires load testing against representative workloads.
+For the gateway's underlying CPU and memory sizing (tags, history rate, project complexity, module load), follow Inductive Automation's [Server Sizing and Architecture Guide](https://docs.inductiveautomation.com/docs/8.3/tutorials#external-resource-guides). This page covers what is specific to running Ignition on Kubernetes: how those targets map to Helm chart values, sizing the data volume, and configuring probes.
 
-## Gateway Resource Sizing
+## Mapping CPU and Memory to Chart Values
 
-| Profile | Tags (approximate) | CPU requests | CPU limits | Memory requests | Memory limits |
-| --- | --- | --- | --- | --- | --- |
-| Small (dev/test) | `< 10k` | `1` | `2` | `2Gi` | `4Gi` |
-| Medium | `10k-50k` | `2` | `4` | `4Gi` | `8Gi` |
-| Large | `50k-200k` | `4` | `8` | `8Gi` | `16Gi` |
-| Extra Large | `> 200k` | `8` | `16` | `16Gi` | `32Gi` |
-
-The chart sets the JVM heap automatically from the container memory limit via `gateway.maxRAMPercentage` (default `75`). The JVM also needs space for metaspace, native libraries, code cache, and direct buffers; keeping ~25% of the memory limit off-heap prevents the JVM from being OOM-killed by the kernel under load. Override `gateway.maxRAMPercentage` only if you have measured a reason to, and never set it above ~85% on a container with a hard memory limit.
-
-## Helm Chart Values
-
-The sizing table above maps to the chart's `gateway.resources` field:
+Once you have target CPU and memory numbers from the IA sizing guide, they go into the chart's `gateway.resources` field:
 
 ```yaml
 gateway:
@@ -40,6 +28,8 @@ gateway:
       memory: 8Gi
   maxRAMPercentage: 75
 ```
+
+The chart sets the JVM heap automatically from the container memory limit via `gateway.maxRAMPercentage` (default `75`). The JVM also needs space for metaspace, native libraries, code cache, and direct buffers; keeping ~25% of the memory limit off-heap prevents the JVM from being OOM-killed by the kernel under load. Override `gateway.maxRAMPercentage` only if you have measured a reason to, and never set it above ~85% on a container with a hard memory limit.
 
 See [charts.ia.io](https://charts.ia.io) and the [Helm Chart Essentials](../guides/kubernetes/helm-chart-essentials.md) guide for the full set of related values.
 
