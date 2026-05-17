@@ -11,9 +11,9 @@ sidebar_position: 1
 
 :::
 
-This page covers only the Kubernetes primitives that matter for Ignition. It is not a general Kubernetes tutorial - point readers at [kubernetes.io/docs](https://kubernetes.io/docs/) for that. The goal is to give an Ignition developer just enough mental model to read the Helm chart values and understand why they are shaped the way they are.
+Just enough Kubernetes to make sense of the Ignition Helm chart values and the choices behind them. For a broader introduction to Kubernetes itself, head over to the [Kubernetes documentation](https://kubernetes.io/docs/).
 
-Note that the official Ignition Helm chart at [charts.ia.io](https://charts.ia.io) handles most of these primitives automatically, but understanding them helps when something goes wrong or when you need to customize.
+The official Ignition Helm chart at [charts.ia.io](https://charts.ia.io) handles most of these primitives automatically, but knowing what's happening underneath helps when something goes wrong or when you want to customize beyond the defaults.
 
 ## StatefulSet vs Deployment
 
@@ -27,7 +27,7 @@ Ignition MUST use a StatefulSet. The internal database, license activation, and 
 If you accidentally deploy Ignition as a Deployment with a ReadWriteOnce PVC, a rolling update spins up `gateway-new` while `gateway-old` is still alive. Both pods try to mount the same volume. The internal SQLite database gets concurrent writes, the gateway state becomes inconsistent, and the gateway may not start cleanly. Always use a StatefulSet.
 :::
 
-The Ignition Helm chart at charts.ia.io uses a StatefulSet by default - you do not need to configure this yourself.
+The Ignition Helm chart at charts.ia.io uses a StatefulSet by default, so you do not need to configure this yourself.
 
 ## PersistentVolumeClaim and ReadWriteOncePod
 

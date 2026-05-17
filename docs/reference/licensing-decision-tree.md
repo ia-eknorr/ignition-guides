@@ -6,12 +6,12 @@ sidebar_position: 5
 
 :::tip Before continuing
 
-- The [Docker tier licensing guide](../guides/docker/licensing.md) covers Standard vs Leased mechanics in containerized deployments. This page is the quick-reference cheat sheet.
+- For the mechanics of Standard vs Leased in containerized deployments, see the [Docker tier licensing guide](../guides/docker/licensing.md).
 - For the full IA reference, see [Licensing and Activation](https://docs.inductiveautomation.com/docs/8.3/platform/licensing-and-activation).
 
 :::
 
-A quick-reference decision tree for choosing between Standard (6-character) and Leased (8-character) Ignition licenses based on deployment context.
+Use the table below to pick between Standard (6-character) and Leased (8-character) licenses based on your deployment context.
 
 ## Decision Table
 

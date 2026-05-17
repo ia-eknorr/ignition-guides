@@ -4,11 +4,10 @@ sidebar_position: 4
 
 # Local Kubernetes Setup
 
-The [Helm Lab](../labs/helm-ignition-lab.md) needs a working Kubernetes cluster on your
-machine. This page covers the two recommended ways to get one: Docker Desktop's built-in
-Kubernetes (simplest, recommended for most users) and `kind` (a good alternative for
-Windows users without Docker Desktop Kubernetes, or anyone who wants more control over
-cluster configuration).
+The [Helm Lab](../labs/helm-ignition-lab.md) needs a Kubernetes cluster running on your
+machine. The easiest path is Docker Desktop's built-in Kubernetes: one checkbox in settings
+and you have a cluster. If that's not an option (Windows without Docker Desktop Kubernetes,
+or you just want more control over your setup), `kind` works great too.
 
 :::note Install kubectl and helm first
 Both `kubectl` and `helm` are covered in [Workstation Setup](./workstation-setup.md).

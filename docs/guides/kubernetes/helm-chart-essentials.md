@@ -11,7 +11,7 @@ sidebar_position: 2
 
 :::
 
-The [Ignition Helm Chart docs at charts.ia.io](https://charts.ia.io) are the authoritative reference for every chart value. This page distills the values that matter most for a new Ignition deployment and explains why each one matters for the way Ignition behaves. If a value is not documented here, run `helm show values ignition/ignition` or check [charts.ia.io](https://charts.ia.io) directly.
+The [Ignition Helm Chart docs at charts.ia.io](https://charts.ia.io) are the authoritative reference for every chart value. The values below are the ones you will reach for most often when setting up a new Ignition deployment, with notes on why each one matters specifically for the way Ignition behaves. For anything not covered here, `helm show values ignition/ignition` shows the full list, and [charts.ia.io](https://charts.ia.io) has the deep-dive.
 
 ## The Values That Matter Most
 
