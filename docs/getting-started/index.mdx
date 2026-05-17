@@ -52,25 +52,22 @@ Concept guides and hands-on labs are organized separately because they have diff
 
 <div className="pathways__tier">
   <div className="pathways__tier-label">Hands-on labs</div>
-  <p className="pathways__tier-desc">Recommended order. Labs build on a local Ignition gateway, so later labs reuse the setup from earlier ones. Each lab lists what it needs.</p>
+  <p className="pathways__tier-desc">Recommended order. Labs build on a local Ignition gateway, so later labs reuse the setup from earlier ones. Each lab page lists its own prerequisites.</p>
   <div className="pathways">
     <a className="pathway-card pathway-card--lab" href="../labs/docker-ignition-lab">
       <div className="pathway-card__number">1</div>
       <h3 className="pathway-card__title">Docker Ignition</h3>
       <p className="pathway-card__desc">Stand up an Ignition gateway from the project template using Docker Compose.</p>
-      <p className="pathway-card__needs">Needs: Workstation Setup, Traefik</p>
     </a>
     <a className="pathway-card pathway-card--lab" href="../labs/version-control-lab">
       <div className="pathway-card__number">2</div>
       <h3 className="pathway-card__title">Version Control</h3>
       <p className="pathway-card__desc">Put your gateway's project files under Git: branch, commit, and merge a change.</p>
-      <p className="pathway-card__needs">Needs: a running gateway (from Lab 1)</p>
     </a>
     <a className="pathway-card pathway-card--lab" href="../labs/helm-ignition-lab">
       <div className="pathway-card__number">3</div>
       <h3 className="pathway-card__title">Helm Ignition</h3>
       <p className="pathway-card__desc">Deploy an Ignition gateway on a local Kubernetes cluster with the official Helm chart.</p>
-      <p className="pathway-card__needs">Needs: Kubernetes Setup, and the gateway from Lab 1</p>
     </a>
   </div>
 </div>
