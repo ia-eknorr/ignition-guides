@@ -135,9 +135,31 @@
   }
 }
 
-/* Learning Pathways */
+/* Topics */
+.pathways__tier {
+  margin: 2rem 0;
+}
+
+.pathways__tier-label {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0 0 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ifm-color-emphasis-600);
+}
+
+.pathways__tier-label::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--ifm-color-emphasis-200);
+}
+
 .pathways__setup {
-  margin: 1.5rem 0;
   padding: 1rem 1.25rem;
   border-left: 4px solid var(--ifm-color-primary);
   background: var(--ifm-color-emphasis-100);
@@ -145,7 +167,7 @@
 }
 
 .pathways__setup ul {
-  margin: 0.5rem 0 0;
+  margin: 0;
   padding-left: 1.25rem;
 }
 
@@ -213,6 +235,13 @@
 .pathway__desc {
   font-size: 0.9rem;
   color: var(--ifm-color-emphasis-700);
+  margin: 0 0 0.75rem;
+}
+
+.pathway__skip {
+  font-size: 0.8rem;
+  font-style: italic;
+  color: var(--ifm-color-emphasis-600);
   margin: 0 0 1rem;
   flex-grow: 1;
 }
