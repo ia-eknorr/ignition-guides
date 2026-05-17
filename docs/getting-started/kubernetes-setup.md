@@ -163,7 +163,7 @@ only a single kind cluster, you can skip this section entirely.
 
 - [Kubernetes Concepts](../guides/kubernetes/concepts.md): a high-level tour of the
   Kubernetes objects you will see in the lab (StatefulSets, PVCs, Services, and more).
-- [Helm Chart Essentials](../guides/kubernetes/helm-chart-essentials.md): the values that
-  matter most when installing the official Ignition chart.
+- [charts.ia.io](https://charts.ia.io): the authoritative reference for every value
+  the official Ignition Helm chart supports.
 - [Helm Lab](../labs/helm-ignition-lab.md): install Ignition into your cluster using the
   official Helm chart.

@@ -87,4 +87,4 @@ When you `helm install` the Ignition chart, you are creating a stack of resource
 - Optionally an **Ingress** for external HTTP/HTTPS access
 - **ConfigMaps** and **Secrets** for configuration and credentials
 
-The [Helm Chart Essentials](./helm-chart-essentials.md) guide goes through the chart values that control each of these. The [Helm Lab](../../labs/helm-ignition-lab.md) walks through them on a real cluster. For the full chart reference, see [charts.ia.io](https://charts.ia.io).
+The [Helm Lab](../../labs/helm-ignition-lab.md) walks through them on a real cluster. For the full set of chart values, see [charts.ia.io](https://charts.ia.io).

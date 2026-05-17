@@ -72,7 +72,7 @@ gateway:
     - "-Dignition.license.leased-activation-terminate-sessions-on-shutdown=true"
 ```
 
-For the full leased-licensing wiring (key + token via Secret), see `gateway.licensing.leasedActivation.*` at [charts.ia.io](https://charts.ia.io) and the [Helm Chart Essentials](../guides/kubernetes/helm-chart-essentials.md) guide.
+For the full leased-licensing wiring (key + token via Secret), see `gateway.licensing.leasedActivation.*` at [charts.ia.io](https://charts.ia.io).
 
 References:
 
@@ -90,6 +90,6 @@ References:
 ## Related
 
 - [Licensing in Containers (Docker tier)](../guides/docker/licensing.md)
-- [Helm Chart Essentials](../guides/kubernetes/helm-chart-essentials.md)
+- [charts.ia.io](https://charts.ia.io)
 - [Kubernetes Sizing Reference](./kubernetes-sizing.md)
 - [Ignition Licensing and Activation docs](https://docs.inductiveautomation.com/docs/8.3/platform/licensing-and-activation)

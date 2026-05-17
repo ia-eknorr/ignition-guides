@@ -30,12 +30,9 @@ const sidebars: SidebarsConfig = {
           ],
         },
         {
-          type: "category",
+          type: "doc",
+          id: "guides/kubernetes/concepts",
           label: "Kubernetes",
-          link: { type: "doc", id: "guides/kubernetes/concepts" },
-          items: [
-            "guides/kubernetes/helm-chart-essentials",
-          ],
         },
         {
           type: "category",

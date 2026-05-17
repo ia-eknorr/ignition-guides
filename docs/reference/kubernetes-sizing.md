@@ -6,7 +6,7 @@ sidebar_position: 4
 
 :::tip Before continuing
 
-- [Helm Chart Essentials](../guides/kubernetes/helm-chart-essentials.md) covers the value keys this page references.
+- [charts.ia.io](https://charts.ia.io) is the authoritative reference for the chart value keys this page mentions.
 
 :::
 
@@ -31,7 +31,7 @@ gateway:
 
 The chart sets the JVM heap automatically from the container memory limit via `gateway.maxRAMPercentage` (default `75`). The JVM also needs space for metaspace, native libraries, code cache, and direct buffers; keeping ~25% of the memory limit off-heap prevents the JVM from being OOM-killed by the kernel under load. Override `gateway.maxRAMPercentage` only if you have measured a reason to, and never set it above ~85% on a container with a hard memory limit.
 
-See [charts.ia.io](https://charts.ia.io) and the [Helm Chart Essentials](../guides/kubernetes/helm-chart-essentials.md) guide for the full set of related values.
+See [charts.ia.io](https://charts.ia.io) for the full set of related values.
 
 ## Data Volume Sizing
 
@@ -68,5 +68,4 @@ Override the exec command itself with `gateway.readinessProbe.commandOverride` o
 ## Related
 
 - [charts.ia.io](https://charts.ia.io) - authoritative chart reference
-- [Helm Chart Essentials](../guides/kubernetes/helm-chart-essentials.md) - the values that drive sizing
 - [Helm Lab](../labs/helm-ignition-lab.md) - hands-on sizing override

@@ -15,7 +15,7 @@ Prerequisites:
 - [Docker Lab](./docker-ignition-lab.md) and [Version Control Lab](./version-control-lab.md) completed
 - [Workstation Setup](../getting-started/workstation-setup.md) complete (`kubectl` and `helm` installed)
 - [Local Kubernetes Setup](../getting-started/kubernetes-setup.md) complete (cluster running, chart repo added)
-- Familiarity with the [Kubernetes Concepts](../guides/kubernetes/concepts.md) guide and the [Helm Chart Essentials](../guides/kubernetes/helm-chart-essentials.md) guide
+- Familiarity with the [Kubernetes Concepts](../guides/kubernetes/concepts.md) guide
 
 ## Lab Overview
 
@@ -364,6 +364,5 @@ You deployed Ignition to Kubernetes with one Helm command, watched the StatefulS
 
 Where to go next:
 
-- [Helm Chart Essentials](../guides/kubernetes/helm-chart-essentials.md) for deeper coverage of the values keys you used
 - [charts.ia.io](https://charts.ia.io) for the full chart reference and every documented value
 - Phase 3 content (Local Platform Repo, GitOps with Argo CD, multi-environment promotion) for how this same release moves from one-off `helm install` into a managed delivery pipeline
