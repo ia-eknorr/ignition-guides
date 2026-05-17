@@ -156,7 +156,7 @@ Traefik generates a self-signed certificate for `*.localtest.me`. Your browser w
 The gateway auto-commissions during startup and lands directly on the gateway home page - no login is required to browse the UI. Confirm that the gateway name at the top matches `GATEWAY_NAME` from your `.env` file.
 
 :::note Open by default
-The `project-template` ships with empty `accessPermissions`, `readPermissions`, and `writePermissions` in `security-properties/config.json`, so a new clone is immediately usable without a login. You only need to authenticate for privileged operations like launching the Designer. Before deploying anywhere that is not your local machine, follow the [Security section of the project-template README](https://github.com/ia-eknorr/project-template#security) to lock the gateway down.
+The `project-template` ships open: no login is required to browse the Gateway. You only need to authenticate for privileged operations like launching the Designer. Before any non-local deployment, follow the [Security section of the project-template README](https://github.com/ia-eknorr/project-template#security) to lock it down.
 :::
 
 {/* TODO: screenshot - gateway status page showing gateway name */}
