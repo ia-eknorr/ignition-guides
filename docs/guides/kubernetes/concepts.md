@@ -11,7 +11,7 @@ sidebar_position: 1
 
 :::
 
-The goal of this guide is to prepare you to work with the Ignition Helm chart by covering just the Kubernetes primitives that come up most. It is not a comprehensive Kubernetes guide; for that, the [Kubernetes documentation](https://kubernetes.io/docs/) has everything. What you will get here is enough to follow the chart values, understand the choices behind them, and feel confident customizing your deployment.
+The goal of this guide is to prepare you to work with the Ignition [Helm](https://helm.sh) chart by covering just the Kubernetes primitives that come up most. It is not a comprehensive Kubernetes guide; for that, the [Kubernetes documentation](https://kubernetes.io/docs/) has everything. What you will get here is enough to follow the chart values, understand the choices behind them, and feel confident customizing your deployment.
 
 The chart at [charts.ia.io](https://charts.ia.io) handles most of these primitives automatically, so you do not need to write any of it yourself. Knowing what is going on underneath still helps when something behaves unexpectedly or when you want to go beyond the defaults.
 
@@ -19,7 +19,7 @@ The chart at [charts.ia.io](https://charts.ia.io) handles most of these primitiv
 
 You already know containers from the Docker tier: when running Ignition in a container, the gateway process lives inside a container started from the `inductiveautomation/ignition` image (Ignition can also run as a traditional bare-metal install, but containers are what brought you here).
 
-Kubernetes takes that idea and spreads it across a cluster of machines that work together. Each machine in the cluster is called a [**node**](https://kubernetes.io/docs/concepts/architecture/nodes/). A node is just a computer (a physical server, a VM, or a cloud instance) that runs container workloads. A production cluster typically has many nodes; a local development cluster usually has just one (Docker Desktop and kind both run single-node clusters by default). Kubernetes has a scheduler built in that decides which node should run each workload, so you almost never pick a node manually: you tell Kubernetes "run this," and it figures out where.
+Kubernetes takes that idea and spreads it across a cluster of machines that work together. Each machine in the cluster is called a [**node**](https://kubernetes.io/docs/concepts/architecture/nodes/). A node is just a computer (a physical server, a VM, or a cloud instance) that runs container workloads. A production cluster typically has many nodes; a local development cluster usually has just one ([Docker Desktop](https://docs.docker.com/desktop/kubernetes/) and [kind](https://kind.sigs.k8s.io/) both run single-node clusters by default). Kubernetes has a [scheduler](https://kubernetes.io/docs/concepts/scheduling-eviction/kube-scheduler/) built in that decides which node should run each workload, so you almost never pick a node manually: you tell Kubernetes "run this," and it figures out where.
 
 The workloads themselves are called [**pods**](https://kubernetes.io/docs/concepts/workloads/pods/). A pod is the smallest unit Kubernetes manages, and in most cases (including Ignition's) a pod is just a wrapper around a single container. Think of it as a container with extra Kubernetes metadata attached: a name, labels, networking, and lifecycle hooks. When you ask Kubernetes to run Ignition, you are really asking it to run a pod whose container is the Ignition image. Kubernetes schedules that pod onto a node, and the container starts there just like it would under Docker on your laptop.
 
@@ -71,7 +71,7 @@ If you use an Ingress, the gateway must trust forwarded headers (chart value `ga
 
 Pods need configuration: gateway names, ingress hostnames, license keys, admin passwords. You could bake these into the container image, but then changing them requires a rebuild. Kubernetes splits config out into two resources you mount into the pod at runtime.
 
-[**ConfigMap**](https://kubernetes.io/docs/concepts/configuration/configmap/) holds non-sensitive config: gateway names, ingress hosts, modules to enable. These are plain key/value pairs visible to anyone with read access to the namespace.
+[**ConfigMap**](https://kubernetes.io/docs/concepts/configuration/configmap/) holds non-sensitive config: gateway names, ingress hosts, modules to enable. These are plain key/value pairs visible to anyone with read access to the [namespace](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/).
 
 [**Secret**](https://kubernetes.io/docs/concepts/configuration/secret/) holds credentials: license activation tokens, database passwords, admin passwords. Secrets are still base64-encoded rather than encrypted at rest by default, so treat them as access-controlled config rather than as vault entries (cloud secret stores like AWS Secrets Manager or Vault are the next step up).
 

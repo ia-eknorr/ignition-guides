@@ -62,7 +62,7 @@ Docker Desktop's built-in Kubernetes, `kind`, `minikube`, and `k3d` all behave t
 
 ## Step 2: Install the Chart with Defaults
 
-A Helm chart is a packaged set of Kubernetes resources with sensible defaults you can override. Running `helm install` against the Ignition chart will create everything the gateway needs (StatefulSet, Service, PVC, ConfigMap, and Secret) from one command, all scoped to a Kubernetes namespace.
+A [Helm](https://helm.sh) chart is a packaged set of Kubernetes resources with sensible defaults you can override. Running `helm install` against the Ignition chart will create everything the gateway needs (StatefulSet, Service, PVC, ConfigMap, and Secret) from one command, all scoped to a Kubernetes [namespace](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/).
 
 Create a dedicated namespace and install the chart. The chart requires you to accept the Ignition EULA via a values flag.
 
