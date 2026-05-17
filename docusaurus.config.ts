@@ -6,7 +6,7 @@ import { IGNITION_VERSION } from "./src/constants";
 
 const config: Config = {
   title: "Ignition Guides",
-  tagline: "Unofficial guides for Ignition SCADA infrastructure and workflows",
+  tagline: "Community guides for Ignition SCADA using modern development practices",
   favicon: "img/favicon.ico",
 
   url: "https://ia-eknorr.github.io",
@@ -46,7 +46,7 @@ const config: Config = {
       "@signalwire/docusaurus-plugin-llms-txt",
       {
         siteTitle: "Ignition Guides",
-        siteDescription: "Unofficial guides for Ignition SCADA infrastructure and workflows",
+        siteDescription: "Community guides for Ignition SCADA using modern development practices",
         depth: 2,
         content: {
           enableLlmsFullTxt: true,
@@ -106,12 +106,12 @@ const config: Config = {
       style: "dark",
       links: [
         {
-          title: "Guides",
+          title: "Documentation",
           items: [
             { label: "Getting Started", to: "/docs/getting-started" },
-            { label: "Version Control", to: "/docs/guides/version-control/intro" },
-            { label: "Version Control Lab", to: "/docs/labs/version-control-lab" },
-            { label: "Style Guide", to: "/docs/reference/git-style-guide" },
+            { label: "Guides", to: "/docs/guides/docker/intro" },
+            { label: "Labs", to: "/docs/labs/docker-ignition-lab" },
+            { label: "Reference", to: "/docs/reference/git-style-guide" },
             { label: "Tools", to: "/docs/tools/overview" },
           ],
         },
