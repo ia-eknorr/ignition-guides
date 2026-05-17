@@ -44,6 +44,14 @@ command: >
   -Dignition.license.leased-activation-terminate-sessions-on-shutdown=true
 ```
 
+The same applies when you graduate to Kubernetes. The [Helm chart](https://charts.ia.io) does not set this by default; append it to the `gateway.jvmArgs` array in your values file:
+
+```yaml
+gateway:
+  jvmArgs:
+    - "-Dignition.license.leased-activation-terminate-sessions-on-shutdown=true"
+```
+
 References:
 
 - [Leased Licensing Parameters](https://docs.inductiveautomation.com/docs/8.3/appendix/reference-pages/gateway-configuration-file-reference#leased-licensing-parameters) - the exact property and related timeout settings

@@ -39,7 +39,6 @@ Quick-reference pages for conventions and standards used across guides.
 
 - [Git Style Guide](./reference/git-style-guide.md) - Naming conventions for repositories, branches, commits, and pull requests.
 - [Kubernetes Sizing](./reference/kubernetes-sizing.md) - CPU, memory, JVM heap, PVC, and probe sizing tables for Ignition gateways on Kubernetes.
-- [Licensing Decision Tree](./reference/licensing-decision-tree.md) - Choose between Standard and Leased licenses by deployment scenario.
 
 ### Tools
 

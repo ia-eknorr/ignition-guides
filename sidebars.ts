@@ -64,7 +64,6 @@ const sidebars: SidebarsConfig = {
         "reference/resource-collections",
         "reference/docker-command-reference",
         "reference/kubernetes-sizing",
-        "reference/licensing-decision-tree",
       ],
     },
     {
