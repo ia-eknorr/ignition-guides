@@ -4,7 +4,7 @@
   "whitespace": false,
   "MD013": false,
   "MD024": false,
-  "MD033": { "allowed_elements": ["Terminal", "file"] },
+  "MD033": { "allowed_elements": ["Terminal", "file", "none", "pending", "unknown", "unset"] },
   "MD050": false,
   "MD046":
   {
