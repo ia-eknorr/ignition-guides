@@ -16,25 +16,12 @@ Welcome to Ignition Guides - a collection of community guides for working with
 | [Reference](../reference/git-style-guide.md) | Quick-reference pages for conventions, standards, and Ignition concepts |
 | [Tools](../tools/overview.md) | Community tools built around Ignition |
 
-## Minimum Setup
+## Start Learning
 
-Set up these tools once - every guide references back here rather than repeating the steps.
-
-**Required for all guides:**
-
-- [Workstation Setup](./workstation-setup.md) - VS Code, Git, GitHub CLI, Docker Desktop
-
-**Required for labs:**
-
-- [Traefik Reverse Proxy](./traefik.md) - Named local URLs instead of port numbers
-  (e.g., `my-gw.localtest.me` instead of `localhost:9088`)
-
-## Topics
-
-Topics graduate from setup to foundation to specialized skills. Each card tells you what it builds on and what you can skip if you already know the material. Drop in wherever your background lets you.
+Concept guides and hands-on labs are organized separately because they have different shapes. Guides are independent reading: each one stands on its own and you can read them in any order. Labs share a local Ignition gateway, so they have a recommended order and a few prerequisites you should set up first.
 
 <div className="pathways__tier">
-  <div className="pathways__tier-label">Step 0: Set up once</div>
+  <div className="pathways__tier-label">Set up once</div>
   <div className="pathways__setup">
     <ul>
       <li><a href="./workstation-setup">Workstation Setup</a> - required for every guide</li>
@@ -45,43 +32,45 @@ Topics graduate from setup to foundation to specialized skills. Each card tells 
 </div>
 
 <div className="pathways__tier">
-  <div className="pathways__tier-label">Step 1: Foundation</div>
+  <div className="pathways__tier-label">Concept guides</div>
+  <p className="pathways__tier-desc">Read in any order. Each guide stands on its own and explains how a piece of the system works.</p>
   <div className="pathways">
-    <div className="pathway">
-      <div className="pathway__badge pathway__badge--start">Start here</div>
-      <h3 className="pathway__title">Containerization</h3>
-      <p className="pathway__desc">Docker Compose, the project-template architecture, licensing, and day-to-day gateway operations. Get an Ignition gateway running locally with a reproducible setup.</p>
-      <p className="pathway__skip">New to Docker? Read the guide first. Already comfortable? Jump straight to the lab.</p>
-      <div className="pathway__links">
-        <a className="pathway__link" href="../guides/docker/intro"><span className="pathway__chip">Guide</span> Docker &amp; Compose</a>
-        <a className="pathway__link" href="../labs/docker-ignition-lab"><span className="pathway__chip pathway__chip--lab">Lab</span> Docker Ignition</a>
-      </div>
-    </div>
+    <a className="pathway-card" href="../guides/docker/intro">
+      <h3 className="pathway-card__title">Containerization</h3>
+      <p className="pathway-card__desc">Docker Compose, the project-template architecture, licensing, and day-to-day gateway operations.</p>
+    </a>
+    <a className="pathway-card" href="../guides/version-control/intro">
+      <h3 className="pathway-card__title">Version Control</h3>
+      <p className="pathway-card__desc">Git, GitHub, and source-control workflows for the Ignition project files your gateway produces.</p>
+    </a>
+    <a className="pathway-card" href="../guides/kubernetes/concepts">
+      <h3 className="pathway-card__title">Orchestration</h3>
+      <p className="pathway-card__desc">Kubernetes concepts for Ignition and the official Inductive Automation Helm chart.</p>
+    </a>
   </div>
 </div>
 
 <div className="pathways__tier">
-  <div className="pathways__tier-label">Step 2: Specialize - pick what you need next</div>
+  <div className="pathways__tier-label">Hands-on labs</div>
+  <p className="pathways__tier-desc">Recommended order. Labs build on a local Ignition gateway, so later labs reuse the setup from earlier ones. Each lab lists what it needs.</p>
   <div className="pathways">
-    <div className="pathway">
-      <div className="pathway__badge">Builds on: Containerization</div>
-      <h3 className="pathway__title">Version Control</h3>
-      <p className="pathway__desc">Git, GitHub, and source control workflows for the Ignition project files your gateway produces. Track gateway configuration as code.</p>
-      <p className="pathway__skip">Already use Git daily? Skip the guide and learn the gateway-specific workflow in the lab.</p>
-      <div className="pathway__links">
-        <a className="pathway__link" href="../guides/version-control/intro"><span className="pathway__chip">Guide</span> Git Workflow</a>
-        <a className="pathway__link" href="../labs/version-control-lab"><span className="pathway__chip pathway__chip--lab">Lab</span> Version Control</a>
-      </div>
-    </div>
-    <div className="pathway">
-      <div className="pathway__badge">Builds on: Containerization</div>
-      <h3 className="pathway__title">Orchestration</h3>
-      <p className="pathway__desc">Kubernetes concepts for Ignition and the official Inductive Automation Helm chart for deploying gateways on a local cluster.</p>
-      <p className="pathway__skip">Already know Helm? Skip ahead and deploy a gateway in the lab.</p>
-      <div className="pathway__links">
-        <a className="pathway__link" href="../guides/kubernetes/concepts"><span className="pathway__chip">Guide</span> Kubernetes &amp; Helm</a>
-        <a className="pathway__link" href="../labs/helm-ignition-lab"><span className="pathway__chip pathway__chip--lab">Lab</span> Helm Ignition</a>
-      </div>
-    </div>
+    <a className="pathway-card pathway-card--lab" href="../labs/docker-ignition-lab">
+      <div className="pathway-card__number">1</div>
+      <h3 className="pathway-card__title">Docker Ignition</h3>
+      <p className="pathway-card__desc">Stand up an Ignition gateway from the project template using Docker Compose.</p>
+      <p className="pathway-card__needs">Needs: Workstation Setup, Traefik</p>
+    </a>
+    <a className="pathway-card pathway-card--lab" href="../labs/version-control-lab">
+      <div className="pathway-card__number">2</div>
+      <h3 className="pathway-card__title">Version Control</h3>
+      <p className="pathway-card__desc">Put your gateway's project files under Git: branch, commit, and merge a change.</p>
+      <p className="pathway-card__needs">Needs: a running gateway (from Lab 1)</p>
+    </a>
+    <a className="pathway-card pathway-card--lab" href="../labs/helm-ignition-lab">
+      <div className="pathway-card__number">3</div>
+      <h3 className="pathway-card__title">Helm Ignition</h3>
+      <p className="pathway-card__desc">Deploy an Ignition gateway on a local Kubernetes cluster with the official Helm chart.</p>
+      <p className="pathway-card__needs">Needs: Kubernetes Setup, and the gateway from Lab 1</p>
+    </a>
   </div>
 </div>
