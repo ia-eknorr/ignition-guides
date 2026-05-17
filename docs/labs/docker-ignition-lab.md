@@ -226,19 +226,14 @@ Back in your terminal, run:
 git status
 ```
 
-{/* TODO: capture real git status output - requires Designer GUI interaction. Expected format below mirrors the Version Control Lab. */}
-
 <Terminal title="bash — ~/my-ignition-project" lines={[
   "$ git status",
   "On branch main",
-  "Changes not staged for commit:",
-  "  (use \"git add <file>...\" to update what will be committed)",
-  "  (use \"git restore <file>...\" to discard changes in working directory)",
-  "        new file:   services/ignition/projects/docker_lab/project.json",
-  "        new file:   services/ignition/projects/docker_lab/com.inductiveautomation.perspective/views/hello/resource.json",
-  "        new file:   services/ignition/projects/docker_lab/com.inductiveautomation.perspective/views/hello/view.json",
+  "Untracked files:",
+  "  (use \"git add <file>...\" to include in what will be committed)",
+  "        services/ignition/projects/docker_lab/",
   "",
-  "no changes added to commit (use \"git add\" and/or \"git commit -a\")"
+  "nothing added to commit but untracked files present (use \"git add\" to track)"
 ]} />
 
 **The view files appeared in `services/ignition/projects/` the moment you saved in the Designer - no export step, no manual copy.** The bind mount means the Designer writes directly to the files Git tracks.
