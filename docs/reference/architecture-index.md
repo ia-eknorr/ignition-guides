@@ -6,13 +6,17 @@ There are two platform paths: Kubernetes and Docker Compose.
 
 ## Kubernetes
 
-Read the mental model first, then size and deploy a gateway, then add observability.
+Read the mental model first, then size and deploy a gateway, then add the operational patterns.
 
 1. [Running Ignition on Kubernetes](../guides/kubernetes/intro.md): how the cluster machinery maps onto a gateway.
 2. [Kubernetes concepts for Ignition](../guides/kubernetes/concepts.md): the StatefulSet, PVC, Service, and Secret choices behind the Helm chart.
 3. [Kubernetes Sizing Reference](./kubernetes-sizing.md): CPU, memory, heap, and PVC starting points.
 4. [Helm Ignition Lab](../labs/helm-ignition-lab.md): deploy a gateway on a cluster end to end.
-5. [Observability for Ignition](../guides/observability/intro.md): what to monitor and how the stack fits together. Start with [Gateway Telemetry](../guides/observability/gateway-telemetry.md) to attach the OTel agent.
+5. [External modules from S3](../guides/kubernetes/external-modules-s3.md): share third-party `.modl` files across gateway pods via a ReadOnlyMany PV.
+6. [External Secrets](../guides/kubernetes/external-secrets.md): sync credentials from a cloud secret store into Kubernetes Secrets.
+7. [GitOps with ApplicationSets](../guides/kubernetes/gitops-applicationsets.md): automate multi-cluster, multi-environment deployments with ArgoCD matrix generators.
+8. [Config Sync](../guides/kubernetes/config-sync.md): keep Ignition project files and gateway config continuously in sync with Git.
+9. [Observability for Ignition](../guides/observability/intro.md): what to monitor and how the stack fits together. Start with [Gateway Telemetry](../guides/observability/gateway-telemetry.md) to attach the OTel agent.
 
 :::note Managed and self-hosted clusters use the same path
 

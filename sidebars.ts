@@ -33,7 +33,13 @@ const sidebars: SidebarsConfig = {
           type: "category",
           label: "Kubernetes",
           link: { type: "doc", id: "guides/kubernetes/intro" },
-          items: ["guides/kubernetes/concepts"],
+          items: [
+            "guides/kubernetes/concepts",
+            "guides/kubernetes/external-modules-s3",
+            "guides/kubernetes/external-secrets",
+            "guides/kubernetes/gitops-applicationsets",
+            "guides/kubernetes/config-sync",
+          ],
         },
         {
           type: "category",
@@ -77,6 +83,7 @@ const sidebars: SidebarsConfig = {
         "reference/resource-collections",
         "reference/docker-command-reference",
         "reference/kubernetes-sizing",
+        "reference/values-layering",
       ],
     },
     {
