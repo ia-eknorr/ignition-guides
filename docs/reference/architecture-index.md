@@ -16,7 +16,7 @@ Read the mental model first, then size and deploy a gateway, then add the operat
 6. [External Secrets](../guides/kubernetes/external-secrets.md): sync credentials from a cloud secret store into Kubernetes Secrets.
 7. [GitOps with ApplicationSets](../guides/kubernetes/gitops-applicationsets.md): automate multi-cluster, multi-environment deployments with ArgoCD matrix generators.
 8. [Config Sync](../guides/kubernetes/config-sync.md): keep Ignition project files and gateway config continuously in sync with Git.
-9. [Observability for Ignition](../guides/observability/intro.md): what to monitor and how the stack fits together.
+9. [Observability for Ignition](../guides/observability/intro.md): what to monitor and how the stack fits together. Start with [Gateway Telemetry](../guides/observability/gateway-telemetry.md) to attach the OTel agent.
 
 :::note Managed and self-hosted clusters use the same path
 
@@ -32,4 +32,4 @@ Read the container architecture first, then layer in operations and observabilit
 2. [The Compose Architecture](../guides/docker/compose-architecture.md) and [Volume Strategy](../guides/docker/volume-strategy.md): how the stack is wired and where data lives.
 3. [Licensing in Containers](../guides/docker/licensing.md) and [Day-Two Operations](../guides/docker/day-two-operations.md): running a licensed gateway and keeping it healthy.
 4. [Docker Ignition Lab](../labs/docker-ignition-lab.md): stand up a gateway from the template.
-5. [Observability for Ignition](../guides/observability/intro.md): the observability patterns apply to Compose deployments too.
+5. [Observability for Ignition](../guides/observability/intro.md): the observability patterns apply to Compose deployments too. Start with [Gateway Telemetry](../guides/observability/gateway-telemetry.md) to attach the OTel agent.
