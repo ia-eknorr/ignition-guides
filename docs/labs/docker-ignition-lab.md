@@ -356,3 +356,4 @@ You also verified the core architectural guarantee: **git-tracked files survive 
 - Continue to the [Version Control Lab](./version-control-lab.md) to build the full Git, branching, and pull request workflow on top of the gateway you just stood up
 - Read [The Compose Architecture](../guides/docker/compose-architecture.md) for a detailed walkthrough of every service, every flag, and why they are configured the way they are
 - Read [Volume Strategy](../guides/docker/volume-strategy.md) to understand the full picture of what lives in named volumes versus bind mounts
+- Read [Observability for Ignition](../guides/observability/intro.md) to wire the OTel agent to this gateway and start collecting metrics, traces, and logs

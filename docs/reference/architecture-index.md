@@ -1,4 +1,8 @@
-# Architecture index
+---
+sidebar_position: 1
+---
+
+# Architecture Index
 
 The guides on this site are grouped by theme (Containerization, Kubernetes, Observability) because most pages apply to more than one deployment. This page groups them the other way, by platform, with each path ordered start to finish.
 

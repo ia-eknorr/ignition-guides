@@ -63,3 +63,4 @@ These guides cover Docker through the lens of running Ignition. If you want to g
 
 - [Docker Compose Documentation](https://docs.docker.com/compose/) - official reference for compose file syntax, commands, and concepts
 - [Docker Documentation](https://docs.docker.com/) - the broader Docker engine, images, networking, and storage
+- [Observability for Ignition](../observability/intro.md) - attaching the OTel Java agent to a Docker Compose gateway for metrics, traces, and logs

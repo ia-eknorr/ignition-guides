@@ -29,3 +29,5 @@ Short, one-screen operational tips will be collected here under a **Tasks** sub-
 
 - [Helm Ignition Lab](../../labs/helm-ignition-lab.md): deploy a gateway on a local cluster end to end.
 - [Kubernetes Sizing Reference](../../reference/kubernetes-sizing.md): starting points for CPU, memory, heap, and PVC sizing.
+- [Observability for Ignition](../observability/intro.md): metrics, logs, and traces; the in-cluster OTel pattern applies to these Kubernetes deployments.
+- [Architecture Index](../../reference/architecture-index.md): the full platform path, ordered start to finish, tying these Kubernetes pieces together with the rest of the stack.

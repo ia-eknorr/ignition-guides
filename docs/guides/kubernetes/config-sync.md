@@ -17,26 +17,26 @@ Stoker uses a controller + agent architecture:
 - The **agent** runs as a native sidecar inside gateway pods, clones the repo, and syncs files to the gateway's data directory
 - The gateway picks up the changes via its scan APIs (`/data/api/v1/scan/projects` and `/data/api/v1/scan/config`) without a pod restart
 
-Communication between controller and agent is via Kubernetes ConfigMaps - no shared PVC required. See the [Stoker operator page](../../tools/stoker-operator.md) for installation, CRD field reference, and webhook receiver setup.
+The controller and agent coordinate through two ConfigMaps per resource: the controller writes resolved git metadata for the agent to read, and the agent writes its status back for the controller. The synced files themselves never pass through that channel - the agent clones the repo directly into an `emptyDir` and writes into the gateway's data mount, so no shared PVC is required. See the [Stoker operator page](../../tools/stoker-operator.md) for installation, CRD field reference, and webhook receiver setup.
 
 ## The GatewaySync Resource
 
 The `GatewaySync` CRD is the primary configuration surface. Each resource targets a specific deployment's pods, names a git source, defines per-gateway **profiles** (source-to-destination path mappings), and optionally applies **patches** to config files (such as setting the gateway system name from a pod variable).
 
-### Worked example: PublicDemo
+### Worked example: a two-gateway deployment
 
-From `charts/public-demo/templates/gatewaysync.yaml`, the PublicDemo platform deploys a single `GatewaySync` that drives both the frontend and backend gateways via two profiles:
+A single `GatewaySync` can drive both a frontend and a backend gateway via two profiles:
 
 ```yaml
 apiVersion: stoker.io/v1alpha1
 kind: GatewaySync
 metadata:
-  name: public-demo-sync
-  namespace: public-demo
+  name: my-ignition-sync
+  namespace: my-ignition
 spec:
   git:
-    repo: "org-147873951@github.com:inductive-automation/publicdemo-all.git"
-    ref: "2.3.10"    # updated by Kargo on each promotion
+    repo: "git@github.com:my-org/my-ignition-config.git"
+    ref: "2.3.10"    # updated by your promotion pipeline on each release
     auth:
       sshKey:
         secretRef:
@@ -69,7 +69,7 @@ spec:
     profiles:
       frontend:
         vars:
-          gatewayName: "public-demo-fe"
+          gatewayName: "my-ignition-fe"
         mappings:
           - source: "services/ignition-frontend/projects"
             destination: "projects"
@@ -87,7 +87,7 @@ spec:
             destination: ".versions.json"
       backend:
         vars:
-          gatewayName: "public-demo-be"
+          gatewayName: "my-ignition-be"
         mappings:
           - source: "services/ignition-backend/projects"
             destination: "projects"
@@ -104,39 +104,39 @@ spec:
 Key things to observe in this resource:
 
 - **SSH auth** via a Kubernetes Secret (`git-sync-secret` with key `ssh`). This secret is created by the ExternalSecret wiring described in [External Secrets](./external-secrets.md).
-- **Polling as a safety net**: the 5-minute polling interval catches any missed webhook events, but the primary trigger in production is the Stoker webhook receiver responding to Kargo promotion events.
+- **Polling as a safety net**: the 5-minute polling interval catches any missed webhook events, but the primary trigger is the Stoker webhook receiver responding to promotion or release events from your pipeline.
 - **Exclude patterns** at `sync.defaults` apply to every profile; they prevent Stoker from overwriting runtime-managed files like MQTT Engine tag providers and incoming Gateway Network connections.
-- **Patches** on a mapping: the frontend's `dev-us-west-2` mapping patches `systemName` in `ignition/system-properties/config.json` using the pod's ordinal index, producing stable per-pod system names (`public-demo-fe-0`, `public-demo-fe-1`, etc.) without duplicating config files.
-- **Pod labels** are how the controller finds gateway pods. Pods carry annotations like `stoker.io/inject: "true"` and `stoker.io/cr-name: "public-demo-sync"` and `stoker.io/profile: "frontend"` so the controller knows which profile to apply to which pod.
+- **Patches** on a mapping: the frontend's `dev-us-west-2` mapping patches `systemName` in `ignition/system-properties/config.json` using the pod's ordinal index, producing stable per-pod system names (`my-ignition-fe-0`, `my-ignition-fe-1`, etc.) without duplicating config files.
+- **Pod labels** are how the controller finds gateway pods. Pods carry annotations like `stoker.io/inject: "true"` and `stoker.io/cr-name: "my-ignition-sync"` and `stoker.io/profile: "frontend"` so the controller knows which profile to apply to which pod.
 
 ### Enabling Stoker per environment
 
 Stoker is disabled by default in the chart's `values.yaml` and enabled per environment via values overlays:
 
 ```yaml
-# values/public-demo/prod/environment-values.yaml
+# an environment overlay that turns config sync on
 stoker:
   enabled: true
-  name: public-demo-sync-prod
+  name: my-ignition-sync
 ```
 
-The git ref that Stoker tracks is updated separately by Kargo as part of the promotion pipeline:
+The git ref that Stoker tracks is updated separately by your promotion pipeline:
 
 ```yaml
-# values/public-demo/prod/us-west-2/values.yaml (after a Kargo promotion)
+# region values.yaml (after a promotion)
 git:
   ref: 2.3.10
 ```
 
-### Seen in the wild: conf-proveit26
+### Scaling the pattern
 
-The same `GatewaySync` pattern appears in the `conf-proveit26-platform` self-hosted IIoT deployment. That resource adds `knownHosts` to the SSH auth block and uses `vars` to template per-site configuration (MQTT edge node IDs, system names) across many gateways from a single resource. It demonstrates that the same CRD scales from two gateways to dozens.
+The same `GatewaySync` pattern scales well beyond two gateways. In practice, deployments that span many sites add `knownHosts` to the SSH auth block and use `vars` to template per-site configuration (such as MQTT edge node IDs and system names) across dozens of gateways from a single resource.
 
-## Fallback: git-sync with API-triggered Scans
+## git-sync with API-triggered Scans
 
-Before Stoker, the platform used a git-sync init container that continuously polled the application repo and called the Ignition scan APIs when it detected a new commit hash. This approach is still in use in environments where Stoker is not yet enabled.
+git-sync is the established Git-polling approach for environments without the Stoker operator. A git-sync init container continuously polls the application repo and calls the Ignition scan APIs when it detects a new commit hash. Stoker is the newer operator-based approach that does the same job through a `GatewaySync` resource; the git-sync container remains a solid choice where the operator is not installed.
 
-The fallback runs as a long-lived init container (`restartPolicy: Always`) using the `registry.k8s.io/git-sync/git-sync:v4.6.0` image. On each poll cycle, `sync-entrypoint.sh` runs `git-sync --one-time` to fetch the latest ref, then calls `sync-files.sh` which:
+The container runs as a long-lived init container (`restartPolicy: Always`) using the `registry.k8s.io/git-sync/git-sync:v4.6.0` image. On each poll cycle, `sync-entrypoint.sh` runs `git-sync --one-time` to fetch the latest ref, then calls `sync-files.sh` which:
 
 1. Copies projects and config resources from the cloned repo to a staging directory
 2. Applies exclude patterns to protect runtime-managed files
@@ -146,7 +146,7 @@ The fallback runs as a long-lived init container (`restartPolicy: Always`) using
 
 Hash-based change detection (`GITSYNC_HASH` vs a stored hash file) prevents the scan from firing on every poll when nothing has changed.
 
-The git-sync approach requires volumes (`git-secret`, `ignition-api-key-secret`, `git-volume`, `sync-scripts`) mounted into the init container and is more complex to configure than a Stoker `GatewaySync` resource. Prefer Stoker for new deployments.
+The git-sync approach requires volumes (`git-secret`, `ignition-api-key-secret`, `git-volume`, `sync-scripts`) mounted into the init container and is more involved to configure than a Stoker `GatewaySync` resource. Prefer Stoker for new deployments where you can install the operator.
 
 ## Further Reading
 

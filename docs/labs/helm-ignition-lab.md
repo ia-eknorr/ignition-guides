@@ -390,4 +390,6 @@ You deployed Ignition to Kubernetes with one Helm command, watched the StatefulS
 Where to go next:
 
 - [charts.ia.io](https://charts.ia.io) for the full chart reference and every documented value
-- Phase 3 content (Local Platform Repo, GitOps with Argo CD, multi-environment promotion) for how this same release moves from one-off `helm install` into a managed delivery pipeline
+- [Observability for Ignition](../guides/observability/intro.md): wire the OTel Java agent to the running gateway for metrics, traces, and logs
+- [External Secrets](../guides/kubernetes/external-secrets.md): move license keys and API credentials out of the cluster and into a cloud secret store
+- [Config Sync](../guides/kubernetes/config-sync.md): keep Ignition project files in sync with Git using the Stoker operator

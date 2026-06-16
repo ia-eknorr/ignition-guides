@@ -4,7 +4,7 @@ sidebar_position: 6
 
 # Helm Values Layering
 
-The PublicDemo platform composes Helm values in four layers to avoid duplication across environments and regions. Each layer overrides the previous. ArgoCD applies them in order using Helm's standard multi-file merge behavior.
+A typical platform composes Helm values in four layers to avoid duplication across environments and regions. Each layer overrides the previous. ArgoCD applies them in order using Helm's standard multi-file merge behavior.
 
 ## Layer Order
 
@@ -34,16 +34,16 @@ helm:
 
 ## Concrete Example
 
-For `public-demo` in `prod/us-west-2`, the composed values are:
+For `my-ignition` in `prod/us-west-2`, the composed values are:
 
 ```text
-charts/public-demo/values.yaml                           ← Layer 1 (chart defaults)
-values/public-demo/common-values.yaml                    ← Layer 2 (all envs)
-values/public-demo/prod/environment-values.yaml          ← Layer 3 (prod only)
-values/public-demo/prod/us-west-2/values.yaml            ← Layer 4 (this region)
+charts/my-ignition/values.yaml                           ← Layer 1 (chart defaults)
+values/my-ignition/common-values.yaml                    ← Layer 2 (all envs)
+values/my-ignition/prod/environment-values.yaml          ← Layer 3 (prod only)
+values/my-ignition/prod/us-west-2/values.yaml            ← Layer 4 (this region)
 ```
 
-A key like `s3Modules.bucketName` is set to `""` in Layer 1 (the chart default), not overridden in Layers 2 or 3 (not applicable cross-region), and set to `pd83-prd-ignition-modules-us` in Layer 4.
+A key like `s3Modules.bucketName` is set to `""` in Layer 1 (the chart default), not overridden in Layers 2 or 3 (not applicable cross-region), and set to `ignition-modules-prod` in Layer 4.
 
 A key like `otelInstrumentation.enabled` is set to `false` in Layer 1 and overridden to `true` in Layer 2 (common-values), applying to all environments.
 
@@ -58,7 +58,7 @@ A key like `otelInstrumentation.enabled` is set to `false` in Layer 1 and overri
 
 **Environment values (Layer 3)** - things that differ between prod/test/dev:
 
-- `stoker.enabled` (enabled in prod, disabled in dev)
+- `stoker.enabled` (toggled per environment, for example enabled in development and disabled in production)
 - Log level and format (`wrapperArgs`)
 - Module enable lists (`GATEWAY_MODULES_ENABLED`)
 - OTel environment label (`otelInstrumentation.prometheus.env`)
@@ -76,8 +76,8 @@ A key like `otelInstrumentation.enabled` is set to `false` in Layer 1 and overri
 Each `values/{chart}/{env}/{region}/` directory contains a `config.yaml` alongside `values.yaml`. This file is not a Helm values file - it is the ArgoCD ApplicationSet discovery marker. It tells the ApplicationSet that this chart should be deployed to clusters matching the `(env, region)` path.
 
 ```yaml
-# values/public-demo/prod/us-west-2/config.yaml
-namespace: public-demo
+# values/my-ignition/prod/us-west-2/config.yaml
+namespace: my-ignition
 ```
 
 The ApplicationSet's Git file generator scans for files at `values/*/{env}/{region}/config.yaml`. Finding one creates an ArgoCD Application for that chart on that cluster. See [GitOps with ApplicationSets](../guides/kubernetes/gitops-applicationsets.md) for the full ApplicationSet structure.

@@ -120,4 +120,4 @@ The gateway also writes logs to `/usr/local/bin/ignition/logs/` inside the conta
 
 ## Installing Third-Party Modules
 
-Third-party modules (MQTT Engine, Azure Injector, etc.) installed through the gateway UI do not survive a `docker compose down -v` reset. Two patterns for making modules permanent (derived image and entrypoint wrapper) will be covered in the Kubernetes & Helm guide.
+Third-party modules (MQTT Engine, Azure Injector, etc.) installed through the gateway UI do not survive a `docker compose down -v` reset. On Kubernetes, the recommended approach is to mount `.modl` files from a shared read-only volume backed by an S3 bucket, so every gateway pod picks them up automatically without baking them into the image; see [External Modules from S3](../kubernetes/external-modules-s3.md) for the full setup.
