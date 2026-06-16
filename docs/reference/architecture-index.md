@@ -1,16 +1,18 @@
 ---
-applies_to: [docker, kubernetes, bare-metal]
+applies_to: [docker, kubernetes]
 ---
 
 # Architecture index
 
-The guides on this site are organized by theme — Containerization, Kubernetes, Observability — rather than by reference architecture, because most pages apply to more than one deployment. This index gives the other view: a curated reading path for readers who know which architecture they run and want a top-to-bottom route through the relevant content.
+The guides on this site are organized by theme — Containerization, Kubernetes, Observability — because most pages apply to more than one deployment. This page is the other lens: pick the platform you run and follow an ordered route through the guides that apply to it.
 
 Every pattern page also carries an **Applies to** badge declaring the deployment contexts it covers, so you can tell at a glance whether a page is relevant to your setup.
 
-## I'm on EKS (or another managed Kubernetes)
+Two platforms have a reading path today: **Kubernetes** and **Docker Compose**.
 
-Start with the Kubernetes mental model, then size and deploy a gateway, then add observability.
+## Kubernetes
+
+Read the mental model first, then size and deploy a gateway, then add observability.
 
 1. [Running Ignition on Kubernetes](../guides/kubernetes/intro.md) — how the cluster machinery maps onto a gateway.
 2. [Kubernetes concepts for Ignition](../guides/kubernetes/concepts.md) — the StatefulSet, PVC, Service, and Secret choices behind the Helm chart.
@@ -18,18 +20,15 @@ Start with the Kubernetes mental model, then size and deploy a gateway, then add
 4. [Helm Ignition Lab](../labs/helm-ignition-lab.md) — deploy a gateway on a cluster end to end.
 5. [Observability for Ignition](../guides/observability/intro.md) — what to monitor and how the stack fits together.
 
-## I'm self-hosting Kubernetes
+:::note Managed or self-hosted — same path
 
-The same path as managed Kubernetes, minus the cloud load-balancer specifics. The concepts and sizing guidance carry over directly.
+The route above is identical whether you run a managed cluster (EKS, GKE, AKS) or self-host. The only differences are cloud-specific — load balancers, IAM-backed secrets, storage classes — and those are called out inline in each guide's "On AWS" section as that content lands, not as a separate path to follow.
 
-1. [Running Ignition on Kubernetes](../guides/kubernetes/intro.md)
-2. [Kubernetes concepts for Ignition](../guides/kubernetes/concepts.md)
-3. [Kubernetes Sizing Reference](./kubernetes-sizing.md)
-4. [Observability for Ignition](../guides/observability/intro.md)
+:::
 
-## I'm on Docker
+## Docker Compose
 
-Start with the container architecture, then layer in operations and observability.
+Read the container architecture first, then layer in operations and observability.
 
 1. [Introduction to Docker for Ignition](../guides/docker/intro.md) — the container mental model and the project-template architecture.
 2. [The Compose Architecture](../guides/docker/compose-architecture.md) and [Volume Strategy](../guides/docker/volume-strategy.md) — how the stack is wired and where data lives.
