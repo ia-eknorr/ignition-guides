@@ -18,9 +18,15 @@ A useful picture of a running gateway combines a few signal families:
 
 ## How the pillar is organized
 
-The flagship guide wires the gateway's OpenTelemetry export, the agnostic foundation every other piece builds on. From there, guides cover the metrics stack (Prometheus/Grafana or Grafana LGTM), logs (Loki + Alloy), traces and profiling (Tempo + Pyroscope), external exporters, and custom Ignition metrics. These land across upcoming rounds.
+The flagship guide wires the gateway's OpenTelemetry export, the agnostic foundation every other piece builds on:
 
-As the pillar grows, short one-screen operational tips will be collected under a **Tasks** sub-section, following the same Concepts / Tasks / Tutorials / Reference convention the rest of the site uses.
+- [Gateway Telemetry](./gateway-telemetry.md): attaches the OTel Java agent to the gateway process and configures it to push metrics, traces, and logs over OTLP. Start here.
+- [Metrics and Log Stack](./metrics-stack.md): the Grafana LGTM collector and storage stack for Docker Compose, and the kube-prometheus-stack alternative for Kubernetes.
+- [Log Pipeline](./logs.md): the Alloy pipeline that processes, filters, and routes gateway log records to Loki, with rationale for each filter rule.
+
+The [OTel Properties Reference](../../reference/ignition-otel-properties.md) lists every agent property used in the guides with a one-line description.
+
+Further guides covering traces and profiling (Tempo, Pyroscope), external exporters, and custom Ignition metrics land in upcoming rounds. Short one-screen operational tips will be collected under a **Tasks** sub-section as the pillar grows, following the same Concepts / Tasks / Tutorials / Reference convention the rest of the site uses.
 
 ## Scope
 
