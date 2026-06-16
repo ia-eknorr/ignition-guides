@@ -167,3 +167,6 @@ only a single kind cluster, you can skip this section entirely.
   the official Ignition Helm chart supports.
 - [Helm Lab](../labs/helm-ignition-lab.md): install Ignition into your cluster using the
   official Helm chart.
+- [Observability for Ignition](../guides/observability/intro.md): once the gateway is
+  running, wire the OTel Java agent to push metrics, traces, and logs to the collection
+  stack.

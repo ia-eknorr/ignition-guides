@@ -7,23 +7,29 @@ applies_to: [kubernetes]
 
 Kubernetes Secrets are base64-encoded, not encrypted at rest by default, and have no built-in rotation. Cloud secret stores (AWS Secrets Manager, GCP Secret Manager, HashiCorp Vault) provide encryption, rotation policies, and fine-grained access control. The [External Secrets Operator](https://external-secrets.io) bridges the gap: it reads from your cloud store and writes the result into ordinary Kubernetes Secrets that pods consume normally.
 
+:::note Provider-specific examples
+
+Examples use AWS Secrets Manager via IRSA. The External Secrets Operator supports other providers (GCP Secret Manager, Azure Key Vault, HashiCorp Vault) with the same `ExternalSecret` shape.
+
+:::
+
 For Ignition specifically, the secrets that need this treatment are:
 
 - **License activation** - the license key and activation token that Ignition reads at startup (see [Licensing](https://docs.inductiveautomation.com/docs/8.3/platform/licensing-and-activation) for the activation model)
 - **Git credentials** - the SSH key the git-sync sidecar uses to clone the application repo
-- **Ignition API key** - the bearer token Stoker and git-sync use to call the gateway's REST API
+- **Ignition API key** - the bearer token [Stoker](./config-sync.md) and git-sync use to call the gateway's REST API
 - **Gateway admin password** - the initial admin credential set during commissioning
 
 ## How It Works
 
 Two resources coordinate the sync:
 
-**ClusterSecretStore** is a cluster-scoped resource that authenticates once to the external provider and makes that connection available to all namespaces. You configure it with IAM credentials, a service account annotation (IRSA on EKS), or a static API token depending on the provider.
+**ClusterSecretStore** is a cluster-scoped resource that authenticates once to the external provider and makes that connection available to all namespaces. You configure it with IAM credentials, a service account annotation (IRSA), or a static API token depending on the provider.
 
 **ExternalSecret** is a namespace-scoped resource that says "pull these specific properties from this store and write them into a Kubernetes Secret named X." The controller reconciles on a schedule (`refreshInterval`) and any time the ExternalSecret spec changes.
 
 ```text
-ClusterSecretStore ──authenticates──► AWS Secrets Manager
+ClusterSecretStore ──authenticates──► Secret Manager
         │
 ExternalSecret ──references──► ClusterSecretStore
         │
@@ -31,17 +37,17 @@ ExternalSecret ──references──► ClusterSecretStore
 Kubernetes Secret (consumed by pods normally)
 ```
 
-## On AWS (what we run)
+## Wiring the secret store
 
 ### ClusterSecretStore with IRSA
 
-The PublicDemo platform uses a `ClusterSecretStore` named `public-demo` backed by AWS Secrets Manager, authenticated via IRSA (IAM Roles for Service Accounts). The External Secrets Operator service account carries the IAM role annotation; the CRD itself only specifies the service and region:
+Define a `ClusterSecretStore` backed by your secret manager, authenticated via IRSA (IAM Roles for Service Accounts). The External Secrets Operator service account carries the IAM role annotation; the CRD itself only specifies the service and region:
 
 ```yaml
 apiVersion: external-secrets.io/v1
 kind: ClusterSecretStore
 metadata:
-  name: public-demo
+  name: ignition
 spec:
   provider:
     aws:
@@ -49,13 +55,13 @@ spec:
       region: us-west-2
 ```
 
-The IRSA binding lives in the cluster's IAM configuration (managed by the cloud team), not in this resource. The convention for secret names in AWS Secrets Manager is `publicdemo/{secret-name}`, so all secrets for this application live under a single path prefix.
+The IRSA binding lives in the cluster's IAM configuration, not in this resource.
 
 ### ExternalSecrets in the Helm chart
 
-The public-demo Helm chart (`charts/public-demo/templates/external-secrets.yaml`) creates four ExternalSecrets. All four reference the same AWS Secrets Manager secret (`se-public-demo-83`) and extract different JSON properties from it into separate Kubernetes Secrets.
+The chart creates four ExternalSecrets. All four read distinct JSON properties from a single secret in your secret manager (here `ignition-secrets`), each extracting one property via `property:` into its own Kubernetes Secret.
 
-**Git credentials** (two keys from one AWS secret):
+**Git credentials** (two keys from one stored secret):
 
 ```yaml
 apiVersion: external-secrets.io/v1
@@ -65,7 +71,7 @@ metadata:
 spec:
   refreshInterval: 1h
   secretStoreRef:
-    name: public-demo
+    name: ignition
     kind: ClusterSecretStore
   target:
     name: git-sync-secret
@@ -73,11 +79,11 @@ spec:
   data:
   - secretKey: ssh
     remoteRef:
-      key: se-public-demo-83
+      key: ignition-secrets
       property: GIT_SYNC_SSH
   - secretKey: known_hosts
     remoteRef:
-      key: se-public-demo-83
+      key: ignition-secrets
       property: GIT_SYNC_KNOWN_HOSTS
 ```
 
@@ -93,7 +99,7 @@ metadata:
 spec:
   refreshInterval: 1h
   secretStoreRef:
-    name: public-demo
+    name: ignition
     kind: ClusterSecretStore
   target:
     name: ignition-api-key
@@ -101,7 +107,7 @@ spec:
   data:
   - secretKey: apiKey
     remoteRef:
-      key: se-public-demo-83
+      key: ignition-secrets
       property: IGNITION_API_KEY
 ```
 
@@ -111,46 +117,46 @@ spec:
 apiVersion: external-secrets.io/v1
 kind: ExternalSecret
 metadata:
-  name: public-demo-leased-license
+  name: ignition-leased-license
 spec:
   refreshInterval: 1h
   secretStoreRef:
-    name: public-demo
+    name: ignition
     kind: ClusterSecretStore
   target:
-    name: public-demo-leased-license
+    name: ignition-leased-license
     creationPolicy: Owner
   data:
   - secretKey: ignition-license-key
     remoteRef:
-      key: se-public-demo-83
+      key: ignition-secrets
       property: IGNITION_LICENSE_KEY
   - secretKey: ignition-activation-token
     remoteRef:
-      key: se-public-demo-83
+      key: ignition-secrets
       property: IGNITION_ACTIVATION_TOKEN
 ```
 
-The `public-demo-leased-license` Secret is referenced by the gateway values:
+The `ignition-leased-license` Secret is referenced by the gateway values:
 
 ```yaml
 frontend:
   gateway:
     licensing:
       leasedActivation:
-        secretName: "public-demo-leased-license"
+        secretName: "ignition-leased-license"
 ```
 
 The chart values that control the ExternalSecret configuration live at the top level:
 
 ```yaml
 externalSecrets:
-  secretName: "se-public-demo-83"       # the AWS Secrets Manager secret name
-  clusterSecretStore: "public-demo"      # which ClusterSecretStore to use
+  secretName: "ignition-secrets"        # the secret name in your secret manager
+  clusterSecretStore: "ignition"         # which ClusterSecretStore to use
   refreshInterval: "1h"
 ```
 
-All ExternalSecret templates read from `externalSecrets.secretName`, so switching to a different AWS secret is a single values override.
+All ExternalSecret templates read from `externalSecrets.secretName`, so switching to a different backing secret is a single values override.
 
 ### Sync wave ordering
 

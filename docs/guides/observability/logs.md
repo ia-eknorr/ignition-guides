@@ -5,9 +5,9 @@ applies_to: [docker, kubernetes]
 
 # Log Pipeline
 
-After [Gateway Telemetry](./gateway-telemetry.md) wiring is complete, the OTel agent forwards every Ignition log entry as an OTLP log record to Alloy. From there Alloy processes, filters, and writes the records to Loki. This guide explains the Alloy pipeline config and the rationale behind each filter and processing stage.
+After [Gateway Telemetry](./gateway-telemetry.md) wiring is complete, gateway logs reach Alloy by one of two paths depending on the deployment. On Docker and bare-metal, the OTel agent's logback appender forwards every Ignition log entry as an OTLP log record. On Kubernetes the appender is disabled (`OTEL_LOGS_EXPORTER=none`) and the gateway emits logs as JSON to stdout via a logback `JsonEncoder`, which Alloy tails through the pod-log pipeline. From either path Alloy processes, filters, and writes the records to Loki. This guide explains the Alloy pipeline config and the rationale behind each filter and processing stage.
 
-The pipeline described here has two variants: one for Docker Compose (reads from the Docker log socket), and one for Kubernetes (reads via the Kubernetes pod log API). Both funnel into the same Loki backend.
+The pipeline described here has two variants. The Docker Compose variant reads OTLP-forwarded entries by tailing the Docker log socket. The Kubernetes variant reads the stdout JSON via the Kubernetes pod log API. Both funnel into the same Loki backend.
 
 ## Docker Compose pipeline
 
@@ -178,7 +178,7 @@ loki.process "default" {
   // Reformat JSON log lines from Ignition's logback JsonEncoder
   // Scoped to the namespace where the gateway runs
   stage.match {
-    selector = `{namespace="public-demo"} |~ "^{"`
+    selector = `{namespace="ignition"} |~ "^{"`
 
     stage.json {
       expressions = {
@@ -228,10 +228,10 @@ Filter and processing rationale:
 
 2. **Drop Twingate operator non-errors**: The Twingate VPN operator is chatty at INFO level, logging connectivity probes and status checks continuously. Only warnings and errors carry actionable signal. This drop rule reduces log volume significantly in clusters using Twingate without losing any information that would affect an alert or investigation.
 
-3. **Drop backend-gateway non-errors**: In the public-demo architecture, `backend` pods that run Ignition gateway instances in a non-primary role generate verbose INFO logs during normal operation. Keeping only WARN/ERROR/FATAL entries retains the signal an on-call engineer needs while substantially reducing storage costs.
+3. **Drop backend-gateway non-errors**: In a multi-gateway architecture, `backend` pods that run Ignition gateway instances in a non-primary role generate verbose INFO logs during normal operation. Keeping only WARN/ERROR/FATAL entries retains the signal an on-call engineer needs while substantially reducing storage costs.
 
 4. **Multiline aggregation**: Ignition's JVM process emits multi-line log entries for gateway startup (which prints configuration tables), JVM crash dumps, and exception stack traces. Without multiline aggregation each physical line becomes a separate Loki log entry, making stack traces impossible to query as a unit. The `firstline` pattern matches the start of a JSON object (`{`), a timestamp-prefixed line, a bracket-prefixed line, or an uppercase-word prefix (common Tanuki Wrapper format). The `max_wait_time` of 3 s and `max_lines` of 128 bound memory use during collection spikes.
 
-5. **JSON parsing (logback JsonEncoder)**: When the Ignition gateway is configured to use logback's `JsonEncoder`, log lines arrive as JSON objects with fields like `level`, `timestamp`, `message`, `loggerName`, and `throwable`. The `stage.json` block extracts these fields so `level` can become a Loki label and so the output line can be reformatted into a human-readable string. The `stage.match` selector `|~ "^{"` ensures this processing only applies to lines that are JSON objects, so it does not corrupt plain-text log lines from other containers in the same namespace. The namespace selector (`namespace="public-demo"`) further scopes it to avoid applying logback field names to containers with a different JSON schema.
+5. **JSON parsing (logback JsonEncoder)**: When the Ignition gateway is configured to use logback's `JsonEncoder`, log lines arrive as JSON objects with fields like `level`, `timestamp`, `message`, `loggerName`, and `throwable`. The `stage.json` block extracts these fields so `level` can become a Loki label and so the output line can be reformatted into a human-readable string. The `stage.match` selector `|~ "^{"` ensures this processing only applies to lines that are JSON objects, so it does not corrupt plain-text log lines from other containers in the same namespace. The namespace selector (`namespace="ignition"`) further scopes it to avoid applying logback field names to containers with a different JSON schema.
 
 6. **Timestamp extraction**: The `stage.timestamp` block with `format = "unix_ms"` tells Loki to use the timestamp embedded in the JSON log record rather than the collection time. This matters when there is lag between log emission and collection, and it prevents out-of-order ingestion errors when the gateway emits log bursts during startup.

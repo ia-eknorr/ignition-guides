@@ -5,7 +5,7 @@ applies_to: [docker, kubernetes, bare-metal]
 
 # Gateway Telemetry
 
-An Ignition gateway does not expose a built-in metrics or telemetry endpoint. Observability requires attaching the **OpenTelemetry Java agent** to the gateway process. The agent instruments the JVM at startup, intercepts Ignition's internal Dropwizard/Codahale metrics, and pushes metrics, traces, and logs to a collector over OTLP. Nothing is scraped from the gateway; everything is pushed.
+An Ignition gateway does not expose a built-in metrics or telemetry endpoint. Observability requires attaching the **OpenTelemetry Java agent** to the gateway process. The agent instruments the JVM at startup, intercepts Ignition's internal Dropwizard/Codahale metrics, and exports metrics, traces, and logs to a collector. By default the agent pushes all signals over OTLP. On Kubernetes the agent can additionally expose a Prometheus `/metrics` endpoint for scraping (see [Metrics and Log Stack](./metrics-stack.md)).
 
 This guide shows how to wire the agent for Docker Compose and bare-metal deployments. The key concepts and property names are the same in both cases. For Kubernetes, the OTel operator can inject the agent automatically via an `Instrumentation` CRD, covered briefly at the end of this page.
 
@@ -23,7 +23,7 @@ The agent is loaded by the JVM before any application code runs. It instruments:
 
 - **Dropwizard/Codahale metrics** (`otel.instrumentation.dropwizard-metrics.enabled=true`): these are Ignition's internal performance counters (tag provider throughput, Perspective session counts, gateway thread pool stats, and more). Without this setting the most useful Ignition-specific metrics are invisible.
 - **JDBC datasource metrics** (`otel.instrumentation.jdbc-datasource.enabled=true`): per-connection-pool query counts, latency, and pool utilization for every database connection configured in the gateway.
-- **Logback appender**: every log entry written through Ignition's SLF4J/Logback logging layer is forwarded as an OTLP log record.
+- **Logback appender**: on Docker and bare-metal, every log entry written through Ignition's SLF4J/Logback logging layer is forwarded as an OTLP log record. On Kubernetes this appender is disabled (`OTEL_LOGS_EXPORTER=none`) and logs are emitted as JSON to stdout instead, then tailed by Alloy's pod-log pipeline (see [Log Pipeline](./logs.md)).
 - **HTTP spans**: traces for every inbound HTTP request, giving you latency and error-rate breakdowns for the gateway web interface and Perspective sessions.
 
 ## Prerequisites
@@ -147,7 +147,7 @@ Replace `<alloy-host>` with the hostname or IP of your Alloy collector. For a lo
 
 The OTel Operator for Kubernetes can inject the agent automatically into gateway pods via an `Instrumentation` CRD, eliminating the need to manage the JAR or configure JVM args by hand. The in-cluster pattern also enables a dual OTLP and Prometheus export path, where the agent exposes a `/metrics` endpoint on port 9000 for scraping by Prometheus or the kube-prometheus-stack.
 
-This pattern is covered as a forward topic. The Instrumentation CRD wiring and the PodMonitor that targets port 9000 are referenced in the [Metrics and Log Stack guide](./metrics-stack.md).
+For the full Instrumentation CRD wiring and the PodMonitor that targets port 9000, see the kube-prometheus-stack section of [Metrics and Log Stack](./metrics-stack.md).
 
 ## What you get after wiring
 
@@ -155,6 +155,6 @@ Once the gateway restarts with the agent attached and the collector is reachable
 
 - **Metrics**: JVM heap, GC pause duration and frequency, thread pool utilization, HTTP request rates and latencies, Ignition-specific gauges (tag provider write throughput, Perspective session counts), and JDBC connection pool stats per configured database. All available in Grafana via Mimir.
 - **Traces**: Spans for every inbound HTTP request handled by the gateway web server, including Perspective page loads and Designer connections. Cross-linked to logs and profiles in the Grafana datasource configuration.
-- **Logs**: Every entry written through the gateway's Logback appender forwarded as a structured OTLP log record and available in Loki. MDC fields (trace ID, span ID) are captured, enabling trace-to-log correlation in Grafana.
+- **Logs**: On Docker and bare-metal, every entry written through the gateway's Logback appender forwarded as a structured OTLP log record and available in Loki. MDC fields (trace ID, span ID) are captured, enabling trace-to-log correlation in Grafana. (On Kubernetes logs take the stdout-JSON path described in [Log Pipeline](./logs.md) instead.)
 
 For the metrics and log collection stack, see [Metrics and Log Stack](./metrics-stack.md). For the full property reference, see [OTel Properties Reference](../../reference/ignition-otel-properties.md).

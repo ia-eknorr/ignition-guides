@@ -23,7 +23,7 @@ Pyroscope (profiles) is included in the compose file but is a separate topic.
 
 ### Compose stack
 
-The following is a condensed version of the `observability-stack/docker-compose.yml` from the dawg-architecture-lab, showing the core services. Run this stack on the same Docker network as your Ignition gateways so Alloy is reachable at `alloy:4318`.
+The following is a condensed observability-stack compose file, showing the core services. Run this stack on the same Docker network as your Ignition gateways so Alloy is reachable at `alloy:4318`.
 
 ```yaml
 services:
@@ -245,9 +245,32 @@ The kube-prometheus-stack does not receive OTLP push from the gateway. Instead, 
 The `Instrumentation` CRD that enables the Prometheus exporter alongside OTLP:
 
 ```yaml
-# Forward link: in-cluster OTel operator pattern (future guide)
-# otel.metrics.exporter is set to "otlp,prometheus" here
-# OTEL_EXPORTER_PROMETHEUS_PORT: "9000"
+apiVersion: opentelemetry.io/v1alpha1
+kind: Instrumentation
+metadata:
+  name: ignition
+spec:
+  exporter:
+    endpoint: http://alloy:4318
+  propagators:
+    - tracecontext
+    - baggage
+  java:
+    env:
+      # Logs take the stdout-JSON path on Kubernetes, not OTLP
+      - name: OTEL_LOGS_EXPORTER
+        value: "none"
+      # Export metrics over OTLP and also stand up a Prometheus endpoint
+      - name: OTEL_METRICS_EXPORTER
+        value: "otlp,prometheus"
+      - name: OTEL_EXPORTER_PROMETHEUS_PORT
+        value: "9000"
+      - name: OTEL_EXPORTER_PROMETHEUS_HOST
+        value: "0.0.0.0"
+      - name: OTEL_INSTRUMENTATION_DROPWIZARD_METRICS_ENABLED
+        value: "true"
+      - name: OTEL_INSTRUMENTATION_JDBC_DATASOURCE_ENABLED
+        value: "true"
 ```
 
 The `PodMonitor` that targets port 9000 on gateway pods:
@@ -271,6 +294,10 @@ spec:
     - path: /metrics
       interval: 15s
       relabelings:
+        # Keep only the gateway container's https port so each pod yields one target
+        - sourceLabels: [__meta_kubernetes_pod_container_name, __meta_kubernetes_pod_container_port_name]
+          regex: gateway;https
+          action: keep
         # Target the gateway container's OTel Prometheus exporter on port 9000
         - sourceLabels: [__meta_kubernetes_pod_ip]
           targetLabel: __address__
@@ -287,7 +314,7 @@ The `metricRelabelings` block is important: the OTel agent exports a large numbe
 
 ### kube-prometheus-stack Helm values
 
-The public-demo deployment runs Prometheus in agent mode: short local retention (2 h) with remote write to a central store. Key values from `common-values.yaml`:
+A typical production deployment runs Prometheus in agent mode: short local retention (2 h) with remote write to a central store. Key values from `common-values.yaml`:
 
 ```yaml
 kube-prometheus-stack:
@@ -324,4 +351,4 @@ kube-prometheus-stack:
     enabled: false
 ```
 
-The in-cluster OTel operator injection and the full Instrumentation CRD are a forward topic. See [Gateway Telemetry](./gateway-telemetry.md) for the agent wiring concepts.
+For the agent wiring concepts that underlie the in-cluster OTel operator injection, see [Gateway Telemetry](./gateway-telemetry.md).

@@ -22,7 +22,8 @@ Tools and setup required across all guides - set up once, referenced everywhere.
 Step-by-step reference guides for working with Ignition in a professional development environment.
 
 - [Docker](./guides/docker/intro.md) - Compose architecture, volume strategy, licensing, and day-two operations for the project-template.
-- [Kubernetes](./guides/kubernetes/concepts.md) - Kubernetes concepts for Ignition developers and a curated lens on the official Helm chart.
+- [Kubernetes](./guides/kubernetes/intro.md) - Running Ignition on a cluster: StatefulSets, PVCs, external secrets, module distribution, and GitOps config sync.
+- [Observability](./guides/observability/intro.md) - Gateway telemetry via the OTel Java agent, and the metrics and log stack that collects and visualizes those signals.
 - [Version Control](./guides/version-control/intro.md) - Git workflows for Ignition projects: workstation setup, branching, pull requests, and more.
 
 ### Labs
@@ -37,8 +38,13 @@ Hands-on labs that walk through real Ignition workflows end to end.
 
 Quick-reference pages for conventions and standards used across guides.
 
+- [Architecture Index](./reference/architecture-index.md) - Platform paths ordered start to finish: Kubernetes and Docker Compose.
 - [Git Style Guide](./reference/git-style-guide.md) - Naming conventions for repositories, branches, commits, and pull requests.
 - [Kubernetes Sizing](./reference/kubernetes-sizing.md) - CPU, memory, JVM heap, PVC, and probe sizing tables for Ignition gateways on Kubernetes.
+- [OTel Properties Reference](./reference/ignition-otel-properties.md) - Every OpenTelemetry Java agent property used in the observability guides with descriptions.
+- [Helm Values Layering](./reference/values-layering.md) - How chart defaults, common, environment, and region values compose in a multi-environment platform.
+- [Gateway Resource Collections](./reference/resource-collections.md) - How Ignition organizes config and project resources on disk, and which paths to track in Git.
+- [Docker Command Reference](./reference/docker-command-reference.md) - Common Docker and Docker Compose commands for running and operating Ignition gateways.
 
 ### Tools
 

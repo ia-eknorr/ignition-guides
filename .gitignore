@@ -8,6 +8,12 @@
 .docusaurus
 .cache-loader
 
+# Internal planning notes (kept local, never published)
+.plans/
+
+# Local agent/tooling config
+.claude/
+
 # Misc
 .DS_Store
 .env.local

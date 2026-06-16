@@ -11,7 +11,7 @@ Managing Ignition gateways across multiple environments and regions manually - a
 
 An [ApplicationSet](https://argo-cd.readthedocs.io/en/stable/user-guide/application-set/) is an ArgoCD resource that generates multiple ArgoCD Applications from a set of generators. A **matrix generator** combines two generators so that every combination of their outputs produces an Application.
 
-The PublicDemo platform uses a two-generator matrix:
+A typical platform uses a two-generator matrix:
 
 1. **Cluster generator**: queries the ArgoCD cluster registry for clusters that match a label selector (e.g., `env: prod`)
 2. **Git file generator**: scans the deployment repository for files matching a path pattern (e.g., `values/*/prod/<region>/config.yaml`)
@@ -31,18 +31,16 @@ clusters matching env=prod   x   values/*/prod/us-west-2/config.yaml
 Each `values/{chart}/{env}/{region}/config.yaml` file is the signal that a chart should deploy to that cluster. The file typically contains only:
 
 ```yaml
-namespace: public-demo
+namespace: my-ignition
 ```
 
-**Adding a chart to an environment = creating its `config.yaml` in the right path.** The ApplicationSet controller scans for this file on every push to main. When it finds a new one, it creates the corresponding ArgoCD Application. When the file is removed, the Application is also removed (subject to the `applicationsSync` policy).
+**Adding a chart to an environment = creating its `config.yaml` in the right path.** The ApplicationSet controller scans for this file on every push to main. When it finds a new one, it creates the corresponding ArgoCD Application. Removing the file does **not** prune the Application: these ApplicationSets run with `applicationsSync: create-update` and `preserveResourcesOnDeletion: true`, so a generated Application is never deleted automatically. This is a deliberate safety choice that prevents an accidental file deletion from tearing down a running gateway; to retire an Application, delete it manually.
 
-From `docs/architecture.md`:
+In other words, adding a chart to an environment requires only:
 
-> Adding a chart to an environment requires only:
->
-> 1. Create the values directory structure for the chart
-> 2. Add a `config.yaml` in the region directory
-> 3. The ApplicationSet automatically creates an ArgoCD Application
+1. Create the values directory structure for the chart
+2. Add a `config.yaml` in the region directory
+3. The ApplicationSet automatically creates an ArgoCD Application
 
 ## The Helm Values Layering
 
@@ -82,7 +80,7 @@ spec:
                     operator: In
                     values: ["us-west-2"]
           - git:
-              repoURL: org-147873951@github.com:inductive-automation/publicdemo-k8s.git
+              repoURL: git@github.com:my-org/my-ignition-k8s.git
               revision: main
               files:
                 - path: values/*/dev/{{ .metadata.labels.region }}/config.yaml
@@ -92,7 +90,7 @@ spec:
     spec:
       project: development
       sources:
-        - repoURL: 'org-147873951@github.com:inductive-automation/publicdemo-k8s.git'
+        - repoURL: 'git@github.com:my-org/my-ignition-k8s.git'
           path: 'charts/{{ index .path.segments 1 }}'
           targetRevision: main
           helm:
@@ -102,7 +100,7 @@ spec:
               - '$values/values/{{ index .path.segments 1 }}/dev/environment-values.yaml'
               - '$values/values/{{ index .path.segments 1 }}/dev/{{ .metadata.labels.region }}/values.yaml'
             ignoreMissingValueFiles: true
-        - repoURL: 'org-147873951@github.com:inductive-automation/publicdemo-k8s.git'
+        - repoURL: 'git@github.com:my-org/my-ignition-k8s.git'
           targetRevision: main
           ref: values
       destination:
@@ -130,7 +128,7 @@ Clusters are registered in ArgoCD with labels that the matrix generators use:
 
 ```bash
 argocd cluster add <context-name> \
-  --name publicdemo-<env>-<region> \
+  --name my-ignition-<env>-<region> \
   --label env=<env> \
   --label region=<region>
 ```
@@ -146,4 +144,4 @@ The `env` and `region` labels on each registered cluster are the only coupling b
 5. ArgoCD applies the rendered manifests to the target cluster
 6. Self-heal (`selfHeal: true`) corrects any out-of-band changes to cluster state
 
-Application version promotion (updating `git.ref` to point gateways at a new tag of the application repo) is handled by Kargo, which writes directly to the platform repository's values files and lets ArgoCD pick up the change through the same GitOps flow.
+Application version promotion (updating `git.ref` to point gateways at a new tag of the application repo) is handled by a promotion tool such as [Kargo](https://kargo.io), which writes directly to the platform repository's values files and lets ArgoCD pick up the change through the same GitOps flow.

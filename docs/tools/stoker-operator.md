@@ -14,7 +14,7 @@ Stoker is a Kubernetes operator that continuously syncs Ignition SCADA gateway c
 - The **controller** watches `GatewaySync` custom resources, resolves git refs, and discovers gateway pods
 - The **agent** runs as a native sidecar inside gateway pods, clones the repo, and syncs files to the gateway's data directory
 
-No shared PVC required. Communication between controller and agent is entirely via Kubernetes ConfigMaps.
+No shared PVC required. Each `GatewaySync` CR gets two ConfigMaps: the controller writes one that the agent reads (control metadata: repo URL, ref, credentials reference), and the agent writes a second that the controller reads (sync status). The agent clones the Git repo into a local `emptyDir` volume and calls the gateway's scan REST API to apply changes, so no shared PVC is needed.
 
 ## When to Use It
 
@@ -37,3 +37,7 @@ Stoker is for teams running Ignition on Kubernetes who want GitOps-style config 
 ## End-to-End Config Sync Guide
 
 For a walkthrough of setting up config sync in a real Ignition deployment - including the `GatewaySync` resource, SSH auth wiring, profile mappings, and the fallback git-sync approach - see [Config Sync](../guides/kubernetes/config-sync.md).
+
+## See Also
+
+- [External Secrets](../guides/kubernetes/external-secrets.md): how the SSH key Stoker uses for Git authentication is provisioned from a cloud secret store into a Kubernetes Secret

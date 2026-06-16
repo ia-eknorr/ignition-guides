@@ -32,7 +32,7 @@ For wiring instructions see [Gateway Telemetry](../guides/observability/gateway-
 | Property | Example value | Description |
 | --- | --- | --- |
 | `otel.metrics.exporter` | `otlp` | Metrics export backend. Use `otlp` to push over OTLP. The gateway does not expose a native Prometheus endpoint; set `prometheus` here only if the agent should additionally stand up its own `/metrics` scrape endpoint (used in the Kubernetes in-cluster pattern on port 9000). |
-| `otel.exporter.otlp.metrics.protocol` | `http/protobuf` | Per-signal protocol override for metrics. |
+| `otel.exporter.otlp.metrics.protocol` | `http/protobuf` | Per-signal protocol for metrics. Redundant with the global `otel.exporter.otlp.protocol` when the values match (as in the examples here); it only matters if you want a different protocol for metrics than for the other signals. |
 | `otel.exporter.otlp.metrics.endpoint` | `http://alloy:4318/v1/metrics` | OTLP endpoint for metrics. |
 | `otel.metric.export.interval` | `5000` | Milliseconds between metric export cycles. 5000 ms (5 s) is a good balance between resolution and collector load. |
 | `otel.instrumentation.dropwizard-metrics.enabled` | `true` | **Required for Ignition metrics.** Ignition's internal performance counters use the Dropwizard/Codahale metrics library. Without this flag the most useful Ignition-specific gauges (tag write throughput, Perspective sessions, thread pool stats) are not captured. |
@@ -55,7 +55,7 @@ For wiring instructions see [Gateway Telemetry](../guides/observability/gateway-
 | Property | Example value | Description |
 | --- | --- | --- |
 | `otel.traces.exporter` | `otlp` | Trace export backend. |
-| `otel.exporter.otlp.traces.protocol` | `http/protobuf` | Per-signal protocol override for traces. |
+| `otel.exporter.otlp.traces.protocol` | `http/protobuf` | Per-signal protocol for traces. Redundant with the global `otel.exporter.otlp.protocol` when the values match (as in the examples here); it only matters if you want a different protocol for traces than for the other signals. |
 | `otel.exporter.otlp.traces.endpoint` | `http://alloy:4318/v1/traces` | OTLP endpoint for traces. |
 
 ## Manual method instrumentation

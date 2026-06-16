@@ -69,3 +69,5 @@ Override the exec command itself with `gateway.readinessProbe.commandOverride` o
 
 - [charts.ia.io](https://charts.ia.io) - authoritative chart reference
 - [Helm Lab](../labs/helm-ignition-lab.md) - hands-on sizing override
+- [Metrics and Log Stack](../guides/observability/metrics-stack.md) - kube-prometheus-stack sizing and the Grafana LGTM collector
+- [Helm Values Layering](./values-layering.md) - how sizing values compose across environments and regions

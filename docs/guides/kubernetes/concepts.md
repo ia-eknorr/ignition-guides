@@ -88,3 +88,9 @@ When you `helm install` the Ignition chart, you are creating a stack of resource
 - **ConfigMaps** and **Secrets** for configuration and credentials
 
 The [Helm Lab](../../labs/helm-ignition-lab.md) walks through them on a real cluster. For the full set of chart values, see [charts.ia.io](https://charts.ia.io).
+
+See also the production patterns built on this foundation:
+
+- [External Secrets](./external-secrets.md): sync credentials from a cloud secret store into the Secrets the gateway reads at startup
+- [Config Sync](./config-sync.md): keep Ignition project files and gateway configuration in sync with Git
+- [Observability for Ignition](../observability/intro.md): wire the OTel agent to push gateway metrics, traces, and logs to the collection stack
