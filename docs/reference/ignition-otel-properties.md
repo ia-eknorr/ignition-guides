@@ -13,7 +13,7 @@ For wiring instructions see [Gateway Telemetry](../guides/observability/gateway-
 | Property | Example value | Description |
 | --- | --- | --- |
 | `otel.service.name` | `my-gateway` | The service name attached to every metric, trace, and log record. Appears as the `service.name` resource attribute. Should match the gateway name for easy correlation. |
-| `otel.resource.attributes` | `gateway=gw1,environment=Production,ignition.version=8.3.6` | Comma-separated key=value pairs added to every signal as resource attributes. Useful for filtering in Grafana across multiple gateways or environments. |
+| `otel.resource.attributes` | `gateway=gw1,environment=Production,ignition.version=__IGNITION_VERSION__` | Comma-separated key=value pairs added to every signal as resource attributes. Useful for filtering in Grafana across multiple gateways or environments. |
 
 ## Exporter protocol
 
