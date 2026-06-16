@@ -33,3 +33,7 @@ Stoker is for teams running Ignition on Kubernetes who want GitOps-style config 
 - [Quickstart](https://ia-eknorr.github.io/stoker-operator/quickstart)
 - [Installation](https://ia-eknorr.github.io/stoker-operator/installation)
 - [Helm Values Reference](https://ia-eknorr.github.io/stoker-operator/reference/helm-values)
+
+## End-to-End Config Sync Guide
+
+For a walkthrough of setting up config sync in a real Ignition deployment - including the `GatewaySync` resource, SSH auth wiring, profile mappings, and the fallback git-sync approach - see [Config Sync](../guides/kubernetes/config-sync.md).

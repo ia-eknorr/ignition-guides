@@ -18,8 +18,12 @@ The official Helm chart at [charts.ia.io](https://charts.ia.io) assembles most o
 ## What's here
 
 - **[Kubernetes concepts for Ignition](./concepts.md)**: the cluster primitives the Helm chart relies on (StatefulSets, PVCs, Services, ConfigMaps, Secrets) and why Ignition needs each one.
+- **[External modules from S3](./external-modules-s3.md)**: mount third-party `.modl` files from an S3 bucket into all gateways in the namespace without baking them into pods.
+- **[External Secrets](./external-secrets.md)**: wire AWS Secrets Manager (or any provider) to Kubernetes Secrets via the External Secrets Operator, covering the license key, git credentials, and API key.
+- **[GitOps with ApplicationSets](./gitops-applicationsets.md)**: use ArgoCD's matrix generator and a `config.yaml` discovery marker to deploy charts across clusters automatically.
+- **[Config Sync](./config-sync.md)**: keep Ignition project files and gateway config in sync with Git using the Stoker operator's `GatewaySync` resource.
 
-More guides land in later rounds: external modules from S3, config sync, external secrets, GitOps with ApplicationSets, and promotion with Kargo. Short, one-screen operational tips will be collected here under a **Tasks** sub-section as the pillar grows, following the [Kubernetes documentation](https://kubernetes.io/docs/) Concepts / Tasks / Tutorials / Reference convention.
+Short, one-screen operational tips will be collected here under a **Tasks** sub-section as the pillar grows, following the [Kubernetes documentation](https://kubernetes.io/docs/) Concepts / Tasks / Tutorials / Reference convention.
 
 ## Related
 
