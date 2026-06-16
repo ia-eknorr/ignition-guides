@@ -18,11 +18,11 @@ The official Helm chart at [charts.ia.io](https://charts.ia.io) assembles most o
 
 ## What's here
 
-- **[Kubernetes concepts for Ignition](./concepts.md)** — the cluster primitives the Helm chart relies on (StatefulSets, PVCs, Services, ConfigMaps, Secrets) and why Ignition needs each one.
+- **[Kubernetes concepts for Ignition](./concepts.md)**: the cluster primitives the Helm chart relies on (StatefulSets, PVCs, Services, ConfigMaps, Secrets) and why Ignition needs each one.
 
-More guides — external modules from S3, config sync, external secrets, GitOps with ApplicationSets, and promotion with Kargo — land in later rounds. Short, one-screen operational tips will be collected here under a **Tasks** sub-section as the pillar grows, following the [Kubernetes documentation](https://kubernetes.io/docs/) Concepts / Tasks / Tutorials / Reference convention.
+More guides land in later rounds: external modules from S3, config sync, external secrets, GitOps with ApplicationSets, and promotion with Kargo. Short, one-screen operational tips will be collected here under a **Tasks** sub-section as the pillar grows, following the [Kubernetes documentation](https://kubernetes.io/docs/) Concepts / Tasks / Tutorials / Reference convention.
 
 ## Related
 
-- [Helm Ignition Lab](../../labs/helm-ignition-lab.md) — deploy a gateway on a local cluster end to end.
-- [Kubernetes Sizing Reference](../../reference/kubernetes-sizing.md) — starting points for CPU, memory, heap, and PVC sizing.
+- [Helm Ignition Lab](../../labs/helm-ignition-lab.md): deploy a gateway on a local cluster end to end.
+- [Kubernetes Sizing Reference](../../reference/kubernetes-sizing.md): starting points for CPU, memory, heap, and PVC sizing.

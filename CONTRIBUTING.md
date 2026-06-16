@@ -6,7 +6,7 @@ Content is organized **by theme**, not by reference architecture. The Guides
 section holds concept-and-task pillars (Docker, Kubernetes, Observability,
 Version Control); Labs holds end-to-end tutorials; Reference holds lookup
 material. Each pillar follows the Kubernetes-docs Concepts / Tasks / Tutorials /
-Reference convention — one-screen how-to pages are collected under a **Tasks**
+Reference convention. One-screen how-to pages are collected under a **Tasks**
 sub-section inside their pillar once the pillar grows, rather than living in a
 separate catalog.
 
@@ -33,14 +33,14 @@ Rendering is automatic: the [`AppliesTo`](src/components/AppliesTo/index.tsx)
 component is injected on every doc page through a swizzled
 [`DocItem/Content`](src/theme/DocItem/Content/index.tsx) wrapper, which reads
 `applies_to` from the page's front matter. Pages that omit the field render no
-badge — there is nothing to add per page beyond the front matter itself.
+badge, so there is nothing to add per page beyond the front matter itself.
 
 Omit `applies_to` on pages where deployment context does not apply (reference
 tables, version-control guides, and similar).
 
 ## Linking discipline
 
-- Cross-link to **pages**, not `#section` anchors, where practical — anchors are
+- Cross-link to **pages**, not `#section` anchors, where practical. Anchors are
   validated only as warnings, so a broken anchor can slip past the build.
 - Treat core-product concepts as prerequisite links to
   [docs.ia.io](https://docs.ia.io) and chart value semantics as links to
