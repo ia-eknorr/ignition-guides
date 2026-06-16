@@ -39,7 +39,7 @@ The agent JAR is mounted into the container from the host and passed to the JVM 
 ```yaml
 services:
   ignition:
-    image: inductiveautomation/ignition:8.3.6
+    image: inductiveautomation/ignition:__IGNITION_VERSION__
     volumes:
       # Mount the agent JAR and (optionally) the properties file
       - ./dependencies:/usr/local/bin/ignition/dependencies
@@ -112,7 +112,7 @@ For the full `ignition.conf` structure and existing `wrapper.java.additional.*` 
 
 # --- Identity ---
 otel.service.name=my-gateway
-otel.resource.attributes=service.name=my-gateway,gateway=my-gateway,environment=Production,ignition.version=8.3.6
+otel.resource.attributes=service.name=my-gateway,gateway=my-gateway,environment=Production,ignition.version=__IGNITION_VERSION__
 
 # --- Exporter ---
 otel.exporter.otlp.protocol=http/protobuf
