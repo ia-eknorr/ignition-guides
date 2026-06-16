@@ -12,7 +12,7 @@ This guide covers the collector and storage stack that receives the telemetry th
 The LGTM stack is a set of Grafana Labs components that together cover the four observability signals:
 
 | Component | Signal | Port |
-|---|---|---|
+| --- | --- | --- |
 | Grafana Alloy | Collector and router for all signals | 4317 (gRPC), 4318 (HTTP) |
 | Grafana Mimir | Metrics storage (Prometheus-compatible) | 9009 |
 | Grafana Loki | Log storage | 3100 |
@@ -227,11 +227,13 @@ On Kubernetes, the kube-prometheus-stack Helm chart installs Prometheus Operator
 ### When to use which
 
 Use the **Grafana LGTM stack** when:
+
 - Running Docker Compose on a developer workstation or a single VM.
 - You want long-term storage for all four signal types (metrics, logs, traces, profiles) from a single compose file.
 - You are not already running a Prometheus operator.
 
 Use the **kube-prometheus-stack** when:
+
 - You are deploying to a Kubernetes cluster that already runs or benefits from a Prometheus operator.
 - You want Kubernetes infrastructure metrics (node, pod, PVC utilization) alongside gateway metrics.
 - Metrics retention is short per-cluster and you remote-write to a central Prometheus-compatible store.

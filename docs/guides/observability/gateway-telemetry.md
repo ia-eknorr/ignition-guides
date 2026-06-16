@@ -11,7 +11,7 @@ This guide shows how to wire the agent for Docker Compose and bare-metal deploym
 
 ## How it works
 
-```
+```text
 Ignition gateway (JVM)
   └── OTel Java agent (attached at startup)
         ├── metrics  → OTLP → Alloy/Collector → Mimir / Prometheus
