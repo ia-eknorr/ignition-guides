@@ -116,8 +116,6 @@ The prod US-West-2 region uses `pd83-prd-ignition-modules-us` in `us-west-2`.
 
 The CSI driver requires IAM permissions to access the bucket. The Mountpoint S3 CSI Driver documentation describes the required IAM policy and recommended IRSA (IAM Roles for Service Accounts) approach.
 
-<!-- VERIFY: confirm whether the IRSA setup for s3.csi.aws.com is documented in bootstrap.md or another doc; bootstrap.md mentions it's installed by the cloud team but does not document the IAM policy itself -->
-
 ## On other platforms and bare-metal
 
 The `s3.csi.aws.com` CSI driver is AWS-specific. On other Kubernetes distributions:

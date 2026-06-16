@@ -9,7 +9,7 @@ Kubernetes Secrets are base64-encoded, not encrypted at rest by default, and hav
 
 For Ignition specifically, the secrets that need this treatment are:
 
-- **License activation** - the license key and activation token that Ignition reads at startup (see [Licensing](https://docs.inductiveautomation.com/docs/8.3/platform-concepts/modules-and-licensing/leased-licensing) for the activation model)
+- **License activation** - the license key and activation token that Ignition reads at startup (see [Licensing](https://docs.inductiveautomation.com/docs/8.3/platform/licensing-and-activation) for the activation model)
 - **Git credentials** - the SSH key the git-sync sidecar uses to clone the application repo
 - **Ignition API key** - the bearer token Stoker and git-sync use to call the gateway's REST API
 - **Gateway admin password** - the initial admin credential set during commissioning
@@ -50,8 +50,6 @@ spec:
 ```
 
 The IRSA binding lives in the cluster's IAM configuration (managed by the cloud team), not in this resource. The convention for secret names in AWS Secrets Manager is `publicdemo/{secret-name}`, so all secrets for this application live under a single path prefix.
-
-<!-- VERIFY: confirm the exact IRSA IAM role ARN or annotation pattern lives in the cluster-config chart or EKS setup docs, not in the external-secrets chart values -->
 
 ### ExternalSecrets in the Helm chart
 
@@ -167,4 +165,4 @@ On bare-metal clusters without a cloud secret store, [Sealed Secrets](https://gi
 ## Further reading
 
 - [External Secrets Operator documentation](https://external-secrets.io/latest/)
-- [Ignition leased licensing](https://docs.inductiveautomation.com/docs/8.3/platform-concepts/modules-and-licensing/leased-licensing)
+- [Ignition leased licensing](https://docs.inductiveautomation.com/docs/8.3/platform/licensing-and-activation)

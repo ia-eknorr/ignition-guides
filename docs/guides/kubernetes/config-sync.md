@@ -153,5 +153,3 @@ The git-sync approach requires volumes (`git-secret`, `ignition-api-key-secret`,
 - [Stoker operator page](../../tools/stoker-operator.md): installation, full CRD field reference, webhook receiver, Helm values
 - [Stoker upstream docs](https://ia-eknorr.github.io/stoker-operator/): quickstart, installation reference
 - [Ignition scan APIs](https://docs.inductiveautomation.com/docs/8.3/): the `/data/api/v1/scan/projects` and `/data/api/v1/scan/config` endpoints that Stoker calls after syncing
-
-<!-- VERIFY: confirm the Ignition 8.3 REST scan API endpoint paths (/data/api/v1/scan/projects and /data/api/v1/scan/config) are documented at docs.ia.io and link to the correct 8.3 page -->
