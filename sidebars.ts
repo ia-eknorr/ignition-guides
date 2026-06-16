@@ -39,7 +39,11 @@ const sidebars: SidebarsConfig = {
           type: "category",
           label: "Observability",
           link: { type: "doc", id: "guides/observability/intro" },
-          items: [],
+          items: [
+            "guides/observability/gateway-telemetry",
+            "guides/observability/metrics-stack",
+            "guides/observability/logs",
+          ],
         },
         {
           type: "category",
@@ -68,6 +72,7 @@ const sidebars: SidebarsConfig = {
       label: "Reference",
       items: [
         "reference/architecture-index",
+        "reference/ignition-otel-properties",
         "reference/git-style-guide",
         "reference/resource-collections",
         "reference/docker-command-reference",
