@@ -14,7 +14,7 @@ The [Project Template](https://github.com/ia-eknorr/project-template) combines t
 
 The `ignition-data` volume is managed by Docker and holds everything that should persist across restarts but should NOT be tracked in Git:
 
-- The internal SQLite/H2 database: alarm journal, tag history for short-term storage, audit log
+- The internal database: alarm journal, tag history for short-term storage, audit log
 - Installed modules and their state
 - The Java keystore: TLS certificates, GAN certificates
 - License activation records
