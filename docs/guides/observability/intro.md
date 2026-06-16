@@ -1,6 +1,5 @@
 ---
 sidebar_position: 1
-applies_to: [docker, kubernetes, bare-metal]
 ---
 
 # Observability for Ignition

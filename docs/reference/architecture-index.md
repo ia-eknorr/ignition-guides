@@ -1,12 +1,8 @@
----
-applies_to: [docker, kubernetes]
----
-
 # Architecture index
 
 The guides on this site are grouped by theme (Containerization, Kubernetes, Observability) because most pages apply to more than one deployment. This page groups them the other way, by platform, with each path ordered start to finish.
 
-Pages that document a deployment pattern carry an **Applies to** badge listing the contexts they cover. There are two platform paths: Kubernetes and Docker Compose.
+There are two platform paths: Kubernetes and Docker Compose.
 
 ## Kubernetes
 
