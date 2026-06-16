@@ -30,9 +30,16 @@ const sidebars: SidebarsConfig = {
           ],
         },
         {
-          type: "doc",
-          id: "guides/kubernetes/concepts",
+          type: "category",
           label: "Kubernetes",
+          link: { type: "doc", id: "guides/kubernetes/intro" },
+          items: ["guides/kubernetes/concepts"],
+        },
+        {
+          type: "category",
+          label: "Observability",
+          link: { type: "doc", id: "guides/observability/intro" },
+          items: [],
         },
         {
           type: "category",
@@ -60,6 +67,7 @@ const sidebars: SidebarsConfig = {
       type: "category",
       label: "Reference",
       items: [
+        "reference/architecture-index",
         "reference/git-style-guide",
         "reference/resource-collections",
         "reference/docker-command-reference",
