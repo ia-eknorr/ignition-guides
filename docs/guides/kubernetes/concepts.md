@@ -36,7 +36,7 @@ You almost never create a pod directly. Instead, you create a higher-level resou
 Ignition has to use a StatefulSet. The internal database, license activation, and gateway UUID all live in a persistent volume tied to a specific pod identity. A random pod name with a random volume binding would break all three.
 
 :::danger Using a Deployment causes data corruption
-If you accidentally deploy Ignition as a Deployment with a ReadWriteOnce PVC, a rolling update spins up `gateway-new` while `gateway-old` is still alive. Both pods try to mount the same volume. The internal SQLite database gets concurrent writes, the gateway state becomes inconsistent, and the gateway may not start cleanly. Always use a StatefulSet.
+If you accidentally deploy Ignition as a Deployment with a ReadWriteOnce PVC, a rolling update spins up `gateway-new` while `gateway-old` is still alive. Both pods try to mount the same volume and write to the same data directory at once. The gateway's configuration and internal database become inconsistent, and the gateway may not start cleanly. Always use a StatefulSet.
 :::
 
 The Ignition Helm chart at charts.ia.io uses a StatefulSet by default, so you do not need to configure this yourself.
