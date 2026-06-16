@@ -39,6 +39,7 @@ namespace: public-demo
 From `docs/architecture.md`:
 
 > Adding a chart to an environment requires only:
+>
 > 1. Create the values directory structure for the chart
 > 2. Add a `config.yaml` in the region directory
 > 3. The ApplicationSet automatically creates an ArgoCD Application

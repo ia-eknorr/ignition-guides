@@ -9,7 +9,7 @@ The PublicDemo platform composes Helm values in four layers to avoid duplication
 ## Layer Order
 
 | Layer | File path | Purpose |
-|-------|-----------|---------|
+| --- | --- | --- |
 | 1. Chart defaults | `charts/{chart}/values.yaml` | Shipped with the chart; all keys present with defaults |
 | 2. Common values | `values/{chart}/common-values.yaml` | Shared across all environments (observability endpoints, ingress class, etc.) |
 | 3. Environment values | `values/{chart}/{env}/environment-values.yaml` | Shared across all regions in one environment (prod vs dev log levels, Stoker on/off, etc.) |
@@ -50,18 +50,21 @@ A key like `otelInstrumentation.enabled` is set to `false` in Layer 1 and overri
 ## What Lives in Each Layer
 
 **Common values (Layer 2)** - things that are the same in every environment:
+
 - Ingress annotations that don't vary by region (ALB scheme, health check path, protocol)
 - Observability endpoint URIs (OTEL collector service DNS name)
 - Stoker annotation labels (pod labels are the same shape everywhere)
 - `externalModules.enabled: true` (feature flag, always on)
 
 **Environment values (Layer 3)** - things that differ between prod/test/dev:
+
 - `stoker.enabled` (enabled in prod, disabled in dev)
 - Log level and format (`wrapperArgs`)
 - Module enable lists (`GATEWAY_MODULES_ENABLED`)
 - OTel environment label (`otelInstrumentation.prometheus.env`)
 
 **Region values (Layer 4)** - things that differ region by region:
+
 - `s3Modules.bucketName` and `s3Modules.region`
 - ALB certificate ARN
 - External DNS hostname
