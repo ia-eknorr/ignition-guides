@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # Stoker Operator
 
-**GitHub**: [ia-eknorr/stoker-operator](https://github.com/ia-eknorr/stoker-operator)  
+**GitHub**: [knorrlabs/stoker-operator](https://github.com/knorrlabs/stoker-operator)  
 **Docs**: [knorrlabs.github.io/stoker-operator](https://knorrlabs.github.io/stoker-operator/)
 
 ## What It Does

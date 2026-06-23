@@ -1,7 +1,7 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:recommended"],
-  "reviewers": ["ia-eknorr"],
+  "reviewers": ["etknorr"],
   "packageRules": [
     {
       "matchUpdateTypes": ["minor", "patch"],
