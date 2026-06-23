@@ -9,7 +9,7 @@ const config: Config = {
   tagline: "Community guides for Ignition SCADA using modern development practices",
   favicon: "img/favicon.ico",
 
-  url: "https://ia-eknorr.github.io",
+  url: "https://knorrlabs.github.io",
   baseUrl: "/ignition-guides/",
 
   organizationName: "knorrlabs",
@@ -136,7 +136,7 @@ const config: Config = {
             },
             {
               label: "Stoker Operator",
-              href: "https://ia-eknorr.github.io/stoker-operator/",
+              href: "https://knorrlabs.github.io/stoker-operator/",
             },
           ],
         },
