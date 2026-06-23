@@ -151,5 +151,5 @@ The git-sync approach requires volumes (`git-secret`, `ignition-api-key-secret`,
 ## Further Reading
 
 - [Stoker operator page](../../tools/stoker-operator.md): installation, full CRD field reference, webhook receiver, Helm values
-- [Stoker upstream docs](https://ia-eknorr.github.io/stoker-operator/): quickstart, installation reference
+- [Stoker upstream docs](https://knorrlabs.github.io/stoker-operator/): quickstart, installation reference
 - [Ignition scan APIs](https://docs.inductiveautomation.com/docs/8.3/): the `/data/api/v1/scan/projects` and `/data/api/v1/scan/config` endpoints that Stoker calls after syncing
