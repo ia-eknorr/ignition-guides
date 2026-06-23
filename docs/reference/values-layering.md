@@ -85,3 +85,7 @@ The ApplicationSet's Git file generator scans for files at `values/*/{env}/{regi
 ## Helm Merge Behavior
 
 Helm merges values files with a last-write-wins deep merge. A key set in Layer 3 is overridden by the same key in Layer 4, but a key present only in Layer 2 is not removed by Layer 4 setting other keys at the same depth. Arrays are replaced, not appended - if Layer 3 sets `jvmArgs: ["-Xmx4g"]` and Layer 4 sets `jvmArgs: ["-Xmx8g"]`, the result is `["-Xmx8g"]`, not `["-Xmx4g", "-Xmx8g"]`.
+
+## Further reading
+
+- [Storing Helm values with Argo CD](https://octopus.com/blog/helm-values-argocd) by Kostis Kapelonis: the multi-source `$values` pattern and the layered values approach this repository structure is built on
