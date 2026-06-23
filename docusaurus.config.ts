@@ -93,7 +93,7 @@ const config: Config = {
   ],
 
   themeConfig: {
-    image: "img/logo.png",
+    image: "img/social-card.png",
     navbar: {
       title: "Ignition Guides",
       logo: {
