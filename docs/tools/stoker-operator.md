@@ -5,7 +5,7 @@ sidebar_position: 2
 # Stoker Operator
 
 **GitHub**: [ia-eknorr/stoker-operator](https://github.com/ia-eknorr/stoker-operator)  
-**Docs**: [ia-eknorr.github.io/stoker-operator](https://ia-eknorr.github.io/stoker-operator/)
+**Docs**: [knorrlabs.github.io/stoker-operator](https://knorrlabs.github.io/stoker-operator/)
 
 ## What It Does
 
@@ -30,9 +30,9 @@ Stoker is for teams running Ignition on Kubernetes who want GitOps-style config 
 
 ## Quick Links
 
-- [Quickstart](https://ia-eknorr.github.io/stoker-operator/quickstart)
-- [Installation](https://ia-eknorr.github.io/stoker-operator/installation)
-- [Helm Values Reference](https://ia-eknorr.github.io/stoker-operator/reference/helm-values)
+- [Quickstart](https://knorrlabs.github.io/stoker-operator/quickstart)
+- [Installation](https://knorrlabs.github.io/stoker-operator/installation)
+- [Helm Values Reference](https://knorrlabs.github.io/stoker-operator/reference/helm-values)
 
 ## End-to-End Config Sync Guide
 
