@@ -12,7 +12,7 @@ const config: Config = {
   url: "https://ia-eknorr.github.io",
   baseUrl: "/ignition-guides/",
 
-  organizationName: "ia-eknorr",
+  organizationName: "knorrlabs",
   projectName: "ignition-guides",
 
   future: {
@@ -79,7 +79,7 @@ const config: Config = {
         docs: {
           sidebarPath: "./sidebars.ts",
           editUrl:
-            "https://github.com/ia-eknorr/ignition-guides/tree/main/",
+            "https://github.com/knorrlabs/ignition-guides/tree/main/",
           beforeDefaultRemarkPlugins: [
             [remarkTokenSubstitution, { tokens: { IGNITION_VERSION } }],
           ],
@@ -108,7 +108,7 @@ const config: Config = {
           label: "Docs",
         },
         {
-          href: "https://github.com/ia-eknorr/ignition-guides",
+          href: "https://github.com/knorrlabs/ignition-guides",
           label: "GitHub",
           position: "right",
         },
@@ -132,7 +132,7 @@ const config: Config = {
           items: [
             {
               label: "GitHub",
-              href: "https://github.com/ia-eknorr/ignition-guides",
+              href: "https://github.com/knorrlabs/ignition-guides",
             },
             {
               label: "Stoker Operator",
